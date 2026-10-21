@@ -22,10 +22,9 @@ export function renderRecord(root, { data, state, today, onClose }) {
   const s = recordStats(state, data.diaries);
   root.innerHTML = `
     <section class="screen record">
+      <div class="screen-body">
       <header class="screen-head">
-        <button class="back-btn">‹ 島</button>
         <h1 class="screen-title">記録</h1>
-        <span class="screen-head-space"></span>
       </header>
       <dl class="record-stats">
         <div class="is-wide"><dt>初回起動日</dt><dd>${jpDate(s.installedOn)}</dd></div>
@@ -39,6 +38,8 @@ export function renderRecord(root, { data, state, today, onClose }) {
         </div>
       </dl>
       <footer class="record-foot">${jpDate(today)} 時点</footer>
+      </div>
+      <nav class="bottom-bar"><button class="home-btn back-btn">島にもどる</button></nav>
     </section>
   `;
   root.querySelector('.back-btn').addEventListener('click', onClose);

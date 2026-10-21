@@ -273,16 +273,28 @@ button {
 .screen-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 44px;
 }
-.back-btn {
-  padding: 8px 12px 8px 4px;
+/* 戻るボタンは、指が届きやすい画面の下に置く */
+.home-btn {
+  flex: 1;
+  max-width: 220px;
+  height: 48px;
   border: none;
-  background: none;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 1px 4px rgba(59, 50, 48, 0.12);
   font-size: 15px;
-  color: var(--ink-soft);
+  font-weight: 700;
+  color: var(--ink);
   cursor: pointer;
+}
+.bottom-bar {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 /* ---- 日記 ---- */
@@ -340,11 +352,18 @@ button {
   pointer-events: none;
 }
 
+.diary-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+}
 .diary-nav {
   flex: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 .nav-btn {
   width: 56px;
@@ -511,16 +530,22 @@ button {
   inset: 0;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  padding: max(8px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  padding: max(8px, env(safe-area-inset-top)) 16px max(12px, env(safe-area-inset-bottom));
   background: var(--bg);
+}
+/* 中身だけをスクロールし、下の戻るボタンは動かさない */
+.screen-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 .screen-title {
   margin: 0;
   font-size: 17px;
   font-weight: 700;
 }
-.screen-head-space { width: 48px; }
 .screen-empty {
   margin-top: 40%;
   text-align: center;

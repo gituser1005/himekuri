@@ -33,13 +33,13 @@ export function renderDiary(root, { data, state, today, startId, backLabel = '�
 
   root.innerHTML = `
     <section class="diary">
-      <header class="screen-head">
-        <button class="back-btn">‹ ${backLabel}</button>
+      <header class="diary-head">
+        <span class="diary-unread"></span>
       </header>
       <div class="book"></div>
       <nav class="diary-nav">
         <button class="nav-btn nav-prev" aria-label="前の日">‹</button>
-        <span class="diary-unread"></span>
+        <button class="home-btn back-btn">${backLabel}にもどる</button>
         <button class="nav-btn nav-next" aria-label="次の日">›</button>
       </nav>
     </section>

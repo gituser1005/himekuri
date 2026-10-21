@@ -31,10 +31,9 @@ export function renderReread(root, { data, state, today, view, onOpen, onClose }
   function render() {
     root.innerHTML = `
       <section class="screen reread">
+        <div class="screen-body">
         <header class="screen-head">
-          <button class="back-btn">‹ 島</button>
           <h1 class="screen-title">読み返し</h1>
-          <span class="screen-head-space"></span>
         </header>
         <div class="cal-bar">
           <div class="cal-mode" role="tablist">
@@ -61,6 +60,8 @@ export function renderReread(root, { data, state, today, view, onOpen, onClose }
           <button>ひらく</button>
         </form>
         <p class="cal-message" role="status">${view.message}</p>
+        </div>
+        <nav class="bottom-bar"><button class="home-btn back-btn">島にもどる</button></nav>
       </section>
     `;
     view.message = '';

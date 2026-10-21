@@ -2,7 +2,7 @@
 // ファイルを直して公開し直すときは VERSION を上げる（tools/deploy.py が上げ忘れを止める）。
 // 新しい版は裏で取ってきて、次に開いたときから使われる。
 
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = `island-${VERSION}`;
 
 // 公開するファイルの一覧（tools/deploy.py もこの一覧を見てコピーする）
