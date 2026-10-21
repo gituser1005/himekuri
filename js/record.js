@@ -1,35 +1,15 @@
-// 記録ページ（テスト用）。保存データから集計して表示するだけで、新しく保存するものはない。
+// 記録（テスト用）。保存データから集計して表示するだけ。テスト終了時にスクリーンショットを撮って共有する。
 
 import { dateParts } from './date.js';
-import { STAMPS, stampMarkHtml } from './stamp.js';
 
-export function recordStats(state) {
-  const dates = Object.keys(state.pages).sort();
-  const pages = dates.map((d) => state.pages[d]);
-
-  const byType = Object.fromEntries(STAMPS.map((s) => [s.id, 0]));
-  const byMonth = [];
-  for (const d of dates) {
-    const stamp = state.pages[d].stamp;
-    if (!stamp) continue; // 押さなかった日は一覧に出さない（抜けに見せない）
-    byType[stamp] = (byType[stamp] ?? 0) + 1;
-    const ym = d.slice(0, 7);
-    let month = byMonth.at(-1);
-    if (month?.ym !== ym) {
-      month = { ym, items: [] };
-      byMonth.push(month);
-    }
-    month.items.push({ ymd: d, stamp });
-  }
-
+export function recordStats(state, diaries) {
   return {
     installedOn: state.installedOn,
-    openedDays: state.openedDays.length,
-    flippedSelf: pages.filter((p) => p.flipped && !p.autoFlipped).length,
-    flippedAuto: pages.filter((p) => p.autoFlipped).length,
-    stampTotal: byMonth.reduce((n, m) => n + m.items.length, 0),
-    byType,
-    byMonth,
+    openedDays: new Set(state.opens.map((o) => o.day)).size,
+    opens: state.opens.length,
+    islandOnly: state.opens.filter((o) => !o.mekuri && !o.reread).length, // 日記も読み返しも開かなかった回
+    read: state.read.length,
+    total: diaries.length,
   };
 }
 
@@ -38,42 +18,28 @@ const jpDate = (ymd) => {
   return `${year}年${month}月${day}日`;
 };
 
-export function openRecord(state, today) {
-  const s = recordStats(state);
-  const overlay = document.createElement('div');
-  overlay.className = 'record';
-  overlay.innerHTML = `
-    <header class="record-head">
-      <h1>きろく</h1>
-      <button class="record-close" aria-label="とじる">×</button>
-    </header>
-    <dl class="record-stats">
-      <div><dt>使い始めた日</dt><dd>${jpDate(s.installedOn)}</dd></div>
-      <div><dt>開いた日数</dt><dd>${s.openedDays}<small>日</small></dd></div>
-      <div>
-        <dt>めくった枚数</dt>
-        <dd>${s.flippedSelf}<small>枚</small></dd>
-        ${s.flippedAuto ? `<dd class="record-sub">ぬいぐるみが代わりにめくった ${s.flippedAuto}枚</dd>` : ''}
-      </div>
-      <div><dt>押したハンコ</dt><dd>${s.stampTotal}<small>個</small></dd></div>
-    </dl>
-    <ul class="record-types">
-      ${STAMPS.map((t) => `
-        <li><span class="record-mark">${stampMarkHtml(t.id, '2000-01-01')}</span><span>${s.byType[t.id]}</span></li>
-      `).join('')}
-    </ul>
-    ${s.byMonth.map((m) => `
-      <section class="record-month">
-        <h2>${Number(m.ym.slice(0, 4))}年${Number(m.ym.slice(5))}月</h2>
-        <ul class="record-stamps">
-          ${m.items.map((it) => `
-            <li><span class="record-mark">${stampMarkHtml(it.stamp, it.ymd)}</span><span class="record-day">${Number(it.ymd.slice(8))}日</span></li>
-          `).join('')}
-        </ul>
-      </section>
-    `).join('')}
-    <footer class="record-foot">${jpDate(today)} 時点</footer>
+export function renderRecord(root, { data, state, today, onClose }) {
+  const s = recordStats(state, data.diaries);
+  root.innerHTML = `
+    <section class="screen record">
+      <header class="screen-head">
+        <button class="back-btn">‹ 島</button>
+        <h1 class="screen-title">記録</h1>
+        <span class="screen-head-space"></span>
+      </header>
+      <dl class="record-stats">
+        <div class="is-wide"><dt>初回起動日</dt><dd>${jpDate(s.installedOn)}</dd></div>
+        <div><dt>開いた日数</dt><dd>${s.openedDays}<small>日</small></dd></div>
+        <div><dt>読んだ日記</dt><dd>${s.read}<small> / ${s.total}</small></dd></div>
+        <div class="is-wide">
+          <dt>開いた回数</dt>
+          <dd>${s.opens}<small>回</small></dd>
+          <dd class="record-sub">そのうち島だけ見て閉じた回数 ${s.islandOnly}回</dd>
+          <dd class="record-note">起動したときと、10分以上たってから戻ってきたときに1回と数えます</dd>
+        </div>
+      </dl>
+      <footer class="record-foot">${jpDate(today)} 時点</footer>
+    </section>
   `;
-  overlay.querySelector('.record-close').addEventListener('click', () => overlay.remove());
-  document.body.append(overlay);
+  root.querySelector('.back-btn').addEventListener('click', onClose);
 }

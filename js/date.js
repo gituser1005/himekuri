@@ -25,6 +25,22 @@ export function appDate(now) {
   return toYmd(d);
 }
 
+// 時間帯: 朝 5:00〜10:00 / 昼 10:00〜16:00 / 夕方 16:00〜19:00 / 夜 19:00〜5:00
+export function timeSlot(now) {
+  const h = now.getHours();
+  if (h >= 5 && h < 10) return 'morning';
+  if (h >= 10 && h < 16) return 'day';
+  if (h >= 16 && h < 19) return 'evening';
+  return 'night';
+}
+
+// Date → 'YYYY-MM-DDTHH:MM'（端末の時刻のまま）
+export function toLocalIso(d) {
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  return `${toYmd(d)}T${hh}:${mm}`;
+}
+
 export function toYmd(d) {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, '0');

@@ -1,44 +1,57 @@
-// 二十四節気・七十二候の固定データ（2026年秋〜2027年1月）
-// from はその候が始まるアプリ上の日付。日付は手入力のため ±1日ずれている可能性あり（後のステップで要確認）。
+// 読み返しのカレンダーで使う日付の計算と絞り込み（画面に依存しない）。週は日曜はじまり。
 
-const KOU = [
-  { from: '2026-09-23', sekki: '秋分', sekkiYomi: 'しゅうぶん', kou: '雷乃収声', kouYomi: 'かみなりすなわちこえをおさむ' },
-  { from: '2026-09-28', sekki: '秋分', sekkiYomi: 'しゅうぶん', kou: '蟄虫坏戸', kouYomi: 'むしかくれてとをふさぐ' },
-  { from: '2026-10-03', sekki: '秋分', sekkiYomi: 'しゅうぶん', kou: '水始涸', kouYomi: 'みずはじめてかるる' },
-  { from: '2026-10-08', sekki: '寒露', sekkiYomi: 'かんろ', kou: '鴻雁来', kouYomi: 'こうがんきたる' },
-  { from: '2026-10-13', sekki: '寒露', sekkiYomi: 'かんろ', kou: '菊花開', kouYomi: 'きくのはなひらく' },
-  { from: '2026-10-18', sekki: '寒露', sekkiYomi: 'かんろ', kou: '蟋蟀在戸', kouYomi: 'きりぎりすとにあり' },
-  { from: '2026-10-23', sekki: '霜降', sekkiYomi: 'そうこう', kou: '霜始降', kouYomi: 'しもはじめてふる' },
-  { from: '2026-10-28', sekki: '霜降', sekkiYomi: 'そうこう', kou: '霎時施', kouYomi: 'こさめときどきふる' },
-  { from: '2026-11-02', sekki: '霜降', sekkiYomi: 'そうこう', kou: '楓蔦黄', kouYomi: 'もみじつたきばむ' },
-  { from: '2026-11-07', sekki: '立冬', sekkiYomi: 'りっとう', kou: '山茶始開', kouYomi: 'つばきはじめてひらく' },
-  { from: '2026-11-12', sekki: '立冬', sekkiYomi: 'りっとう', kou: '地始凍', kouYomi: 'ちはじめてこおる' },
-  { from: '2026-11-17', sekki: '立冬', sekkiYomi: 'りっとう', kou: '金盞香', kouYomi: 'きんせんかさく' },
-  { from: '2026-11-22', sekki: '小雪', sekkiYomi: 'しょうせつ', kou: '虹蔵不見', kouYomi: 'にじかくれてみえず' },
-  { from: '2026-11-27', sekki: '小雪', sekkiYomi: 'しょうせつ', kou: '朔風払葉', kouYomi: 'きたかぜこのはをはらう' },
-  { from: '2026-12-02', sekki: '小雪', sekkiYomi: 'しょうせつ', kou: '橘始黄', kouYomi: 'たちばなはじめてきばむ' },
-  { from: '2026-12-07', sekki: '大雪', sekkiYomi: 'たいせつ', kou: '閉塞成冬', kouYomi: 'そらさむくふゆとなる' },
-  { from: '2026-12-12', sekki: '大雪', sekkiYomi: 'たいせつ', kou: '熊蟄穴', kouYomi: 'くまあなにこもる' },
-  { from: '2026-12-17', sekki: '大雪', sekkiYomi: 'たいせつ', kou: '鱖魚群', kouYomi: 'さけのうおむらがる' },
-  { from: '2026-12-22', sekki: '冬至', sekkiYomi: 'とうじ', kou: '乃東生', kouYomi: 'なつかれくさしょうず' },
-  { from: '2026-12-27', sekki: '冬至', sekkiYomi: 'とうじ', kou: '麋角解', kouYomi: 'さわしかのつのおつる' },
-  { from: '2027-01-01', sekki: '冬至', sekkiYomi: 'とうじ', kou: '雪下出麦', kouYomi: 'ゆきわたりてむぎのびる' },
-  { from: '2027-01-05', sekki: '小寒', sekkiYomi: 'しょうかん', kou: '芹乃栄', kouYomi: 'せりすなわちさかう' },
-  { from: '2027-01-10', sekki: '小寒', sekkiYomi: 'しょうかん', kou: '水泉動', kouYomi: 'しみずあたたかをふくむ' },
-  { from: '2027-01-15', sekki: '小寒', sekkiYomi: 'しょうかん', kou: '雉始雊', kouYomi: 'きじはじめてなく' },
-  { from: '2027-01-20', sekki: '大寒', sekkiYomi: 'だいかん', kou: '款冬華', kouYomi: 'ふきのはなさく' },
-  { from: '2027-01-25', sekki: '大寒', sekkiYomi: 'だいかん', kou: '水沢腹堅', kouYomi: 'さわみずこおりつめる' },
-  { from: '2027-01-30', sekki: '大寒', sekkiYomi: 'だいかん', kou: '鶏始乳', kouYomi: 'にわとりはじめてとやにつく' },
-  { from: '2027-02-04', sekki: '立春', sekkiYomi: 'りっしゅん', kou: '東風解凍', kouYomi: 'はるかぜこおりをとく' },
-];
+import { addDays, dateParts, toYmd } from './date.js';
+import { availableDiaries } from './diaries.js';
 
-// 'YYYY-MM-DD' → その日の節気と候。データ範囲外なら null
-export function koyomiFor(ymd) {
-  if (ymd < KOU[0].from) return null;
-  let found = null;
-  for (const k of KOU) {
-    if (k.from <= ymd) found = k;
-    else break;
-  }
-  return found;
+// 日記がある月 ['2026-10', '2026-11']
+export function monthKeys(diaries) {
+  return [...new Set(diaries.map((d) => d.date.slice(0, 7)))].sort();
+}
+
+// 月のマス。先頭と末尾の空きマスは null。7の倍数になる
+export function monthCells(ym) {
+  const [y, m] = ym.split('-').map(Number);
+  const lead = new Date(y, m - 1, 1).getDay();
+  const days = new Date(y, m, 0).getDate();
+  const cells = Array(lead).fill(null);
+  for (let d = 1; d <= days; d++) cells.push(toYmd(new Date(y, m - 1, d)));
+  while (cells.length % 7) cells.push(null);
+  return cells;
+}
+
+export function weekStart(ymd) {
+  return addDays(ymd, -dateParts(ymd).weekdayIndex);
+}
+
+export function weekDays(start) {
+  return Array.from({ length: 7 }, (_, i) => addDays(start, i));
+}
+
+// 日記がある週の、始まりの日の一覧
+export function weekStarts(diaries) {
+  const first = weekStart(diaries[0].date);
+  const last = weekStart(diaries.at(-1).date);
+  const starts = [];
+  for (let d = first; d <= last; d = addDays(d, 7)) starts.push(d);
+  return starts;
+}
+
+// 絞り込み。お気に入り・写真あり・書き手（複数選べる。どれか1人に当てはまればよい）
+export function matchesFilter(diary, filters, favorites) {
+  if (filters.fav && !favorites.includes(diary.id)) return false;
+  if (filters.photo && !diary.snapshot) return false;
+  if (filters.writers.length && !filters.writers.includes(diary.writer)) return false;
+  return true;
+}
+
+export function isFiltering(filters) {
+  return filters.fav || filters.photo || filters.writers.length > 0;
+}
+
+// 日付を入力して飛ぶ。開ける日記なら { id }、開けなければ { message }
+export function jumpTo(diaries, today, ymd) {
+  const diary = diaries.find((d) => d.date === ymd);
+  if (!diary) return { message: 'この日の日記はありません' };
+  if (!availableDiaries(diaries, today).includes(diary)) return { message: 'この日の日記は、まだ届いていません' };
+  return { id: diary.id };
 }

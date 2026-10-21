@@ -1,6 +1,6 @@
-// localStorage の読み書き。キーは himekuri.v1 の1つだけ。
+// localStorage の読み書き。キーは island.v1 の1つだけ。
 
-const KEY = 'himekuri.v1';
+const KEY = 'island.v1';
 
 export function load() {
   try {

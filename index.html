@@ -3,23 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#e9e2d4">
-  <title>ひめくり</title>
+  <meta name="theme-color" content="#F6EFE2">
+  <title>ぬいアイランド</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon-192.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ひめくり">
+  <meta name="apple-mobile-web-app-title" content="ぬいアイランド">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <div class="pad" id="pad"></div>
-    <div class="pile" id="pile" aria-label="めくった紙"></div>
-    <button class="record-btn" id="record-btn">きろく</button>
-  </main>
+  <main class="app" id="app"></main>
   <script type="module" src="js/main.js"></script>
   <script>
     // 開発中（localhost）はキャッシュで古いファイルが出ないよう、Service Worker を使わない
