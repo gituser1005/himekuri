@@ -12,6 +12,7 @@ export const SPRITES = {
     { src: 'assets/sprites/rain_2.png', x: 550, y: 502, w: 117, h: 158 },
   ],
   night: [
-    { src: 'assets/sprites/night_0.png', x: 127, y: 509, w: 231, h: 104 },
+    { src: 'assets/sprites/night_0.png', x: 256, y: 509, w: 58, h: 15 },
+    { src: 'assets/sprites/night_1.png', x: 127, y: 531, w: 231, h: 82 },
   ],
 };

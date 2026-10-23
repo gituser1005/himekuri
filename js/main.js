@@ -36,14 +36,27 @@ try {
 }
 
 let screen = 'island';
+let diaryFromReread = false;
+
+// Android の「戻る」でアプリが閉じず1つ前の画面に戻るよう、画面を開くたびに履歴を1つ積む。
+// 画面の「○○にもどる」も履歴を戻すだけにして、どちらで戻っても同じ動きにする
+function forward(show) {
+  history.pushState(null, '');
+  show();
+}
+const back = () => history.back();
+window.addEventListener('popstate', () => {
+  if (screen === 'diary' && diaryFromReread) showReread();
+  else showIsland();
+});
 
 function showIsland() {
   screen = 'island';
   renderIsland(app, {
     now, today, data, state,
-    onMekuri: () => showDiary(),
-    onReread: showReread,
-    onRecord: showRecord,
+    onMekuri: () => forward(() => showDiary()),
+    onReread: () => forward(showReread),
+    onRecord: () => forward(showRecord),
   });
 }
 
@@ -51,6 +64,7 @@ function showIsland() {
 // fromReread なら、閉じたときに読み返しへ戻る
 function showDiary(startId, fromReread = false) {
   screen = 'diary';
+  diaryFromReread = fromReread;
   markOpened(state, 'mekuri');
   store.save(state);
   renderDiary(app, {
@@ -64,7 +78,7 @@ function showDiary(startId, fromReread = false) {
       setFavorite(state, id, on);
       store.save(state);
     },
-    onClose: fromReread ? showReread : showIsland,
+    onClose: back,
   });
 }
 
@@ -77,14 +91,14 @@ function showReread() {
   store.save(state);
   renderReread(app, {
     data, state, today, view: rereadView,
-    onOpen: (id) => showDiary(id, true),
-    onClose: showIsland,
+    onOpen: (id) => forward(() => showDiary(id, true)),
+    onClose: back,
   });
 }
 
 function showRecord() {
   screen = 'record';
-  renderRecord(app, { data, state, today, onClose: showIsland });
+  renderRecord(app, { data, state, today, onClose: back });
 }
 
 // 時計を進める。島を見ているときに日付（5時）や時間帯が変わったら描き直す

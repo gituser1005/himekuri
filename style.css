@@ -89,28 +89,33 @@ button {
   inset: 0;
 }
 
-/* キャラの切り抜き。いまは動かさない（.is-moving を付けると、昼は上下にゆっくり揺れ、夜は寝息のように小さく揺れる） */
+/* キャラの切り抜き。昼はときどき「ぴょこ、ぴょこ」と2回跳ねて、しばらく止まる。
+   夜はベッドで寝ているので跳ねず、寝息のように小さく揺れる（上の「zzz」は昼と同じように跳ねる）。
+   跳ねる高さは切り抜きの高さに対する割合なので、--hop で倍率をかけて、どの切り抜きでもほぼ同じ高さにする */
 .sprite {
   position: absolute;
   height: auto;
-}
-.island.is-moving .sprite {
-  animation: bob var(--dur, 2.8s) ease-in-out var(--delay, 0s) infinite;
-}
-.island.is-moving .sprite.is-sleeping {
-  animation: breathe 4.2s ease-in-out infinite;
   transform-origin: 50% 100%;
+  animation: hop var(--dur, 4.5s) var(--delay, 0s) infinite;
 }
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3.5%); }
+.sprite.is-sleeping {
+  animation: breathe 4.2s ease-in-out infinite;
+}
+@keyframes hop {
+  0%   { transform: translateY(0) scaleY(1); animation-timing-function: ease-out; }
+  5%   { transform: translateY(calc(-12% * var(--hop, 1))) scaleY(1.02); animation-timing-function: ease-in; }
+  10%  { transform: translateY(0) scaleY(0.94); animation-timing-function: ease-out; }
+  13%  { transform: translateY(0) scaleY(1); animation-timing-function: ease-out; }
+  17%  { transform: translateY(calc(-7% * var(--hop, 1))) scaleY(1.01); animation-timing-function: ease-in; }
+  21%  { transform: translateY(0) scaleY(0.96); animation-timing-function: ease-out; }
+  24%, 100% { transform: translateY(0) scaleY(1); }
 }
 @keyframes breathe {
   0%, 100% { transform: scaleY(1); }
   50% { transform: scaleY(1.03); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .island.is-moving .sprite { animation: none; }
+  .sprite { animation: none; }
 }
 
 /* くもり：太陽に雲を半分かけ、画面全体は暗くせず白っぽいもやを薄くかける */
@@ -133,9 +138,10 @@ button {
   mix-blend-mode: multiply;
 }
 
+/* iPhone はステータスバーの下がぼかされるので、そこから少し離して置く */
 .island-top {
   position: absolute;
-  top: max(12px, env(safe-area-inset-top));
+  top: calc(env(safe-area-inset-top, 0px) + 20px);
   left: 12px;
   right: 12px;
   display: flex;
@@ -174,12 +180,19 @@ button {
   stroke-linejoin: round;
 }
 
-/* 未読の案内の帯 */
-.island-band {
+/* 下の部分：未読の案内の帯と、その下に「読み返し」「記録」 */
+.island-bottom {
   position: absolute;
   left: 12px;
-  right: 68px;
+  right: 12px;
   bottom: max(16px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 未読の案内の帯 */
+.island-band {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -226,47 +239,26 @@ button {
 }
 @keyframes band-in { from { opacity: 0; transform: translateY(12px); } }
 
-/* 右下の控えめなメニュー */
-.island-menu {
-  position: absolute;
-  right: 12px;
-  bottom: max(16px, env(safe-area-inset-bottom));
+/* 読み返し・記録のボタン（いつも出しておく） */
+.island-nav {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
+  gap: 10px;
 }
-.island-menu-btn {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
+.island-nav button {
+  flex: 1;
+  height: 48px;
   border: none;
-  border-radius: 50%;
-  background: rgba(255, 253, 248, 0.7);
-  color: var(--ink-soft);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.88);
+  box-shadow: 0 1px 4px rgba(59, 50, 48, 0.14);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
   cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
-.island-menu-btn svg { width: 20px; height: 20px; fill: currentColor; }
-.is-night .island-menu-btn { background: rgba(30, 36, 64, 0.6); color: #f3ead6; }
-.island-menu-items {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: 12px;
-  background: var(--paper);
-  box-shadow: 0 4px 16px rgba(59, 50, 48, 0.18);
-}
-.island-menu-items[hidden] { display: none; }
-.island-menu-items button {
-  padding: 12px 20px;
-  border: none;
-  background: none;
-  font-size: 14px;
-  text-align: right;
-  cursor: pointer;
-}
-.island-menu-items button + button { border-top: 1px solid #efe6d6; }
+.is-night .island-nav button { background: rgba(30, 36, 64, 0.72); color: #f3ead6; }
 
 /* ---- 島以外の画面の共通部分 ---- */
 

@@ -6,8 +6,8 @@ import { availableDiaries, unreadDiaries } from './diaries.js';
 import { paperHtml } from './paper.js';
 
 const TURN_ANGLE = 115;       // めくり切ったときの角度
-const TURN_DISTANCE = 0.3;    // 幅に対してこれ以上めくったら、離したときにめくり切る
-const TURN_VELOCITY = 0.5;    // px/ms。これより速く払ったらめくり切る
+const TURN_DISTANCE = 0.18;   // 幅に対してこれ以上めくったら、離したときにめくり切る
+const TURN_VELOCITY = 0.3;    // px/ms。これより速く払ったらめくり切る
 
 // 「ここまで」の紙の文言
 export function endText(diaries, today) {

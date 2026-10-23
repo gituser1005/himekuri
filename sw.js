@@ -2,7 +2,7 @@
 // ファイルを直して公開し直すときは VERSION を上げる（tools/deploy.py が上げ忘れを止める）。
 // 新しい版は裏で取ってきて、次に開いたときから使われる。
 
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = `island-${VERSION}`;
 
 // 公開するファイルの一覧（tools/deploy.py もこの一覧を見てコピーする）
@@ -39,6 +39,7 @@ const ASSETS = [
   'assets/sprites/rain_1.png',
   'assets/sprites/rain_2.png',
   'assets/sprites/night_0.png',
+  'assets/sprites/night_1.png',
   'assets/snap_1024_group.png',
   'assets/snap_1031_halloween.png',
   'assets/snap_1106_dance.png',

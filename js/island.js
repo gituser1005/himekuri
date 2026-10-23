@@ -1,4 +1,5 @@
 // 島の画面（ホーム）。時間帯と天気で絵を選び、未読があれば下に案内の帯を出す。
+// いちばん下には「読み返し」「記録」のボタンをいつも出し、帯はその上に出す。
 // 日記の本文はここでは見せない（めくって初めて読める）。
 
 import { dateParts, timeSlot, addDays } from './date.js';
@@ -39,13 +40,18 @@ export function islandScene(slot, weather) {
 }
 
 // キャラの切り抜きを、元の絵と同じ位置に置く（絵の大きさに対する割合で指定する）
-// いまは動かさない。島に is-moving を付けると、1人ずつタイミングをずらして揺れる（style.css）
+// 昼はぴょこぴょこ跳ねる。1人ずつ間隔とタイミングをずらし、そろって跳ばないようにする（style.css）
+// 夜のキャラは寝息のように揺れ、上の「zzz」だけが昼のキャラと同じように跳ねる
 const PIC_W = 780;
 const PIC_H = 1688;
+const ZZZ = 'assets/sprites/night_0.png';
+const CHARA_H = 170; // キャラの切り抜きの高さの目安。跳ねる高さを、小さい「zzz」でもキャラと同じにするのに使う
+// 元の絵と違う位置に置くキャラ。晴れのポテサラは右下にいて未読の帯に隠れるので、画面中央あたりの道の上へ移す
+const MOVED = { 'assets/sprites/sunny_2.png': { x: 300, y: 820 } };
 function spritesHtml(key) {
-  return SPRITES[key].map((s, i) => `
-    <img class="sprite ${key === 'night' ? 'is-sleeping' : ''}" src="${s.src}" alt=""
-      style="left:${(s.x / PIC_W) * 100}%;top:${(s.y / PIC_H) * 100}%;width:${(s.w / PIC_W) * 100}%;--delay:${-i * 0.9}s;--dur:${2.6 + i * 0.35}s">`).join('');
+  return SPRITES[key].map((s) => ({ ...s, ...MOVED[s.src] })).map((s, i) => `
+    <img class="sprite ${key === 'night' && s.src !== ZZZ ? 'is-sleeping' : ''}" src="${s.src}" alt=""
+      style="left:${(s.x / PIC_W) * 100}%;top:${(s.y / PIC_H) * 100}%;width:${(s.w / PIC_W) * 100}%;--delay:${-i * 1.7}s;--dur:${4.2 + i * 0.9}s;--hop:${(CHARA_H / s.h).toFixed(2)}">`).join('');
 }
 
 // 未読の案内の帯の文言。未読がなければ null（帯を出さない）
@@ -87,39 +93,29 @@ export function renderIsland(root, { now, today, data, state, onMekuri, onReread
         </div>
         <div class="chip island-weather">${weatherIcon(weather)}<span>${WEATHER_LABEL[weather]}</span></div>
       </header>
-      ${band ? `
-      <div class="island-band">
-        <div class="band-text">
-          <p class="band-title">${band.title}</p>
-          ${band.writer ? `
-          <p class="band-writer">
-            <img class="avatar" src="${band.writer.avatar}" alt="">書いたのは ${band.writer.name}
-          </p>` : ''}
-        </div>
-        <button class="band-go">めくる</button>
-      </div>` : ''}
-      <nav class="island-menu">
-        <div class="island-menu-items" hidden>
-          <button data-go="reread">読み返し</button>
-          <button data-go="record">記録</button>
-        </div>
-        <button class="island-menu-btn" aria-label="メニュー">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg>
-        </button>
-      </nav>
+      <div class="island-bottom">
+        ${band ? `
+        <div class="island-band">
+          <div class="band-text">
+            <p class="band-title">${band.title}</p>
+            ${band.writer ? `
+            <p class="band-writer">
+              <img class="avatar" src="${band.writer.avatar}" alt="">書いたのは ${band.writer.name}
+            </p>` : ''}
+          </div>
+          <button class="band-go">めくる</button>
+        </div>` : ''}
+        <nav class="island-nav">
+          <button class="go-reread">読み返し</button>
+          <button class="go-record">記録</button>
+        </nav>
+      </div>
     </section>
   `;
 
   root.querySelector('.band-go')?.addEventListener('click', onMekuri);
-
-  const items = root.querySelector('.island-menu-items');
-  root.querySelector('.island-menu-btn').addEventListener('click', () => { items.hidden = !items.hidden; });
-  items.addEventListener('click', (e) => {
-    const go = e.target.closest('button')?.dataset.go;
-    items.hidden = true;
-    if (go === 'reread') onReread();
-    if (go === 'record') onRecord();
-  });
+  root.querySelector('.go-reread').addEventListener('click', onReread);
+  root.querySelector('.go-record').addEventListener('click', onRecord);
 }
 
 // 時刻だけを書き換える（日付や時間帯が変わったときは renderIsland し直す）
