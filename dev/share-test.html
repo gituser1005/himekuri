@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <!-- iPhone で「ホーム画面に追加」したとき、アプリと同じ全画面の形で開くようにする（ホーム画面のアプリでも送れるかを試すため） -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="送る試験">
+  <title>記録を送る試験</title>
+  <style>
+    :root { --paper: #FFFDF8; --bg: #F6EFE2; --ink: #3B3230; --soft: #6B5F57; --accent: #B23A2E; --line: #e3d8c6; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: calc(env(safe-area-inset-top, 0px) + 16px) 16px 32px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    h1 { margin: 0 0 4px; font-size: 19px; }
+    .lead { margin: 0 0 16px; color: var(--soft); font-size: 13px; }
+    .panel { margin-bottom: 14px; padding: 14px 16px; border-radius: 12px; background: var(--paper); box-shadow: 0 1px 3px rgba(59, 50, 48, 0.1); }
+    .panel h2 { margin: 0 0 8px; font-size: 15px; }
+    ol { margin: 0; padding-left: 1.3em; }
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+    }
+    button.primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .result { min-height: 1.7em; margin: 10px 0 0; font-weight: 700; }
+    .result.is-ok { color: #2f6b3a; }
+    .result.is-ng { color: var(--accent); }
+    dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0; font-size: 12px; }
+    dt { color: var(--soft); }
+    dd { margin: 0; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <!-- 試験用のページ。島のアプリ（v1）からはリンクしない。保存データ（island.v1）には触らない。
+       中身が JSON の .txt ファイルを作り、共有シートで送る。共有シートが使えない端末では、ファイルを端末に保存する -->
+  <h1>記録を送る試験</h1>
+  <p class="lead">島のアプリの「記録を送る」が、LINE で送れるかを確かめるページです。送るのは試験用の記録で、本当の記録ではありません。</p>
+
+  <section class="panel">
+    <h2>試し方</h2>
+    <ol>
+      <li>下の「記録を送る」を押す</li>
+      <li>共有の画面が出たら LINE を選び、自分か家族のトークに送る</li>
+      <li>送れたら、LINE でファイルを開いて中身が見えるか確かめる</li>
+      <li>この画面のいちばん下までのスクリーンショットを送ってください</li>
+    </ol>
+    <button class="primary" id="send">記録を送る</button>
+    <button id="save">共有を使わずに、端末に保存してみる</button>
+    <p class="result" id="result" role="status"></p>
+  </section>
+
+  <section class="panel">
+    <h2>この端末のようす</h2>
+    <dl id="info"></dl>
+  </section>
+
+  <script>
+    // ---- 試験用の記録（4週間分、本物と同じくらいの大きさ）----
+    const NUIS = ['fuuka', 'potesara', 'komachi'];
+    const SLOTS = [['morning', 7], ['day', 12], ['evening', 17], ['night', 20]];
+    const pad = (n) => String(n).padStart(2, '0');
+    const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    const ymd = (d) => iso(d).slice(0, 10);
+    const tz = () => {
+      const m = -new Date().getTimezoneOffset();
+      return `${m >= 0 ? '+' : '-'}${pad(Math.floor(Math.abs(m) / 60))}:${pad(Math.abs(m) % 60)}`;
+    };
+
+    function sampleLog() {
+      const events = [];
+      let r = 7;
+      const rnd = () => (r = (r * 16807) % 2147483647) / 2147483647;
+      const start = new Date(2026, 10, 9);
+      for (let day = 0; day < 28; day++) {
+        for (const [slot, hour] of SLOTS) {
+          if (rnd() < 0.35) continue;
+          const at = new Date(start.getFullYear(), start.getMonth(), start.getDate() + day, hour, Math.floor(rnd() * 59), Math.floor(rnd() * 59));
+          const pair = slot !== 'night' && rnd() < 0.17 ? [NUIS[0], NUIS[2]] : null;
+          events.push({ t: 'open', at: iso(at), via: 'other', return: day > 0, away: Math.floor(rnd() * 600), unread: slot === 'morning' ? 1 : 0, slot, weather: rnd() < 0.25 ? 'rain' : 'sunny', pair });
+          let sec = 20;
+          if (slot === 'morning' || rnd() < 0.3) {
+            const diary = new Date(at.getFullYear(), at.getMonth(), at.getDate() - 1);
+            events.push({ t: 'read', at: iso(new Date(at.getTime() + sec * 1000)), diary: ymd(diary), id: `d${ymd(diary).replaceAll('-', '')}`, first: slot === 'morning', since: Math.floor(rnd() * 900), how: rnd() < 0.5 ? 'button' : 'swipe', kind: rnd() < 0.2 ? 'event' : 'habit', script: rnd() < 0.2 ? 'amamori/E2' : 'I-tea-01+H-tea-05', arc: null, step: null, steps: null });
+            sec += 40 + Math.floor(rnd() * 60);
+            if (rnd() < 0.15) events.push({ t: 'fav', at: iso(new Date(at.getTime() + sec * 1000)), diary: ymd(diary), on: true });
+          }
+          events.push({ t: 'close', at: iso(new Date(at.getTime() + (sec + 30) * 1000)), open: sec + 30 });
+        }
+      }
+      return {
+        format: 'nui-log/1',
+        test: true,
+        app: 'share-test',
+        exportedAt: iso(new Date()) + tz(),
+        deviceId: 'test0000',
+        userAgent: navigator.userAgent,
+        standalone: isStandalone(),
+        installedOn: ymd(start),
+        events,
+      };
+    }
+
+    const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+    const fileName = () => `nui-kiroku-${ymd(new Date()).replaceAll('-', '')}.txt`;
+    const makeFile = () => {
+      const text = JSON.stringify(sampleLog(), null, 1);
+      return new File([text], fileName(), { type: 'text/plain' });
+    };
+
+    // ---- 送る ----
+    const $ = (id) => document.getElementById(id);
+    const say = (text, ok) => {
+      $('result').textContent = text;
+      $('result').className = `result ${ok === true ? 'is-ok' : ok === false ? 'is-ng' : ''}`;
+      last = text;
+      showInfo();
+    };
+    let last = 'まだ押していません';
+
+    // 端末にファイルとして保存する（共有シートが使えない端末の代わりの方法）
+    function saveFile(file, why) {
+      const url = URL.createObjectURL(file);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = file.name;
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      say(`${why}端末に「${file.name}」を保存しました。ファイルのアプリ（Android は「ダウンロード」）にあるか確かめてください`, true);
+    }
+
+    $('send').addEventListener('click', async () => {
+      const file = makeFile();
+      if (!(navigator.canShare && navigator.canShare({ files: [file] }))) {
+        saveFile(file, 'この端末は共有の画面でファイルを送れないので、');
+        return;
+      }
+      try {
+        await navigator.share({ files: [file], title: '島の記録' });
+        say('共有の画面を閉じました（送れたかは LINE で確かめてください）', true);
+      } catch (e) {
+        if (e.name === 'AbortError') say('共有をやめました（やめた場合もここに出ます）');
+        else say(`共有の画面でエラーになりました：${e.name} ${e.message}`, false);
+      }
+    });
+    $('save').addEventListener('click', () => saveFile(makeFile(), ''));
+
+    // ---- この端末のようす ----
+    function showInfo() {
+      let canFiles = '共有の機能なし';
+      try {
+        if (navigator.canShare) canFiles = navigator.canShare({ files: [new File(['x'], 'a.txt', { type: 'text/plain' })] }) ? 'できる' : 'できない';
+      } catch (e) {
+        canFiles = `確かめられない（${e.name}）`;
+      }
+      const size = new Blob([JSON.stringify(sampleLog(), null, 1)]).size;
+      const rows = [
+        ['ファイルで共有', canFiles],
+        ['ホーム画面のアプリ', isStandalone() ? 'はい' : 'いいえ（ブラウザで開いている）'],
+        ['送るファイル', `${fileName()}（${Math.round(size / 1024)}KB）`],
+        ['最後の結果', last],
+        ['端末', navigator.userAgent],
+      ];
+      $('info').innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])}</dd>`).join('');
+    }
+    showInfo();
+  </script>
+</body>
+</html>
