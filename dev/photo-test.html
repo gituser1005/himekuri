@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <!-- iPhone で「ホーム画面に追加」したとき、アプリと同じ全画面の形で開くようにする（ホーム画面のアプリでも選べるか・保存が残るかを試すため） -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="写真の試験">
+  <title>写真の試験</title>
+  <style>
+    :root { --paper: #FFFDF8; --bg: #F6EFE2; --ink: #3B3230; --soft: #6B5F57; --accent: #B23A2E; --line: #e3d8c6; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: calc(env(safe-area-inset-top, 0px) + 16px) 16px 32px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    h1 { margin: 0 0 4px; font-size: 19px; }
+    .lead { margin: 0 0 16px; color: var(--soft); font-size: 13px; }
+    .panel { margin-bottom: 14px; padding: 14px 16px; border-radius: 12px; background: var(--paper); box-shadow: 0 1px 3px rgba(59, 50, 48, 0.1); }
+    .panel h2 { margin: 0 0 8px; font-size: 15px; }
+    ol, ul { margin: 0; padding-left: 1.3em; }
+    .pick {
+      display: block;
+      margin: 10px 0 0;
+      padding: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+    }
+    .pick input { display: none; }
+    .result { min-height: 1.7em; margin: 10px 0 0; font-weight: 700; }
+    .result.is-ok { color: #2f6b3a; }
+    .result.is-ng { color: var(--accent); }
+    dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0; font-size: 12px; }
+    dt { color: var(--soft); }
+    dd { margin: 0; overflow-wrap: anywhere; }
+    .views { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .views figure { margin: 0; }
+    .views figcaption { font-size: 12px; color: var(--soft); }
+    /* 市松模様の上に置くと、透明なところが模様で見える */
+    .checker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+      border-radius: 10px;
+      background: repeating-conic-gradient(#ddd 0% 25%, #fff 0% 50%) 0 0 / 16px 16px;
+    }
+    .checker img { max-width: 100%; max-height: 100%; }
+    /* コテージの絵（780×1688）の下の方を切り出して、ベンチの前の足もとに置く */
+    .stage { position: relative; overflow: hidden; aspect-ratio: 780 / 640; border-radius: 10px; }
+    .stage .bg { position: absolute; left: 0; top: calc(-800 / 640 * 100%); width: 100%; }
+    .stage .nui { position: absolute; }
+  </style>
+</head>
+<body>
+  <!-- 試験用のページ。アプリからはリンクしない。保存データ（island.v1）には触らない。
+       選んだ写真が透明な背景のまま届くかを調べ、縮めて PNG にし、試験用の IndexedDB（photo-test）に入れて読み戻す -->
+  <h1>写真の試験</h1>
+  <p class="lead">ぬいぐるみの登録で、背景を消した写真を選べるかを確かめるページです。写真はこの端末の中にだけ置かれ、どこにも送られません。</p>
+
+  <section class="panel">
+    <h2>試し方</h2>
+    <ol>
+      <li>下の「切り抜き写真の作り方」で、背景を消した写真を1枚作る</li>
+      <li>「写真を選ぶ」から、その写真を選ぶ</li>
+      <li>この画面のいちばん下までのスクリーンショットを送ってください</li>
+      <li>アプリを閉じて開き直し、「前に保存した写真」に同じ写真が出るかも見てください</li>
+      <li>できれば、背景を消していないふつうの写真でも1回試してください</li>
+    </ol>
+    <label class="pick">写真を選ぶ<input type="file" accept="image/*" id="file"></label>
+    <p class="result" id="result" role="status"></p>
+  </section>
+
+  <section class="panel">
+    <h2>切り抜き写真の作り方（仮の文）</h2>
+    <ul>
+      <li>iPhone：写真アプリでぬいぐるみの写真を開き、ぬいぐるみを長押しします。ふちが光ったら指を離し、「共有」から「画像を保存」を選ぶと、背景を消した写真が保存されます。</li>
+      <li>Android：機種によって方法がちがいます。ギャラリーや写真のアプリにある「切り抜き」「背景を消す」などの機能を使ってください。</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>見え方</h2>
+    <div class="views">
+      <figure><div class="checker" id="checker"></div><figcaption>縮めた写真（模様が見えるところが透明）</figcaption></figure>
+      <figure><div class="stage" id="stage"><img class="bg" src="../assets/island_day_sunny_bg.png" alt=""></div><figcaption>コテージに置いたとき</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>選んだ写真</h2>
+    <dl id="info"><dt>まだ</dt><dd>選んでいません</dd></dl>
+  </section>
+
+  <section class="panel">
+    <h2>前に保存した写真</h2>
+    <dl id="saved"></dl>
+  </section>
+
+  <section class="panel">
+    <h2>この端末のようす</h2>
+    <dl id="device"></dl>
+  </section>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+    const rows = (list) => list.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
+    const kb = (n) => `${Math.round(n / 1024)}KB`;
+    const say = (text, ok) => {
+      $('result').textContent = text;
+      $('result').className = `result ${ok === true ? 'is-ok' : ok === false ? 'is-ng' : ''}`;
+    };
+
+    const ANALYZE_MAX = 2048; // 調べるときの長い辺（大きな写真をそのまま描くと、iPhone では描けないことがある）
+    const SAVE_MAX = 512;     // 保存するときの長い辺
+    const CLEAR = 16;         // この透明度より小さい画素を「透明」と数える（0〜255）
+    const BORDER = 0.03;      // 縁として見る幅（短い辺に対する割合）
+
+    function loadImage(file) {
+      return new Promise((resolve, reject) => {
+        const url = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = () => resolve({ img, url });
+        img.onerror = () => {
+          URL.revokeObjectURL(url);
+          reject(new Error('この写真は読み込めませんでした'));
+        };
+        img.src = url;
+      });
+    }
+
+    function canvasOf(w, h) {
+      const c = document.createElement('canvas');
+      c.width = w;
+      c.height = h;
+      return c;
+    }
+
+    // 透明な画素の割合（全体と縁）と、透明でないところを囲む四角
+    function analyze(ctx, w, h) {
+      const { data } = ctx.getImageData(0, 0, w, h);
+      const band = Math.max(1, Math.round(Math.min(w, h) * BORDER));
+      let clear = 0, edge = 0, edgeClear = 0;
+      let minX = w, minY = h, maxX = -1, maxY = -1;
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const a = data[(y * w + x) * 4 + 3];
+          const isEdge = x < band || y < band || x >= w - band || y >= h - band;
+          if (isEdge) edge++;
+          if (a < CLEAR) {
+            clear++;
+            if (isEdge) edgeClear++;
+          } else {
+            if (x < minX) minX = x;
+            if (x > maxX) maxX = x;
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+      const box = maxX < 0 ? null : { x: minX, y: minY, w: maxX - minX + 1, h: maxY - minY + 1 };
+      return { clearRate: clear / (w * h), edgeClearRate: edgeClear / edge, box };
+    }
+
+    const toBlob = (canvas, type) => new Promise((resolve) => canvas.toBlob(resolve, type));
+
+    // ---- 試験用の IndexedDB（photo-test）。島のアプリの保存データとは別 ----
+    function openDb() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open('photo-test', 1);
+        req.onupgradeneeded = () => req.result.createObjectStore('photos');
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+    async function dbDo(mode, fn) {
+      const db = await openDb();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction('photos', mode);
+        const req = fn(tx.objectStore('photos'));
+        tx.oncomplete = () => resolve(req.result);
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+    const dbPut = (value) => dbDo('readwrite', (s) => s.put(value, 'last'));
+    const dbGet = () => dbDo('readonly', (s) => s.get('last'));
+
+    // ---- 見え方 ----
+    function showPhoto(blob, w, h) {
+      const url = URL.createObjectURL(blob);
+      $('checker').innerHTML = `<img src="${url}" alt="">`;
+      // ベンチの前（足もと 560,1125）に、高さ170で置く。切り出した絵の上端は y=800
+      const height = 170;
+      const width = height * (w / h);
+      $('stage').querySelector('.nui')?.remove();
+      const nui = document.createElement('img');
+      nui.className = 'nui';
+      nui.src = url;
+      nui.style.left = `${((560 - width / 2) / 780) * 100}%`;
+      nui.style.top = `${((1125 - height - 800) / 640) * 100}%`;
+      nui.style.width = `${(width / 780) * 100}%`;
+      $('stage').append(nui);
+    }
+
+    $('file').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      e.target.value = ''; // 同じ写真をもう一度選んでも試せるように
+      if (!file) return;
+      say('調べています…');
+      const info = [
+        ['ファイルの名前', file.name],
+        ['ファイルの形式', file.type || '（わからない）'],
+        ['ファイルの大きさ', kb(file.size)],
+      ];
+      $('info').innerHTML = rows(info);
+      try {
+        const { img, url } = await loadImage(file);
+        const ow = img.naturalWidth, oh = img.naturalHeight;
+        info.push(['写真の大きさ', `${ow}×${oh}`]);
+
+        // 1. 調べる大きさに縮めて描く
+        const s1 = Math.min(1, ANALYZE_MAX / Math.max(ow, oh));
+        const aw = Math.round(ow * s1), ah = Math.round(oh * s1);
+        const c1 = canvasOf(aw, ah);
+        const ctx1 = c1.getContext('2d', { willReadFrequently: true });
+        ctx1.drawImage(img, 0, 0, aw, ah);
+        URL.revokeObjectURL(url);
+        const a = analyze(ctx1, aw, ah);
+        const cutout = a.edgeClearRate >= 0.5;
+        info.push(['透明なところ', `全体の ${Math.round(a.clearRate * 100)}%、縁の ${Math.round(a.edgeClearRate * 100)}%`]);
+        info.push(['判定', cutout ? '背景が透明（切り抜き写真）' : '背景が透明ではない']);
+        if (!a.box) throw new Error('写真が全部透明でした');
+
+        // 2. 透明な余白を切り取り、長い辺を SAVE_MAX に縮める（小さい写真は大きくしない）
+        const b = a.box;
+        const s2 = Math.min(1, SAVE_MAX / Math.max(b.w, b.h));
+        const sw = Math.round(b.w * s2), sh = Math.round(b.h * s2);
+        const c2 = canvasOf(sw, sh);
+        const ctx2 = c2.getContext('2d');
+        ctx2.imageSmoothingQuality = 'high';
+        ctx2.drawImage(c1, b.x, b.y, b.w, b.h, 0, 0, sw, sh);
+        info.push(['切り取った範囲', `${b.w}×${b.h}（調べた大きさ ${aw}×${ah} の中）`]);
+
+        // 3. PNG で書き出す。WebP で書き出せるかも見ておく（書き出せない端末は PNG が返る）
+        const png = await toBlob(c2, 'image/png');
+        const webp = await toBlob(c2, 'image/webp');
+        info.push(['保存する写真', `${sw}×${sh}、PNG ${kb(png.size)}`]);
+        info.push(['WebP の書き出し', webp?.type === 'image/webp' ? `できる（${kb(webp.size)}）` : 'できない']);
+
+        // 4. 試験用の IndexedDB に入れて、読み戻す
+        await dbPut({ blob: png, w: sw, h: sh, at: new Date().toLocaleString('ja-JP'), name: file.name, cutout });
+        const back = await dbGet();
+        const same = back?.blob instanceof Blob && back.blob.size === png.size;
+        info.push(['端末への保存', same ? '保存して読み戻せた' : '読み戻せなかった']);
+
+        $('info').innerHTML = rows(info);
+        showPhoto(back?.blob ?? png, sw, sh);
+        showSaved();
+        say(cutout ? '背景が透明な写真として読めました' : '背景が透明ではない写真でした（このままでも登録はできる予定です）', cutout);
+      } catch (err) {
+        $('info').innerHTML = rows(info);
+        say(`うまくいきませんでした：${err.message}`, false);
+      }
+    });
+
+    // ---- 前に保存した写真（開き直しても残っているか）----
+    async function showSaved() {
+      try {
+        const v = await dbGet();
+        if (!v) {
+          $('saved').innerHTML = rows([['なし', 'まだ保存していません']]);
+          return;
+        }
+        $('saved').innerHTML = rows([
+          ['保存した時刻', v.at],
+          ['写真', `${v.name}、${v.w}×${v.h}、${kb(v.blob.size)}`],
+          ['判定', v.cutout ? '背景が透明' : '背景が透明ではない'],
+        ]);
+        if (!$('checker').firstChild) showPhoto(v.blob, v.w, v.h);
+      } catch (err) {
+        $('saved').innerHTML = rows([['読めない', `${err.name} ${err.message}`]]);
+      }
+    }
+
+    // ---- この端末のようす ----
+    async function showDevice() {
+      const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+      const list = [['ホーム画面のアプリ', standalone ? 'はい' : 'いいえ（ブラウザで開いている）']];
+      try {
+        const persisted = navigator.storage?.persist ? await navigator.storage.persist() : null;
+        list.push(['消えにくい保存', persisted === null ? '頼む機能なし' : persisted ? '認められた' : '認められなかった']);
+        const est = navigator.storage?.estimate ? await navigator.storage.estimate() : null;
+        if (est) list.push(['使っている量', `${kb(est.usage ?? 0)}（使える目安 ${Math.round((est.quota ?? 0) / 1024 / 1024)}MB）`]);
+      } catch (err) {
+        list.push(['保存の情報', `確かめられない（${err.name}）`]);
+      }
+      list.push(['端末', navigator.userAgent]);
+      $('device').innerHTML = rows(list);
+    }
+
+    showSaved();
+    showDevice();
+  </script>
+</body>
+</html>
