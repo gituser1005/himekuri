@@ -27,8 +27,9 @@ export function weekDays(start) {
   return Array.from({ length: 7 }, (_, i) => addDays(start, i));
 }
 
-// 日記がある週の、始まりの日の一覧
+// 日記がある週の、始まりの日の一覧（日記がなければ空）
 export function weekStarts(diaries) {
+  if (!diaries.length) return [];
   const first = weekStart(diaries[0].date);
   const last = weekStart(diaries.at(-1).date);
   const starts = [];

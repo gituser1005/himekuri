@@ -17,14 +17,18 @@ export function newRereadView() {
 // onOpen(diaryId): その日から日記を開く / onClose(): 島に戻る
 export function renderReread(root, { data, state, today, view, onOpen, onClose }) {
   const diaries = data.diaries; // 日付順
-  const byDate = new Map(diaries.map((d) => [d.date, d]));
+  // 日付 → その日の日記。1日に2件ある日（あとから子が来た日）は、先に読む方（おうちに来た日の日記）を開く。続けてめくると次の1件
+  const byDate = new Map();
+  for (const d of diaries) if (!byDate.has(d.date)) byDate.set(d.date, d);
   const delivered = new Set(availableDiaries(diaries, today).map((d) => d.id));
   const read = new Set(state.read);
-  const months = monthKeys(diaries);
-  const weeks = weekStarts(diaries);
+  // まだ日記が届いていない（使い始めた日）ときは、今日の月・週だけを出し、マスはどれも空
+  const empty = diaries.length === 0;
+  const months = empty ? [today.slice(0, 7)] : monthKeys(diaries);
+  const weeks = empty ? [weekStart(today)] : weekStarts(diaries);
 
   // 最初は、いちばん新しく届いた日記のある月・週を出す
-  const latest = availableDiaries(diaries, today).at(-1)?.date ?? diaries[0].date;
+  const latest = availableDiaries(diaries, today).at(-1)?.date ?? diaries[0]?.date ?? today;
   view.month ??= latest.slice(0, 7);
   view.week ??= weekStart(latest);
 
@@ -54,14 +58,15 @@ export function renderReread(root, { data, state, today, view, onOpen, onClose }
           `).join('')}
           ${isFiltering(view.filters) ? '<button class="chip-clear">クリア</button>' : ''}
         </div>
+        ${empty ? '<p class="cal-empty">まだ日記は届いていません。明日の朝に届きます。</p>' : ''}
         ${view.mode === 'month' ? monthHtml() : weekHtml()}
         <form class="cal-jump">
-          <label>日付で探す <input type="date" name="date" min="${diaries[0].date}" max="${diaries.at(-1).date}" required></label>
+          <label>日付で探す <input type="date" name="date" min="${diaries[0]?.date ?? today}" max="${diaries.at(-1)?.date ?? today}" required></label>
           <button>ひらく</button>
         </form>
         <p class="cal-message" role="status">${view.message}</p>
         </div>
-        <nav class="bottom-bar"><button class="home-btn back-btn">島にもどる</button></nav>
+        <nav class="bottom-bar"><button class="home-btn back-btn">コテージにもどる</button></nav>
       </section>
     `;
     view.message = '';

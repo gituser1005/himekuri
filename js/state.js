@@ -1,41 +1,28 @@
-// 保存データ（island.v1）の形と、それを変える操作。読み書き自体は store.js。
+// 保存データ（cottage.v1）の形と、それを変える操作。読み書き自体は store.js。
 //
 // {
 //   installedOn: '2026-10-21',                     初回起動日（アプリ上の日付）
+//   islandSeed: 'k3x9q2ab',                        家庭ごとの乱数の種（島のぬいの過ごし方のくじに使う。家庭ごとに配置が変わる）
 //   read: ['d20261020'],                           既読の日記ID（読んだ順）
 //   favorites: ['d20261024'],                      お気に入りの日記ID
-//   opens: [{ at: '2026-10-21T07:12', day: '2026-10-21', mekuri: false, reread: false }]
-// }                                                開いた記録（mekuri は日記を開いたか、reread は読み返しを開いたか）
+//   usage: { ... },                               利用ログ（usage.js。コテージを始めたあとだけ。docs/SPEC.md「4. 記録（テスト用）」）
+//   cottage: null,                                 コテージとぬいぐるみの登録（形は profile.js）と、日記の記録（cottage.diaryRecord。journal.js）。
+//                                                  まだ1体も登録していなければ null
+// }                                                写真は IndexedDB（photos.js）。ここには写真のキーだけを持つ
 
-import { appDate, toLocalIso } from './date.js';
+import { newSeed } from './rng.js';
 
-export function newState(today) {
-  return { installedOn: today, read: [], favorites: [], opens: [] };
+export function newState(today, islandSeed = newSeed()) {
+  return { installedOn: today, islandSeed, read: [], favorites: [], cottage: null };
 }
 
 // 保存データを読み込んだあとに呼ぶ。足りない項目を補い、使わなくなった項目を消す
+// （島の種がない前の版の保存データには、ここで種を作る）
 export function normalizeState(saved, today) {
   const s = { ...newState(today), ...saved };
   delete s.stamps; // スタンプは仕様変更でなくなった
+  delete s.opens; // 開いた記録は、利用ログ（usage.js）に置き換えた（11/4）
   return s;
-}
-
-// 裏にいた時間がこれ以上なら、戻ってきたときも「開いた」と数える
-export const RETURN_OPEN_MS = 10 * 60 * 1000;
-
-export function isReturnOpen(hiddenAtMs, nowMs) {
-  return hiddenAtMs !== null && nowMs - hiddenAtMs >= RETURN_OPEN_MS;
-}
-
-// 起動したとき（と、しばらく裏にいて戻ってきたとき）に呼ぶ
-export function recordOpen(state, now) {
-  state.opens.push({ at: toLocalIso(now), day: appDate(now), mekuri: false, reread: false });
-}
-
-// 今回開いているあいだに日記（mekuri）や読み返し（reread）を開いたことを記録する
-export function markOpened(state, screen) {
-  const last = state.opens.at(-1);
-  if (last) last[screen] = true;
 }
 
 export function markRead(state, diaryId) {

@@ -1,28 +1,4 @@
-/* フォントは tools/fetch-fonts.py で、使う文字だけを含んだ woff2 にしてある */
-@font-face {
-  font-family: "Zen Maru Gothic";
-  font-weight: 500;
-  font-display: swap;
-  src: url("fonts/zen-maru-gothic-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Zen Maru Gothic";
-  font-weight: 700;
-  font-display: swap;
-  src: url("fonts/zen-maru-gothic-700.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Klee One";
-  font-weight: 400;
-  font-display: swap;
-  src: url("fonts/klee-one-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Klee One";
-  font-weight: 600;
-  font-display: swap;
-  src: url("fonts/klee-one-600.woff2") format("woff2");
-}
+/* フォントの @font-face は fonts/fonts.css（tools/fetch-fonts.py が、使う文字だけを含んだ woff2 と一緒に書き出す） */
 
 :root {
   --paper: #FFFDF8;
@@ -52,9 +28,13 @@ button {
   color: inherit;
 }
 
+/* 画面いっぱい（アプリを描ける範囲の上下にくっつける） */
 .app {
-  position: relative;
-  height: 100dvh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   max-width: 480px;
   margin: 0 auto;
   overflow: hidden;
@@ -66,17 +46,20 @@ button {
   position: absolute;
   inset: 0;
   background: #cfe3ec;
+  container-type: size; /* 絵の大きさを、この入れ物の高さ（cqh）で決める */
 }
 .island.is-night { background: #232a46; }
 
 /* 島の絵と、絵に合わせて置くもの（太陽を隠す雲）を、絵と同じ縦横比の入れ物に入れる。
-   画面いっぱいに広げ（cover と同じ）、上端をそろえる */
+   画面いっぱいに広げ（cover と同じ）、下のはしを画面の下にそろえる（帯の上のはしを絵の y 1370 にするため。js/places.js の BAND_TOP）。
+   ただし空の上のはしは、絵の y 94 までしか隠さない（日付と天気の表示が屋根にかからないように。TOP_UI）。
+   390×797（iPhone 13 をホーム画面から開き、時計の帯を除いた高さ）で、ちょうど両方がそろう */
 .island-stage {
   position: absolute;
-  top: 0;
+  top: min(0px, max(calc(100cqh - 100cqw * 1688 / 780), calc(-94 / 780 * 100cqw)));
   left: 50%;
   transform: translateX(-50%);
-  width: max(100%, calc(100dvh * 780 / 1688));
+  width: max(100%, calc(100cqh * 780 / 1688));
   aspect-ratio: 780 / 1688;
 }
 .island-bg {
@@ -84,23 +67,70 @@ button {
   width: 100%;
   height: 100%;
 }
+/* 公園の木だけの絵（背景の絵の木と同じ位置）。奥の段の子より手前に重ねる（island.js の spritesHtml） */
+.island-tree {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 .island-tint {
   position: absolute;
   inset: 0;
 }
 
 /* キャラの切り抜き。昼はときどき「ぴょこ、ぴょこ」と2回跳ねて、しばらく止まる。
-   夜はベッドで寝ているので跳ねず、寝息のように小さく揺れる（上の「zzz」は昼と同じように跳ねる）。
+   寝る時間はベッドで寝ているので跳ねず、寝息のように小さく揺れる（「zzz」は昼と同じように跳ねる）。
    跳ねる高さは切り抜きの高さに対する割合なので、--hop で倍率をかけて、どの切り抜きでもほぼ同じ高さにする */
 .sprite {
   position: absolute;
-  height: auto;
   transform-origin: 50% 100%;
   animation: hop var(--dur, 4.5s) var(--delay, 0s) infinite;
+  transition: opacity 0.2s ease-out;
 }
-.sprite.is-sleeping {
-  animation: breathe 4.2s ease-in-out infinite;
+/* 登録した子の写真は、読み込めてからふわっと出す（island.js） */
+.sprite.is-loading { opacity: 0; }
+/* 背景が透明でない写真は、白いふちとうすい影で、シールや写真のプリントのように見せる。
+   ふちは写真の枠の内側に付けるので、足もとの点と大きさは切り抜き写真と変わらない */
+.sprite.is-print,
+.reg-stage-nui.is-print {
+  box-sizing: border-box;
+  border: 5px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(59, 50, 48, 0.28);
 }
+/* 寝る時間（22〜6時）：2段ベッドで、正面向きの写真を掛け布団から出して寝ている（island-life.js の sleepScene）。
+   跳ねずに、寝息のように小さくふくらむ。部屋はスタンドだけなので暗くする */
+.sprite.is-asleep {
+  animation: breathe 4.2s var(--delay, 0s) ease-in-out infinite;
+  --tone: brightness(0.62) sepia(0.2);
+  filter: var(--tone);
+}
+@keyframes breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.03); }
+}
+/* 掛け布団（ぬいの写真より手前。island-life.js の bedCover）。部屋の暗さに合わせる */
+.bed-cover {
+  position: absolute;
+  overflow: visible;
+  filter: brightness(0.62) sepia(0.2);
+}
+/* 夜（19〜22時）に家で過ごすぬいは、昼の写真なので、暖かいあかりの部屋に合わせて少しだけ暖かくする */
+.sprite.is-home-night {
+  --tone: brightness(0.96) sepia(0.14);
+  filter: var(--tone);
+}
+/* 背景が透明な切り抜き写真は、輪郭に沿った白いふちとうすい影で、シールのように見せる（背景のある写真の is-print とそろえる。11/4）。
+   ふちは filter で付けるので、夜の暖かさ・寝る時間の暗さ（--tone）はそのうしろに重ねる。
+   寝る時間は、ふちと影が掛け布団の下からはみ出さないよう、写真の下のはしで切る */
+.sprite.is-cutout,
+.reg-stage-nui.is-cutout {
+  filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)
+          drop-shadow(0 2px 3px rgba(59, 50, 48, 0.28)) var(--tone, );
+}
+.sprite.is-asleep.is-cutout { clip-path: inset(-12px -12px 0 -12px); }
 @keyframes hop {
   0%   { transform: translateY(0) scaleY(1); animation-timing-function: ease-out; }
   5%   { transform: translateY(calc(-12% * var(--hop, 1))) scaleY(1.02); animation-timing-function: ease-in; }
@@ -110,10 +140,6 @@ button {
   21%  { transform: translateY(0) scaleY(0.96); animation-timing-function: ease-out; }
   24%, 100% { transform: translateY(0) scaleY(1); }
 }
-@keyframes breathe {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(1.03); }
-}
 @media (prefers-reduced-motion: reduce) {
   .sprite { animation: none; }
 }
@@ -121,9 +147,9 @@ button {
 /* くもり：太陽に雲を半分かけ、画面全体は暗くせず白っぽいもやを薄くかける */
 .sun-cloud {
   position: absolute;
-  left: 77%;   /* 屋根にかからないよう、太陽の右下寄りに置く */
-  top: 12%;
-  width: 26%;
+  left: 46%;   /* 太陽（絵の 480,146）の前に置く。日付と天気の表示と屋根にかからないように */
+  top: 6%;
+  width: 22%;
   fill: #eeece8;
   filter: drop-shadow(0 3px 4px rgba(90, 100, 110, 0.18));
 }
@@ -138,7 +164,7 @@ button {
   mix-blend-mode: multiply;
 }
 
-/* iPhone はステータスバーの下がぼかされるので、そこから少し離して置く */
+/* iPhone はステータスバーの下がぼかされるので、そこから少し離して置く（絵の y 200 まで。js/places.js の TOP_UI） */
 .island-top {
   position: absolute;
   top: calc(env(safe-area-inset-top, 0px) + 20px);
@@ -208,14 +234,6 @@ button {
   font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
-}
-.band-writer {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 4px !important;
-  font-size: 13px;
-  color: var(--ink-soft);
 }
 .avatar {
   width: 24px;
@@ -788,6 +806,13 @@ button {
   font-weight: 700;
   cursor: pointer;
 }
+/* まだ日記が届いていないとき（使い始めた日）の一言 */
+.cal-empty {
+  margin: 4px 0 10px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  text-align: center;
+}
 .cal-message {
   min-height: 1.5em;
   margin: 8px 0 0;
@@ -797,44 +822,439 @@ button {
 }
 
 /* 記録 */
-.record-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 8px 0 18px;
+.record-lead {
+  margin: 8px 4px 18px;
+  font-size: 13px;
+  color: var(--ink-soft);
 }
-.record-stats > div {
-  padding: 10px 14px;
+/* 記録の画面の「試用の記録を見る」「ぬいぐるみ」 */
+.record-more { display: flex; justify-content: center; margin-top: 8px; }
+.record-more button {
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1.5px solid #D8CBB5;
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+/* 記録の画面のいちばん下の「初期化する」。押しまちがえないよう、小さく離して置く */
+.record-reset { display: flex; justify-content: center; margin-top: auto; padding-top: 28px; }
+.record-reset button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #A8432F;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 試用の記録（js/trial-record.js）。スクリーンショットで送るので、1ページはスクロールせずに収まる大きさにする。
+   ページ分けは .tr-body の高さで測る（はみ出すかたまりは次のページへ） */
+.trial { gap: 8px; }
+.tr-head {
+  flex: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--paper);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.tr-head small { font-size: 11px; }
+.tr-title { display: flex; align-items: baseline; gap: 6px; font-size: 13px; color: var(--ink); }
+.tr-page-no { margin-left: auto; font-size: 12px; font-weight: 700; }
+.tr-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tr-block { flex: none; margin: 0; }
+.tr-block h2 { margin: 0 0 4px; font-size: 13px; font-weight: 700; }
+.tr-intro {
+  padding: 8px 12px;
+  border-left: 3px solid #D8CBB5;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.tr-intro p { margin: 0; }
+.tr-intro p + p { margin-top: 4px; }
+.tr-stat {
+  padding: 8px 14px;
   border-radius: 10px;
   background: var(--paper);
 }
-.record-stats > .is-wide { grid-column: 1 / -1; }
-.record-stats dt {
-  font-size: 12px;
-  color: var(--ink-soft);
+.tr-stat dt { font-size: 12px; color: var(--ink-soft); }
+.tr-stat dd { margin: 0; font-size: 14px; }
+.tr-stat b { font-size: 24px; margin-right: 2px; }
+.tr-pct { margin-left: 4px; font-size: 14px; font-weight: 700; }
+.tr-sub { display: block; font-size: 12px; color: var(--ink-soft); }
+.tr-note { margin: 0 0 4px; font-size: 11px; color: var(--ink-soft); }
+.tr-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper);
+  font-size: 13px;
 }
-.record-stats dd {
-  margin: 2px 0 0;
-  font-size: 24px;
+.tr-table th, .tr-table td { padding: 5px 8px; text-align: left; font-weight: 500; }
+.tr-table thead th { font-size: 11px; color: var(--ink-soft); border-bottom: 1px solid #EFE6D6; }
+.tr-table tbody tr + tr > * { border-top: 1px solid #F3ECDF; }
+.tr-table td { font-weight: 700; white-space: nowrap; }
+.tr-table small { font-size: 11px; font-weight: 500; color: var(--ink-soft); }
+.tr-count td { text-align: right; }
+.tr-empty { text-align: center !important; color: var(--ink-soft); font-weight: 500 !important; }
+.tr-list {
+  margin: 0;
+  padding: 4px 14px;
+  border-radius: 10px;
+  background: var(--paper);
+}
+.tr-list > div { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 13px; }
+.tr-list > div + div { border-top: 1px solid #F3ECDF; }
+.tr-list dt { color: var(--ink-soft); }
+.tr-list dd { margin: 0; font-weight: 700; text-align: right; }
+.tr-list small { display: block; font-size: 11px; font-weight: 500; color: var(--ink-soft); }
+.tr-block > .tr-list + h2 { margin-top: 10px; }
+.tr-slots { display: flex; margin: 0; border-radius: 10px; background: var(--paper); }
+.tr-slots > div { flex: 1; padding: 6px 0; text-align: center; }
+.tr-slots dt { font-size: 11px; color: var(--ink-soft); }
+.tr-slots dd { margin: 0; font-size: 14px; font-weight: 700; }
+.tr-times { margin: 0; padding: 8px 14px; border-radius: 10px; background: var(--paper); font-size: 14px; font-weight: 700; line-height: 1.8; }
+.tr-send { flex: none; margin: 0; text-align: center; font-size: 11px; color: var(--ink-soft); }
+.tr-nav { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.tr-nav button {
+  min-width: 88px;
+  min-height: 40px;
+  border: 1.5px solid #D8CBB5;
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
 }
-.record-stats > div:first-child dd { font-size: 18px; }
-.record-stats small { font-size: 13px; font-weight: 500; margin-left: 2px; }
-.record-stats dd.record-sub {
+.tr-nav button:disabled { opacity: 0.35; cursor: default; }
+.tr-count-label { font-size: 13px; font-weight: 700; }
+.trial .bottom-bar { padding-top: 0; }
+
+/* ---- ぬいの登録（見本 incoming/screens/ の色・余白・大きさに合わせる）---- */
+
+.reg-page {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: calc(env(safe-area-inset-top, 0px) + 14px) 20px calc(env(safe-area-inset-bottom, 0px) + 32px);
+  background: var(--bg);
+  color: var(--ink);
+}
+.reg-page button,
+.reg-page input,
+.reg-page select { font-family: inherit; }
+
+.reg-start { gap: 28px; padding-top: calc(env(safe-area-inset-top, 0px) + 48px); padding-left: 24px; padding-right: 24px; }
+.reg-hero { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.reg-app-name { margin: 0; font-size: 30px; font-weight: 700; letter-spacing: 0.04em; }
+.reg-lead { margin: 0; font-size: 15px; line-height: 1.8; text-align: center; color: #5A4E47; }
+.reg-choices { display: flex; flex-direction: column; gap: 14px; }
+.reg-label-soft { font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+.reg-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border: 1.5px solid #D8CBB5;
+  border-radius: 16px;
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+.reg-choice.is-main { border: 2px solid var(--ink); }
+.reg-choice:disabled { opacity: 0.6; cursor: default; }
+.reg-choice-title { font-size: 18px; font-weight: 700; }
+.reg-choice-note { font-size: 13px; line-height: 1.7; color: #5A4E47; }
+.reg-foot-note { margin: auto 0 0; font-size: 12px; line-height: 1.7; color: var(--ink-soft); text-align: center; }
+
+.reg-top { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+.reg-top-label { font-size: 14px; font-weight: 700; }
+.reg-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.reg-count { font-size: 13px; color: var(--ink-soft); }
+.reg-title { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.6; }
+.reg-heading { display: flex; flex-direction: column; gap: 4px; }
+.reg-heading .reg-title { line-height: 1.4; }
+
+.reg-field { display: flex; flex-direction: column; gap: 6px; }
+.reg-label { font-size: 14px; font-weight: 700; }
+.reg-help { font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
+.reg-help.is-center { text-align: center; }
+.reg-error { font-size: 12px; font-weight: 700; color: #A8432F; }
+.reg-error:empty { display: none; }
+.reg-input {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid #D8CBB5;
+  border-radius: 12px;
+  background: var(--paper);
+  font-size: 16px; /* 16px より小さいと、iPhone は入力のときに画面を拡大する */
+  color: var(--ink);
+}
+.reg-select { padding: 0 12px; }
+.reg-field.has-error .reg-input { border-color: #A8432F; }
+.reg-link {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.reg-photo-row { display: flex; gap: 14px; align-items: center; }
+.reg-photo-box {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 112px;
+  border: 2px dashed #C9B99F;
+  border-radius: 16px;
+  background: var(--paper);
+  overflow: hidden;
+}
+.reg-photo-box.has-photo { border-style: solid; border-color: #E4D9C6; }
+.reg-photo-box img { max-width: 100%; max-height: 100%; }
+.reg-field.has-error .reg-photo-box { border-color: #A8432F; }
+.reg-photo-side { display: flex; flex-direction: column; gap: 8px; }
+.reg-photo-side .reg-link { min-height: 0; font-size: 12px; }
+.reg-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.reg-pill input { display: none; }
+.reg-how {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.reg-how p { margin: 0; }
+.reg-how p + p { margin-top: 6px; }
+.reg-photo-view { display: flex; flex-direction: column; gap: 6px; }
+.reg-photo-view:empty { display: none; }
+/* コテージの絵（780×1688）の y 800〜1440 を切り出して、ベンチの前に置く */
+.reg-stage { position: relative; overflow: hidden; aspect-ratio: 780 / 640; border-radius: 12px; }
+.reg-stage-bg { position: absolute; left: 0; top: calc(-800 / 640 * 100%); width: 100%; }
+.reg-stage-nui { position: absolute; }
+
+.reg-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px dashed #D8CBB5;
+  border-radius: 10px;
+  background: var(--paper);
+}
+.reg-preview-label { font-size: 11px; color: var(--ink-soft); }
+.reg-preview-text { font-family: var(--hand); font-size: 15px; }
+
+.reg-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.reg-chip {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid #D8CBB5;
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.fp-chips .reg-chip { padding: 0 16px; }
+.reg-chip.is-other { border-style: dashed; border-color: #C9B99F; background: transparent; }
+.reg-chip[aria-pressed="true"] { border: 1.5px solid var(--ink); background: var(--ink); color: var(--paper); }
+
+.reg-roles { display: flex; flex-direction: column; gap: 8px; }
+.reg-role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-height: 56px;
+  padding: 10px 14px;
+  border: 1.5px solid #D8CBB5;
+  border-radius: 14px;
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+.reg-role[aria-pressed="true"] { padding: 9.5px 13.5px; border: 2px solid var(--ink); background: #FFF3DF; }
+.reg-role-name { font-size: 15px; font-weight: 700; }
+.reg-role-note { font-size: 12px; color: #5A4E47; }
+
+.reg-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+.reg-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.reg-primary:disabled { opacity: 0.35; cursor: default; }
+
+.reg-list { gap: 20px; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 28px); }
+.reg-nuis { display: flex; flex-direction: column; gap: 10px; }
+.reg-nui {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid #E4D9C6;
+  border-radius: 16px;
+  background: var(--paper);
+}
+.reg-nui-photo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #F1E6D3;
+  overflow: hidden;
   font-size: 12px;
-  font-weight: 500;
   color: var(--ink-soft);
 }
-.record-stats dd.record-note {
-  margin-top: 6px;
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--ink-soft);
-  opacity: 0.8;
+.reg-nui-photo img { width: 100%; height: 100%; object-fit: contain; }
+.reg-nui-text { flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.reg-nui-name { font-size: 16px; font-weight: 700; }
+.reg-nui-sub { font-size: 12px; color: #5A4E47; }
+.reg-nui .reg-link { align-self: center; text-decoration: none; }
+.reg-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 52px;
+  border: 1.5px dashed #C9B99F;
+  border-radius: 16px;
+  background: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
 }
-.record-foot {
-  margin-top: 16px;
+
+.reg-edit { gap: 18px; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 28px); }
+.reg-edit-head { display: flex; align-items: center; gap: 14px; }
+.reg-edit-head .reg-title { line-height: 1.4; }
+.reg-nui-photo.is-lg { width: 72px; height: 72px; }
+.reg-notice { padding: 12px 14px; border-radius: 12px; background: #FFF3DF; font-size: 13px; line-height: 1.7; }
+.reg-rows { display: flex; flex-direction: column; border: 1.5px solid #E4D9C6; border-radius: 16px; background: var(--paper); }
+.reg-row { display: flex; align-items: center; min-height: 52px; padding: 0 16px; border-bottom: 1px solid #EFE6D6; }
+.reg-row:last-child { border-bottom: none; }
+.reg-row-label { flex-shrink: 0; width: 110px; font-size: 13px; color: var(--ink-soft); }
+.reg-row-value { flex-grow: 1; min-width: 0; font-size: 15px; }
+.reg-row-go { min-height: 44px; padding: 0 0 0 8px; border: none; background: transparent; font-size: 13px; font-weight: 700; cursor: pointer; }
+.reg-actions.is-center { align-items: center; gap: 8px; }
+.reg-danger {
+  width: 100%;
+  min-height: 48px;
+  border: 1.5px solid #A8432F;
+  border-radius: 999px;
+  background: none;
+  color: #A8432F;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.reg-danger:disabled { opacity: 0.4; cursor: default; }
+
+/* 削除の確認（編集の画面の上に重ねる） */
+.reg-dlg-back {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(70, 56, 50, 0.62);
+  animation: fade-in 0.15s ease-out;
+}
+.reg-dlg {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 26px 22px 20px;
+  border-radius: 20px;
+  background: var(--paper);
+  box-shadow: 0 12px 28px rgba(40, 30, 20, 0.28);
+}
+.reg-dlg-title { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.5; }
+.reg-dlg-list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.7; }
+.reg-dlg-text { margin: 0; font-size: 14px; line-height: 1.7; }
+.reg-dlg-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.reg-dlg-danger,
+.reg-dlg-cancel {
+  min-height: 50px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.reg-dlg-danger { border: none; background: #A8432F; color: var(--paper); }
+.reg-dlg-cancel { border: 1.5px solid var(--ink); background: none; }
+
+.reg-done {
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-left: 28px;
+  padding-right: 28px;
   text-align: center;
-  font-size: 11px;
-  color: var(--ink-soft);
 }
+.reg-done-text { display: flex; flex-direction: column; gap: 10px; }

@@ -1,0 +1,4903 @@
+{
+ "version": "2026-11-05.1",
+ "note": "ぬいぐるみアイランド 台本データ。すべて人の確認（10/23〜10/25）を通った文。genkiがnullのときは元気な子もplainを使う。polite はやさしい子用。2026-10-30.1：おうちに来た日の日記（welcome）15本と、最初の週の進行型「大きなパズル」を足した（どちらも人の確認済み）。2026-10-30.2：大きなパズルの最後の段階 PZ4 に写真（ソファの前、書き手と相手、「できあがったパズル」）。2026-11-03.1：好きなことの台本（likes_scripts）15本と後日談 F5〜F9 を足した（Claude Code の下書き → ChatGPT のレビュー → 人の判定で〇。docs/drafts/2026-11-03-likes.md）。書く人のメモ aim・gain 付き。2026-11-03.2：好きなことの台本 第2便（ダンス・お昼寝・お絵かき・歌う・料理に4本ずつ、20本）と後日談 F10・F11 を足した（docs/drafts/2026-11-03-likes2.md） 2026-11-05.1：季節のイベント「焼き芋大会」（行事の台本に period・tree・photo・avoid_seasonal を足した形。日は島ごとに 11/15〜11/25 から）と、島のイベント island_events「紅葉狩り」（11月に1回、島ごと）を足した（docs/topics/2026-11-04-photo-ordinary.md の決定。下書きと判定は docs/drafts/2026-11-05-november-events.md。どちらも人の判定で〇）。weather は、その日の天気を決める（晴れ）。",
+ "holes": {
+  "{相手}": "相手の呼び名（例：しずくちゃん）",
+  "{わたし}": "書き手の一人称",
+  "{好物}": "書き手の好物",
+  "{相手の好物}": "相手の好物",
+  "{好きなことをして}": "書き手の好きなこと（て形。例：本を読んで）"
+ },
+ "habits": {
+  "events": [
+   {
+    "id": "H-tea-01",
+    "key": "お茶1",
+    "habit": "お茶",
+    "name": "うとうと",
+    "title": "冷めるまで",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}は、お茶を冷ましているうちに、うとうとしていた。起こさずに、もう一杯飲んだ。",
+     "genki": "{相手}が、お茶を冷ましてるうちに、うとうとしてた。起こさないように、こっそりもう一杯飲んだ！",
+     "polite": "{相手}は、お茶を冷ましているうちに、うとうとしていました。起こさないように、もう一杯もらいました。"
+    }
+   },
+   {
+    "id": "H-tea-02",
+    "key": "お茶2",
+    "habit": "お茶",
+    "name": "濃いお茶",
+    "title": "濃いめのお茶",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "いつもより、少しだけ濃く入った。それはそれで、おいしかった。",
+     "genki": "いつもより、ちょっと濃く入った。にがい！ でも、二口目からはおいしかった。",
+     "polite": "いつもより、少しだけ濃く入りました。それはそれで、おいしかったです。"
+    }
+   },
+   {
+    "id": "H-tea-03",
+    "key": "お茶3",
+    "habit": "お茶",
+    "name": "カップの花模様",
+    "title": "カップの花",
+    "repeat": false,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "カップの底に、小さな花の模様を見つけた。前からあったらしい。",
+     "genki": "カップの底に、小さな花の模様を見つけた！ ずっと前からあったのに、今日はじめて気づいた。",
+     "polite": "カップの底に、小さな花の模様を見つけました。前からあったみたいです。"
+    }
+   },
+   {
+    "id": "H-tea-04",
+    "key": "お茶5",
+    "habit": "お茶",
+    "name": "お茶うけ",
+    "title": "お礼のお茶",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "お茶うけの{好物}を、{相手}がひとつ多くくれた。お返しに、お茶をつぎ足した。",
+     "genki": "お茶うけの{好物}を、{相手}がひとつ多くくれた！ お返しに、お茶をなみなみついだ。",
+     "polite": "お茶うけの{好物}を、{相手}がひとつ多くくれました。お返しに、お茶をつぎ足しました。"
+    }
+   },
+   {
+    "id": "H-tea-05",
+    "key": "お茶6",
+    "habit": "お茶",
+    "name": "湯気が分かれる",
+    "title": "ふたつの湯気",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": "湯気",
+    "needs": [],
+    "text": {
+     "plain": "{相手}と同時に、ふうっと息をかけた。湯気が、ふたつに分かれた。",
+     "genki": "{相手}といっしょに、ふうっと息をかけた。湯気がふたつに分かれた！ もう一回やったら、また分かれた。",
+     "polite": "{相手}と同時に、ふうっと息をかけました。湯気が、ふたつに分かれました。"
+    }
+   },
+   {
+    "id": "H-sun-01",
+    "key": "ひなたぼっこ0",
+    "habit": "ひなたぼっこ",
+    "name": "日なたを追う",
+    "title": "日なたを追いかけて",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "place": "ベンチ",
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "日なたが動くたびに、少しずつ座る場所をずらした。気がついたら、ベンチの端にいた。",
+     "genki": "日なたが動くたびに、追いかけて座りなおした。気がついたら、ベンチの端っこまで来てた！",
+     "polite": "日なたが動くたびに、少しずつ座る場所をずらしました。気がついたら、ベンチの端にいました。"
+    }
+   },
+   {
+    "id": "H-sun-02",
+    "key": "ひなたぼっこ1",
+    "habit": "ひなたぼっこ",
+    "name": "頭に落ち葉",
+    "title": "落ち葉の帽子",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     9,
+     10,
+     11
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}の頭に、落ち葉が一枚のった。似合っていたので、そのままにしておいた。",
+     "genki": "{相手}の頭に、落ち葉が一枚のった！ 似合ってたから、言わないでおいた。",
+     "polite": "{相手}の頭に、落ち葉が一枚のりました。似合っていたので、そのままにしておきました。"
+    }
+   },
+   {
+    "id": "H-sun-03",
+    "key": "ひなたぼっこ4",
+    "habit": "ひなたぼっこ",
+    "name": "寝息",
+    "title": "寝息",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}が、いつのまにか寝息をたてていた。夕方まで、そのままでいた。",
+     "genki": "{相手}が、いつのまにか寝息をたててた。起こさないように、夕方までじっとしてた。じっとするのは、けっこう大変だった。",
+     "polite": "{相手}が、いつのまにか寝息をたてていました。夕方まで、そのままでいました。"
+    }
+   },
+   {
+    "id": "H-sun-04",
+    "key": "ひなたぼっこ5",
+    "habit": "ひなたぼっこ",
+    "name": "四つ葉",
+    "title": "秘密の四葉",
+    "repeat": false,
+    "weather": "晴れ",
+    "months": [
+     3,
+     4,
+     5,
+     6
+    ],
+    "place": "芝生",
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "芝生の中に、四つ葉のクローバーを見つけた。{相手}には、まだ言っていない。",
+     "genki": "芝生の中に、四つ葉のクローバーを見つけた！ {相手}には、まだないしょにしてる。",
+     "polite": "芝生の中に、四つ葉のクローバーを見つけました。{相手}には、まだ言っていません。"
+    }
+   },
+   {
+    "id": "H-walk-01",
+    "key": "散歩0",
+    "habit": "散歩",
+    "name": "分かれ道",
+    "title": "分かれ道",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "分かれ道で、いつもと違う道を選んだ。でも最後はいつもの場所に出た。",
+     "genki": "分かれ道で、いつもと違う道を選んだ！ でも最後はいつもの場所に出た。",
+     "polite": "分かれ道で、いつもと違う道を選びました。でも最後はいつもの場所に出ました。"
+    }
+   },
+   {
+    "id": "H-walk-02",
+    "key": "散歩2",
+    "habit": "散歩",
+    "name": "見たことのない花",
+    "title": "道ばたの花",
+    "repeat": false,
+    "weather": "晴れ",
+    "months": [
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "道のはしに、見たことのない花が咲いていた。あしたも見に行こう。",
+     "genki": "道のはしに、見たことのない花が咲いてた！ あしたも見に行こう。",
+     "polite": "道のはしに、見たことのない花が咲いていました。あしたも見に行こうと思います。"
+    }
+   },
+   {
+    "id": "H-walk-03",
+    "key": "散歩3",
+    "habit": "散歩",
+    "name": "水たまり",
+    "title": "水たまり",
+    "repeat": true,
+    "weather": "雨のあと",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "道に水たまりが残っていた。{相手}は、全部よけて大回りした。",
+     "genki": "道に水たまりが残ってた。ぴょんと飛びこえた！ {相手}は、全部よけて大回りしてた。",
+     "polite": "道に水たまりが残っていました。{相手}は、全部よけて大回りしていました。"
+    }
+   },
+   {
+    "id": "H-walk-04",
+    "key": "散歩5",
+    "habit": "散歩",
+    "name": "ありの行列",
+    "title": "ありの行列",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "途中で、{相手}がしゃがみこんだ。見ていたのは、ありの行列だった。",
+     "genki": "途中で、{相手}がしゃがみこんだ。のぞいてみたら、ありの行列だった！ いっしょに、巣まで見送った。",
+     "polite": "途中で、{相手}がしゃがみこみました。見ていたのは、ありの行列でした。"
+    }
+   },
+   {
+    "id": "H-read-01",
+    "key": "読書0",
+    "habit": "読書",
+    "name": "めくる速さ",
+    "title": "読書の速さ",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}のほうが、ページをめくるのが速かった。ときどき、こっちをのぞいてくる。",
+     "genki": "{相手}のほうが、ページをめくるのがずっと速い！ どうしてそんなに速く読めるんだろう。ときどき、こっちをのぞいてくる。",
+     "polite": "{相手}のほうが、ページをめくるのが速かったです。ときどき、こちらをのぞいてきます。"
+    }
+   },
+   {
+    "id": "H-read-02",
+    "key": "読書1",
+    "habit": "読書",
+    "name": "小さく笑う",
+    "title": "面白い本",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "おもしろいところで、{相手}が小さく笑った。何がおかしかったのかは、教えてくれなかった。",
+     "genki": "おもしろいところで、{相手}が小さく笑った。何がおかしかったのか聞いたけど、教えてくれなかった！",
+     "polite": "おもしろいところで、{相手}が小さく笑いました。何がおかしかったのかは、教えてくれませんでした。"
+    }
+   },
+   {
+    "id": "H-read-03",
+    "key": "読書2",
+    "habit": "読書",
+    "name": "押し花",
+    "title": "押し花",
+    "repeat": false,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "本のあいだに、押し花がはさまっていた。前に自分で入れたのを、すっかり忘れていた。",
+     "genki": "本のあいだに、押し花がはさまってた！ 前に自分で入れたのを、すっかり忘れてた。",
+     "polite": "本のあいだに、押し花がはさまっていました。前に自分で入れたのを、すっかり忘れていました。"
+    }
+   },
+   {
+    "id": "H-read-04",
+    "key": "読書3",
+    "habit": "読書",
+    "name": "同じページ",
+    "title": "同じページ",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "気がついたら、同じページをなんども読んでいた。眠くてよく覚えていない。",
+     "genki": "気がついたら、同じページを三回も読んでた！ 眠くてよく覚えていない。",
+     "polite": "気がついたら、同じページをなんども読んでいました。眠くて、よく覚えていません。"
+    }
+   },
+   {
+    "id": "H-window-01",
+    "key": "窓辺0",
+    "habit": "窓辺",
+    "name": "雨つぶ競争",
+    "title": "雨つぶの競争",
+    "repeat": true,
+    "weather": "雨",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "雨つぶが、窓をすべり落ちていく。どれがいちばん速いか、{相手}と見比べた。",
+     "genki": "雨つぶが、窓をすべり落ちていく。どれがいちばん速いか、{相手}と競争した！ こっちの雨つぶは、途中で止まった。",
+     "polite": "雨つぶが、窓をすべり落ちていきます。どれがいちばん速いか、{相手}と見比べました。"
+    }
+   },
+   {
+    "id": "H-window-02",
+    "key": "窓辺2",
+    "habit": "窓辺",
+    "name": "小鳥",
+    "title": "小鳥が通る",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": "小鳥",
+    "needs": [],
+    "text": {
+     "plain": "公園のほうを、小鳥が横切った。{相手}も、同じほうを見ていた。",
+     "genki": "公園のほうを、小鳥が横切った！ 教えようとしたら、{相手}も同じほうを見てた。",
+     "polite": "公園のほうを、小鳥が横切りました。{相手}も、同じほうを見ていました。"
+    }
+   },
+   {
+    "id": "H-window-03",
+    "key": "窓辺3",
+    "habit": "窓辺",
+    "name": "ぽかぽか",
+    "title": "ぽかぽか",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "日が差してきて、窓辺がぽかぽかになった。{相手}が、うとうとし始めた。",
+     "genki": "日が差してきて、窓辺がぽかぽかになった！ {相手}がうとうとし始めたので、静かにしてた。",
+     "polite": "日が差してきて、窓辺がぽかぽかになりました。{相手}が、うとうとし始めました。"
+    }
+   },
+   {
+    "id": "H-window-04",
+    "key": "窓辺4",
+    "habit": "窓辺",
+    "name": "くもの巣",
+    "title": "窓のくも",
+    "repeat": false,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "窓のすみに、小さなくもが巣を作っていた。そっとしておくことにした。",
+     "genki": "窓のすみに、小さなくもが巣を作ってた！ そっとしておくことにした。",
+     "polite": "窓のすみに、小さなくもが巣を作っていました。そっとしておくことにしました。"
+    }
+   },
+   {
+    "id": "H-nap-01",
+    "key": "昼寝0",
+    "habit": "昼寝",
+    "name": "先に目が覚める",
+    "title": "二度寝",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "先に目が覚めたら、{相手}がまだ寝ていた。もう一度、目を閉じた。",
+     "genki": "先に目が覚めた！ でも、{相手}がまだ寝てたので、もう一度目を閉じた。",
+     "polite": "先に目が覚めたら、{相手}がまだ寝ていました。もう一度、目を閉じました。"
+    }
+   },
+   {
+    "id": "H-nap-02",
+    "key": "昼寝2",
+    "habit": "昼寝",
+    "name": "夕方まで",
+    "title": "夕方におはよう",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "起きたら、夕方になっていた。{相手}も、ちょうど起きたところだった。",
+     "genki": "起きたら、もう夕方だった！ {相手}も、ちょうど起きたところだった。",
+     "polite": "起きたら、夕方になっていました。{相手}も、ちょうど起きたところでした。"
+    }
+   },
+   {
+    "id": "H-nap-03",
+    "key": "昼寝4",
+    "habit": "昼寝",
+    "name": "同じ夢",
+    "title": "同じ夢",
+    "repeat": false,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "夢の中で、空を飛んでいた。起きてから{相手}に話したら、同じ夢を見たと言った。",
+     "genki": "空を飛ぶ夢を見た！ 起きて{相手}に話したら、同じ夢を見たって言った。",
+     "polite": "夢の中で、空を飛んでいました。起きてから{相手}に話したら、同じ夢を見たと言っていました。"
+    }
+   },
+   {
+    "id": "H-tea-06",
+    "key": "お茶-湯気",
+    "habit": "お茶",
+    "name": "湯気の向こう",
+    "title": "ゆれる顔",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": "湯気",
+    "needs": [],
+    "text": {
+     "plain": "湯気が、ゆっくり向かいの席へ流れていった。その向こうで、{相手}の顔がぼんやりゆれていた。",
+     "genki": "湯気が、ゆっくり向かいの席へ流れていった。その向こうで、{相手}の顔がゆらゆらしてる！ おもしろくて、しばらく見ていた。",
+     "polite": "湯気が、ゆっくり向かいの席へ流れていきました。その向こうで、{相手}の顔がぼんやりゆれていました。"
+    }
+   },
+   {
+    "id": "H-tea-07",
+    "key": "お茶-茶柱",
+    "habit": "お茶",
+    "name": "茶柱",
+    "title": "茶柱",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}のカップに、茶柱が立っていた。教えようとしたら、もう飲んでしまっていた。",
+     "genki": "{相手}のカップに、茶柱が立ってた！ 教えようとしたら、もう飲んじゃってた。",
+     "polite": "{相手}のカップに、茶柱が立っていました。教えようとしたら、もう飲んでしまっていました。"
+    }
+   },
+   {
+    "id": "H-sun-05",
+    "key": "ひなたぼっこ-小鳥",
+    "habit": "ひなたぼっこ",
+    "name": "小鳥のまね",
+    "title": "ピーピー",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": "小鳥",
+    "needs": [],
+    "text": {
+     "plain": "目を閉じたら、遠くで小鳥が鳴いていた。{相手}が、小さな声でまねをしていた。",
+     "genki": "目を閉じたら、遠くで小鳥が鳴いてた。{相手}が小さな声でまねしたら、また鳴き返してきた！",
+     "polite": "目を閉じたら、遠くで小鳥が鳴いていました。{相手}が、小さな声でまねをしていました。"
+    }
+   },
+   {
+    "id": "H-sun-06",
+    "key": "ひなたぼっこ-影",
+    "habit": "ひなたぼっこ",
+    "name": "ひとつの影",
+    "title": "影で遊んだ",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "影が並んで、大きなひとつの影みたいになった。{相手}が動くたびに形が変わるので、しばらく見ていた。",
+     "genki": "影が並んで、大きなひとつの影になった！ {相手}が動くと形が変わるから、しばらく影で遊んだ。",
+     "polite": "影が並んで、大きなひとつの影みたいになりました。{相手}が動くたびに形が変わるので、しばらく見ていました。"
+    }
+   },
+   {
+    "id": "H-walk-05",
+    "key": "散歩-速さ",
+    "habit": "散歩",
+    "name": "歩く速さ",
+    "title": "一緒の速さ",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}と歩く速さが、だんだん同じになった。帰り道は、足音までそろっていた。",
+     "genki": "最初は先に行っちゃってたけど、だんだん{相手}と同じ速さになった。帰り道は、足音までそろってた！",
+     "polite": "{相手}と歩く速さが、だんだん同じになりました。帰り道は、足音までそろっていました。"
+    }
+   },
+   {
+    "id": "H-walk-06",
+    "key": "散歩-手袋",
+    "habit": "散歩",
+    "name": "どんぐり",
+    "title": "どんぐりの帰り道",
+    "repeat": false,
+    "weather": "晴れ",
+    "months": [
+     9,
+     10,
+     11
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "道のまん中に、どんぐりがひとつだけ落ちていた。{相手}がひろって、木の根もとにそっと置いた。",
+     "genki": "道のまん中に、どんぐりがひとつだけ落ちてた！ {相手}がひろって、木の根もとにそっと置いてあげてた。",
+     "polite": "道のまん中に、どんぐりがひとつだけ落ちていました。{相手}がひろって、木の根もとにそっと置きました。"
+    }
+   },
+   {
+    "id": "H-walk-07",
+    "key": "散歩-小鳥",
+    "habit": "散歩",
+    "name": "眠る小鳥",
+    "title": "遠回り",
+    "repeat": false,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": "小鳥",
+    "needs": [],
+    "text": {
+     "plain": "公園のベンチで、小鳥が一羽うとうとしていた。起こさないように、{相手}と遠回りして帰った。",
+     "genki": "公園のベンチで、小鳥が一羽うとうとしてた！ 起こさないように、{相手}とそーっと遠回りして帰った。",
+     "polite": "公園のベンチで、小鳥が一羽うとうとしていました。起こさないように、{相手}と遠回りして帰りました。"
+    }
+   },
+   {
+    "id": "H-read-05",
+    "key": "読書-暗くなっても",
+    "habit": "読書",
+    "name": "暗くなっても",
+    "title": "集中してるね",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "窓の外が暗くなっても、{相手}はまだ読んでいた。そっと明かりをつけてあげた。",
+     "genki": "窓の外が暗くなっても、{相手}はまだ読んでた。明かりをつけてあげたら、やっと顔を上げた！",
+     "polite": "窓の外が暗くなっても、{相手}はまだ読んでいました。そっと明かりをつけてあげました。"
+    }
+   },
+   {
+    "id": "H-nap-04",
+    "key": "昼寝-寝言",
+    "habit": "昼寝",
+    "name": "寝言",
+    "title": "寝言",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [
+     "相手の好物"
+    ],
+    "text": {
+     "plain": "{相手}の寝言が聞こえた。「{相手の好物}……」と、二回言っていた。",
+     "genki": "{相手}の寝言が聞こえた。「{相手の好物}……」って、二回も言ってた！",
+     "polite": "{相手}の寝言が聞こえました。「{相手の好物}……」と、二回言っていました。"
+    }
+   },
+   {
+    "id": "H-nap-05",
+    "key": "昼寝-風",
+    "habit": "昼寝",
+    "name": "風の音",
+    "title": "風の音",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "遠くで、風が木をゆらす音がしていた。聞いているうちに、また眠ってしまった。",
+     "genki": "遠くで、風が木をゆらす音がしてた。聞いてるうちに、また眠っちゃった。",
+     "polite": "遠くで、風が木をゆらす音がしていました。聞いているうちに、また眠ってしまいました。"
+    }
+   },
+   {
+    "id": "H-window-05",
+    "key": "窓辺-顔",
+    "habit": "窓辺",
+    "name": "窓に映る顔",
+    "title": "窓に映る顔",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": "夕方以降",
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "外が暗くなって、ふたつの顔が窓に映るようになった。{相手}が首をかしげると、窓の中でも同じように首をかしげた。",
+     "genki": "外が暗くなって、ふたつの顔が窓に映るようになった！ {わたし}が笑うと、窓の中でも笑ってた！",
+     "polite": "外が暗くなって、ふたつの顔が窓に映るようになりました。{相手}が首をかしげると、窓の中でも同じように首をかしげました。"
+    }
+   },
+   {
+    "id": "H-tea-08",
+    "key": "H-tea-08",
+    "habit": "お茶",
+    "name": "なみなみ",
+    "title": "なみなみ",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "二杯目は、{相手}がついでくれた。カップのふちまでなみなみで、そっと口を近づけて飲んだ。",
+     "genki": "二杯目は、{相手}がついでくれた。カップのふちまでなみなみ！ こぼさないように、そーっと飲んだ。",
+     "polite": "二杯目は、{相手}がついでくれました。カップのふちまでなみなみで、そっと口を近づけて飲みました。"
+    }
+   },
+   {
+    "id": "H-tea-09",
+    "key": "H-tea-09",
+    "habit": "お茶",
+    "name": "あたたかいカップ",
+    "title": "あたたかいカップ",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "お茶を飲み終わっても、しばらくそのまま座っていた。カップがあたたかくて、手放すのがもったいなかった。",
+     "genki": null,
+     "polite": "お茶を飲み終わっても、しばらくそのまま座っていました。カップがあたたかくて、手放すのがもったいなかったです。"
+    }
+   },
+   {
+    "id": "H-sun-07",
+    "key": "H-sun-07",
+    "habit": "ひなたぼっこ",
+    "name": "ぽかぽかの手",
+    "title": "ぽかぽかの手",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "日なたで両手を広げたら、手の先までぽかぽかしてきた。{相手}も、同じように手を広げていた。",
+     "genki": "日なたで両手を広げたら、手の先までぽかぽかしてきた！ {相手}も、同じように手を広げてた。",
+     "polite": "日なたで両手を広げたら、手の先までぽかぽかしてきました。{相手}も、同じように手を広げていました。"
+    }
+   },
+   {
+    "id": "H-sun-08",
+    "key": "H-sun-08",
+    "habit": "ひなたぼっこ",
+    "name": "あたたかい石",
+    "title": "あたたかい石",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "日なたの石が、ほんのりあたたかかった。手をのせてみたら、{相手}もまねをして手をのせた。",
+     "genki": "日なたの石が、ほんのりあたたかかった！ 手をのせてみたら、{相手}もまねして手をのせた。",
+     "polite": "日なたの石が、ほんのりあたたかかったです。手をのせてみたら、{相手}もまねをして手をのせました。"
+    }
+   },
+   {
+    "id": "H-walk-08",
+    "key": "H-walk-08",
+    "habit": "散歩",
+    "name": "ゆれる草",
+    "title": "ゆれる草",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "道ばたの草が、風でいっせいにゆれた。{相手}と、しばらく立ち止まって見ていた。",
+     "genki": "道ばたの草が、風でいっせいにゆれた！ {相手}と、しばらく立ち止まって見てた。",
+     "polite": "道ばたの草が、風でいっせいにゆれました。{相手}と、しばらく立ち止まって見ていました。"
+    }
+   },
+   {
+    "id": "H-walk-09",
+    "key": "H-walk-09",
+    "habit": "散歩",
+    "name": "坂の上",
+    "title": "坂の上",
+    "repeat": true,
+    "weather": "晴れ",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "坂の上まで来たら、来た道がずっと下のほうまで見えた。{相手}と、こんなに歩いたんだねと言い合った。",
+     "genki": "坂の上までかけのぼったら、来た道がずーっと下まで見えた！ {相手}と、こんなに歩いたんだねって言い合った。",
+     "polite": "坂の上まで来たら、来た道がずっと下のほうまで見えました。{相手}と、こんなに歩いたんだねと言い合いました。"
+    }
+   },
+   {
+    "id": "H-read-06",
+    "key": "H-read-06",
+    "habit": "読書",
+    "name": "本の話",
+    "title": "本の話",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "{相手}が、読んでいる本の話をしてくれた。話を聞いていたら、その本を読みたくなった。",
+     "genki": "{相手}が、読んでる本の話をしてくれた！ 話を聞いてたら、その本を読みたくなった。",
+     "polite": "{相手}が、読んでいる本の話をしてくれました。話を聞いていたら、その本を読みたくなりました。"
+    }
+   },
+   {
+    "id": "H-read-07",
+    "key": "H-read-07",
+    "habit": "読書",
+    "name": "知らない言葉",
+    "title": "知らない言葉",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "本の中に、知らない言葉が出てきた。聞いてみたら、{相手}も知らなかった。ふたりで少し考えた。",
+     "genki": "本の中に、知らない言葉が出てきた！ 聞いてみたら、{相手}も知らなかった。ふたりでうーんと考えた。",
+     "polite": "本の中に、知らない言葉が出てきました。聞いてみたら、{相手}も知りませんでした。ふたりで少し考えました。"
+    }
+   },
+   {
+    "id": "H-window-06",
+    "key": "H-window-06",
+    "habit": "窓辺",
+    "name": "雨の音",
+    "title": "雨の音",
+    "repeat": true,
+    "weather": "雨",
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "外の雨の音が、強くなったり弱くなったりしていた。{相手}と、その音をずっと聞いていた。",
+     "genki": null,
+     "polite": "外の雨の音が、強くなったり弱くなったりしていました。{相手}と、その音をずっと聞いていました。"
+    }
+   },
+   {
+    "id": "H-window-07",
+    "key": "H-window-07",
+    "habit": "窓辺",
+    "name": "小さな丸",
+    "title": "小さな丸",
+    "repeat": true,
+    "weather": null,
+    "months": [
+     11,
+     12,
+     1,
+     2,
+     3
+    ],
+    "place": null,
+    "time": null,
+    "sleep": false,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "窓ガラスに、はあっと息をかけた。白くくもったところに、{相手}が小さな丸をかいた。",
+     "genki": "窓ガラスに、はあっと息をかけた！ 白くくもったところに、{相手}が小さな丸をかいた。",
+     "polite": "窓ガラスに、はあっと息をかけました。白くくもったところに、{相手}が小さな丸をかきました。"
+    }
+   },
+   {
+    "id": "H-nap-06",
+    "key": "H-nap-06",
+    "habit": "昼寝",
+    "name": "クッション",
+    "title": "クッション",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "目が覚めたら、頭の下にクッションが置いてあった。{相手}が、そっと入れてくれたらしい。",
+     "genki": null,
+     "polite": "目が覚めたら、頭の下にクッションが置いてありました。{相手}が、そっと入れてくれたみたいです。"
+    }
+   },
+   {
+    "id": "H-nap-07",
+    "key": "H-nap-07",
+    "habit": "昼寝",
+    "name": "同じかっこう",
+    "title": "同じかっこう",
+    "repeat": true,
+    "weather": null,
+    "months": null,
+    "place": null,
+    "time": null,
+    "sleep": true,
+    "motif": null,
+    "needs": [],
+    "text": {
+     "plain": "起きたら、{相手}と同じかっこうで寝ていたことに気づいた。なんだかおかしくて、ひとりで笑った。",
+     "genki": "起きたら、{相手}と同じかっこうで寝てた！ なんだかおかしくて、ひとりで笑っちゃった。",
+     "polite": "起きたら、{相手}と同じかっこうで寝ていたことに気づきました。なんだかおかしくて、ひとりで笑いました。"
+    }
+   }
+  ],
+  "intros": [
+   {
+    "id": "I-tea-01",
+    "habit": "お茶",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "午後、{相手}とお茶にした。",
+     "polite": "午後、{相手}とお茶にしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-tea-02",
+    "habit": "お茶",
+    "weather": "雨",
+    "place": null,
+    "text": {
+     "plain": "雨の音を聞きながら、{相手}とお茶にした。",
+     "polite": "雨の音を聞きながら、{相手}とお茶にしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-tea-03",
+    "habit": "お茶",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "おやつの時間に、{相手}とお茶にした。",
+     "polite": "おやつの時間に、{相手}とお茶にしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-tea-04",
+    "habit": "お茶",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "{相手}が、お茶をいれてくれた。",
+     "polite": "{相手}が、お茶をいれてくれました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-tea-05",
+    "habit": "お茶",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "ひと息つきたくて、{相手}とお茶にした。",
+     "polite": "ひと息つきたくて、{相手}とお茶にしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-sun-01",
+    "habit": "ひなたぼっこ",
+    "weather": "晴れ",
+    "place": "芝生",
+    "text": {
+     "plain": "公園の芝生で、{相手}とひなたぼっこをした。",
+     "polite": "公園の芝生で、{相手}とひなたぼっこをしました。"
+    },
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   {
+    "id": "I-sun-02",
+    "habit": "ひなたぼっこ",
+    "weather": "晴れ",
+    "place": "ベンチ",
+    "text": {
+     "plain": "ベンチに座って、{相手}とひなたぼっこをした。",
+     "polite": "ベンチに座って、{相手}とひなたぼっこをしました。"
+    },
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   {
+    "id": "I-sun-03",
+    "habit": "ひなたぼっこ",
+    "weather": "晴れ",
+    "place": "なし",
+    "text": {
+     "plain": "よく晴れたので、{相手}と外でひなたぼっこをした。",
+     "polite": "よく晴れたので、{相手}と外でひなたぼっこをしました。"
+    },
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   {
+    "id": "I-sun-04",
+    "habit": "ひなたぼっこ",
+    "weather": "晴れ",
+    "place": "なし",
+    "text": {
+     "plain": "{相手}と、日の当たる場所に並んで座った。",
+     "polite": "{相手}と、日の当たる場所に並んで座りました。"
+    },
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   {
+    "id": "I-walk-01",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "{相手}と、いつもの道を散歩した。",
+     "polite": "{相手}と、いつもの道を散歩しました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-walk-02",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "夕方、{相手}と辺りをぐるっと歩いた。",
+     "polite": "夕方、{相手}と辺りをぐるっと歩きました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-walk-03",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "朝、{相手}と散歩に出かけた。",
+     "polite": "朝、{相手}と散歩に出かけました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-walk-04",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "天気がよかったので、{相手}と散歩した。",
+     "polite": "天気がよかったので、{相手}と散歩しました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-walk-05",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "{相手}に誘われて、散歩に出かけた。",
+     "polite": "{相手}に誘われて、散歩に出かけました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-read-01",
+    "habit": "読書",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "{相手}と、並んで本を読んだ。",
+     "polite": "{相手}と、並んで本を読みました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-read-02",
+    "habit": "読書",
+    "weather": "雨",
+    "place": null,
+    "text": {
+     "plain": "雨だったので、{相手}と本を読んで過ごした。",
+     "polite": "雨だったので、{相手}と本を読んで過ごしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-read-03",
+    "habit": "読書",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "{相手}と、それぞれ好きな本を読んだ。",
+     "polite": "{相手}と、それぞれ好きな本を読みました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-read-04",
+    "habit": "読書",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "夕方、{相手}と本を読んで過ごした。",
+     "polite": "夕方、{相手}と本を読んで過ごしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-window-01",
+    "habit": "窓辺",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "{相手}と、窓辺に座って外を見ていた。",
+     "polite": "{相手}と、窓辺に座って外を見ていました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-window-02",
+    "habit": "窓辺",
+    "weather": "雨",
+    "place": null,
+    "text": {
+     "plain": "今日は雨の日だった。{相手}と窓辺に並んだ。",
+     "polite": "今日は雨の日でした。{相手}と窓辺に並びました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-window-03",
+    "habit": "窓辺",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "{相手}と、窓のそばでのんびりしていた。",
+     "polite": "{相手}と、窓のそばでのんびりしていました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-window-04",
+    "habit": "窓辺",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "ひと休みして、{相手}と窓の外をながめた。",
+     "polite": "ひと休みして、{相手}と窓の外をながめました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-nap-01",
+    "habit": "昼寝",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "お昼ごはんのあと、{相手}と昼寝をした。",
+     "polite": "お昼ごはんのあと、{相手}と昼寝をしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-nap-02",
+    "habit": "昼寝",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "{相手}と、ブランケットにくるまって昼寝をした。",
+     "polite": "{相手}と、ブランケットにくるまって昼寝をしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-nap-03",
+    "habit": "昼寝",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "おなかがいっぱいになって、{相手}と昼寝をした。",
+     "polite": "おなかがいっぱいになって、{相手}と昼寝をしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-nap-04",
+    "habit": "昼寝",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "{相手}と、日だまりで昼寝をした。",
+     "polite": "{相手}と、日だまりで昼寝をしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-tea-06",
+    "habit": "お茶",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "戸棚からカップをふたつ出して、{相手}とお茶にした。",
+     "polite": "戸棚からカップをふたつ出して、{相手}とお茶にしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-tea-07",
+    "habit": "お茶",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "やかんがしゅんしゅん鳴りだしたので、{相手}を呼んでお茶にした。",
+     "polite": "やかんがしゅんしゅん鳴りだしたので、{相手}を呼んでお茶にしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-sun-05",
+    "habit": "ひなたぼっこ",
+    "weather": "晴れ",
+    "place": "なし",
+    "text": {
+     "plain": "お日さまがぽかぽかだったので、{相手}とひなたぼっこをした。",
+     "polite": "お日さまがぽかぽかだったので、{相手}とひなたぼっこをしました。"
+    },
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   {
+    "id": "I-sun-06",
+    "habit": "ひなたぼっこ",
+    "weather": "晴れ",
+    "place": "なし",
+    "text": {
+     "plain": "洗濯物を干したあと、{相手}と日なたでひと休みした。",
+     "polite": "洗濯物を干したあと、{相手}と日なたでひと休みしました。"
+    },
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   {
+    "id": "I-walk-06",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "お昼のあと、{相手}と少し遠くまで歩いてみた。",
+     "polite": "お昼のあと、{相手}と少し遠くまで歩いてみました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-walk-07",
+    "habit": "散歩",
+    "weather": "晴れ",
+    "place": null,
+    "text": {
+     "plain": "風が気持ちよかったので、{相手}と外を歩いた。",
+     "polite": "風が気持ちよかったので、{相手}と外を歩きました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-read-05",
+    "habit": "読書",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "ソファに並んで座って、{相手}と本を読んだ。",
+     "polite": "ソファに並んで座って、{相手}と本を読みました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-read-06",
+    "habit": "読書",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "本棚から一冊ずつ選んで、{相手}と本を読んだ。",
+     "polite": "本棚から一冊ずつ選んで、{相手}と本を読みました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-window-05",
+    "habit": "窓辺",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "お茶を片手に、{相手}と窓の外をながめていた。",
+     "polite": "お茶を片手に、{相手}と窓の外をながめていました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-window-06",
+    "habit": "窓辺",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "窓のそばにクッションを並べて、{相手}と座った。",
+     "polite": "窓のそばにクッションを並べて、{相手}と座りました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-nap-05",
+    "habit": "昼寝",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "静かな午後、{相手}とソファで昼寝をした。",
+     "polite": "静かな午後、{相手}とソファで昼寝をしました。"
+    },
+    "months": null
+   },
+   {
+    "id": "I-nap-06",
+    "habit": "昼寝",
+    "weather": null,
+    "place": null,
+    "text": {
+     "plain": "本を読んでいたら眠くなって、{相手}と昼寝をした。",
+     "polite": "本を読んでいたら眠くなって、{相手}と昼寝をしました。"
+    },
+    "months": null
+   }
+  ]
+ },
+ "commons": [
+  {
+   "id": "C01",
+   "title": "忘れもの",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "ふしぎ",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "season_proposed": false,
+   "item": "木の実",
+   "text": {
+    "plain": "ベンチに、小さな木の実が置いてあった。誰かの忘れものかもしれないので、そのままにしておいた。夕方に通ったら、まだそこにあった。あしたも、あるかな。",
+    "genki": "ベンチに、小さな木の実が置いてあった！ 誰かの忘れものかもしれないから、そのままにしておいた。夕方に通ったら、まだあった。あしたも、あるかな。",
+    "polite": "ベンチに、小さな木の実が置いてありました。誰かの忘れものかもしれないので、そのままにしておきました。夕方に通ったら、まだそこにありました。あしたも、あるかな。"
+   }
+  },
+  {
+   "id": "C02",
+   "title": "にじ",
+   "cast": "pair",
+   "weather": "雨のあと",
+   "needs": [],
+   "type": "天気",
+   "feel": "穏やか",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨がやんだあと、空ににじが出た。{相手}と並んで見ていたら、少しずつ薄くなって、消えてしまった。見られてよかった。",
+    "genki": "雨がやんだら、空ににじが出た！ {相手}と並んで見ていたら、少しずつ薄くなって、消えちゃった。見られてよかった！",
+    "polite": "雨がやんだあと、空ににじが出ました。{相手}と並んで見ていたら、少しずつ薄くなって、消えてしまいました。見られてよかったです。"
+   }
+  },
+  {
+   "id": "C03",
+   "title": "落ち葉の山",
+   "cast": "all",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "遊び",
+   "feel": "楽しい",
+   "months": [
+    10,
+    11,
+    12
+   ],
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "公園の落ち葉を集めて、大きな山を作った。みんなで飛びこんだら、山はあっという間に平らになった。また作ればいい。",
+    "genki": "公園の落ち葉を集めて、大きな山を作った！ みんなで飛びこんだら、あっという間に平らになった。また作ればいいや！",
+    "polite": "公園の落ち葉を集めて、大きな山を作りました。みんなで飛びこんだら、山はあっという間に平らになりました。また作ろうと思います。"
+   }
+  },
+  {
+   "id": "C04",
+   "title": "しまもよう",
+   "cast": "solo",
+   "weather": "雨",
+   "needs": [],
+   "type": "静か",
+   "feel": "穏やか",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨で外に出られなかったので、くもった窓に線を描いてみた。線が一本、また一本と増えていく。窓がしまもようになったところで、雨がやんだ。",
+    "genki": null,
+    "polite": "雨で外に出られなかったので、くもった窓に線を描いてみました。線が一本、また一本と増えていきます。窓がしまもようになったところで、雨がやみました。"
+   }
+  },
+  {
+   "id": "C05",
+   "title": "ちょうどいい席",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "日なたと日かげの、ちょうど間にあるベンチを見つけた。{相手}と座ってみたら、ちょうどいい暖かさだった。ひみつの席にすることにした。",
+    "genki": "日なたと日かげの、ちょうど間にあるベンチを見つけた！ {相手}と座ってみたら、ぽかぽかでちょうどいい。ひみつの席にした！",
+    "polite": "日なたと日かげの、ちょうど間にあるベンチを見つけました。{相手}と座ってみたら、ちょうどいい暖かさでした。ひみつの席にすることにしました。"
+   }
+  },
+  {
+   "id": "C06",
+   "title": "交換",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好物",
+    "相手の好物",
+    "好物ちがい"
+   ],
+   "type": "食べる",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{好物}を持って公園へ行ったら、{相手}も{相手の好物}を持ってきていた。少しずつ交換して食べた。いつもより、おいしい気がした。",
+    "genki": "{好物}を持って公園へ行ったら、{相手}も{相手の好物}を持ってきてた！ 少しずつ交換して食べた。いつもより、おいしかった！",
+    "polite": "{好物}を持って公園へ行ったら、{相手}も{相手の好物}を持ってきていました。少しずつ交換して食べました。いつもより、おいしい気がしました。"
+   }
+  },
+  {
+   "id": "C07",
+   "title": "夕焼け",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "静か",
+   "feel": "穏やか",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "帰り道、空がゆっくり赤くなっていった。足を止めて見ていたら、家に着くのが少し遅くなった。今日は、それでよかった。",
+    "genki": "帰り道、空がどんどん赤くなっていった。足を止めて見てたら、家に着くのが遅くなった。でも、見てよかった！",
+    "polite": "帰り道、空がゆっくり赤くなっていきました。足を止めて見ていたら、家に着くのが少し遅くなりました。今日は、それでよかったです。"
+   }
+  },
+  {
+   "id": "C08",
+   "title": "はためく",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "天気",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "風の強い日、洗濯物がいっせいにはためいていた。旗みたいで、辺りがお祭りをしているように見えた。しばらく、その下にいた。",
+    "genki": "風の強い日、洗濯物がいっせいにはためいてた！ 旗みたいで、お祭りみたいだった。しばらく、その下を走り回った。",
+    "polite": "風の強い日、洗濯物がいっせいにはためいていました。旗みたいで、辺りがお祭りをしているように見えました。しばらく、その下にいました。"
+   }
+  },
+  {
+   "id": "C09",
+   "title": "たくさん",
+   "cast": "all",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "遊び",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "夜、みんなで外に出て、星を数えた。途中で、だれがどこまで数えたか分からなくなった。最後は、みんなで「たくさん」ということにした。",
+    "genki": "夜、みんなで外に出て、星を数えた！ 途中で、だれがどこまで数えたか分からなくなった。最後は、みんなで「たくさん！」ってことにした。",
+    "polite": "夜、みんなで外に出て、星を数えました。途中で、だれがどこまで数えたか分からなくなりました。最後は、みんなで「たくさん」ということにしました。"
+   }
+  },
+  {
+   "id": "C10",
+   "title": "枕元の花",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "うれしい",
+   "feel": "ふしぎ",
+   "months": null,
+   "season_proposed": false,
+   "item": "花",
+   "text": {
+    "plain": "朝起きたら、枕元に花が一輪置いてあった。{相手}に聞いたら、知らないと言った。でも、少しだけ笑っていた。",
+    "genki": "朝起きたら、枕元に花が一輪置いてあった！ {相手}に聞いたら、知らないって。でも、ちょっと笑ってた。",
+    "polite": "朝起きたら、枕元に花が一輪置いてありました。{相手}に聞いたら、知らないと言いました。でも、少しだけ笑っていました。"
+   }
+  }
+ ],
+ "role_scripts": [
+  {
+   "id": "G01",
+   "role": "元気",
+   "title": "かけっこ",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "早とちり",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}とかけっこした！ 先にゴールしたと思ったら、まだスタートしてなかった！ {相手}、笑いすぎだよ！"
+   }
+  },
+  {
+   "id": "G02",
+   "role": "元気",
+   "title": "お昼ごはん",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "早とちり",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "お昼ごはんだと思ってお皿を並べたら、まだ朝ごはんの片付け中だった！ {相手}に「早すぎ」って言われた！"
+   }
+  },
+  {
+   "id": "G03",
+   "role": "元気",
+   "title": "木の実",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": "楽しい",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "season_proposed": false,
+   "item": "木の実",
+   "text": {
+    "plain": "朝いちばんに公園へ行ったら、木の実がたくさん落ちてた！ {相手}を呼びに戻って、いっしょに拾った。かごがいっぱいになった！"
+   }
+  },
+  {
+   "id": "G04",
+   "role": "元気",
+   "title": "二番",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "一番",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "今日こそ一番に公園に着くぞと思って、早起きした！ でも、{相手}がもう花に水をやっていた。二番だった！"
+   }
+  },
+  {
+   "id": "G05",
+   "role": "元気",
+   "title": "忘れもの",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "忘れ物",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "遠くの丘まで走っていって、水筒を忘れたことに気づいた！ 取りに戻って、また走った。今日はいっぱい走れた日だ！"
+   }
+  },
+  {
+   "id": "G06",
+   "role": "元気",
+   "title": "水たまり",
+   "cast": "solo",
+   "weather": "雨のあと",
+   "needs": [],
+   "time": null,
+   "type": "天気",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨で外に出られなくて、部屋で準備運動ばかりしてた。窓が明るくなったから、いちばんに飛び出した！ 水たまりに空がうつってた！"
+   }
+  },
+  {
+   "id": "G07",
+   "role": "元気",
+   "title": "待ちきれない",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好物"
+   ],
+   "time": null,
+   "type": "食べる",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{好物}を早く食べたくて、急いで席についた！ でも、{相手}はまだ来てなかった。待ってる間に、おなかがなんども鳴った。"
+   }
+  },
+  {
+   "id": "G08",
+   "role": "元気",
+   "title": "ボール",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "遊び",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "ボールを思いっきり蹴ったら、木の上に乗っかった！ {相手}と見上げて考えてたら、風でぽとんと落ちてきた。木が返してくれた！"
+   }
+  },
+  {
+   "id": "G09",
+   "role": "元気",
+   "title": "おにごっこ",
+   "cast": "all",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "遊び",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "みんなを呼んで、公園でおにごっこをした！ 鬼になったら、なかなかつかまらない。でも、諦めずに頑張ってつかまえた！"
+   }
+  },
+  {
+   "id": "G10",
+   "role": "元気",
+   "title": "早起き",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": "じんわり",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "目覚ましより先に起きた！ 外に出たら、朝の空がオレンジ色だった。この空を見られたのは、たぶん{わたし}だけ。早起きって、いいね！"
+   }
+  },
+  {
+   "id": "Y01",
+   "role": "やさしい",
+   "title": "ピクニック",
+   "cast": "all",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "世話",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "お弁当を作って、みんなで公園に行きました。{相手}が、たまごやきを美味しそうに食べてくれました。とっても嬉しいです。"
+   }
+  },
+  {
+   "id": "Y02",
+   "role": "やさしい",
+   "title": "お茶の時間",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "世話",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}に、お茶の淹れ方を教えました。{相手}は、とても上手に淹れられました。いつでもお茶会ができますね。"
+   }
+  },
+  {
+   "id": "Y03",
+   "role": "やさしい",
+   "title": "半分こ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "分ける",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "おやつがひとつだけ残っていたので、{相手}と半分こしました。分け合うと、とっても美味しいね。"
+   }
+  },
+  {
+   "id": "Y04",
+   "role": "やさしい",
+   "title": "ほつれ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "世話",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}が使っているクッションの端が、少しほつれていました。縫ってあげたら、{相手}はさっそく座って、気持ちよさそうにしていました。クッションも笑ってるみたいです。"
+   }
+  },
+  {
+   "id": "Y05",
+   "role": "やさしい",
+   "title": "ハンカチ",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [],
+   "time": null,
+   "type": "世話",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨やどりのあと、{相手}の頭がぬれていたので、ハンカチでふいてあげました。ふき終わったら、{わたし}の頭のほうがぬれていました。{相手}がふいてくれました。"
+   }
+  },
+  {
+   "id": "Y06",
+   "role": "やさしい",
+   "title": "教わる日",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "教わる",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "ひとりで空を見ていた{相手}を、お茶に誘いました。{相手}は、雲の名前をたくさん知っていました。今日は、{わたし}が教わる日でした。"
+   }
+  },
+  {
+   "id": "Y07",
+   "role": "やさしい",
+   "title": "おかわり",
+   "cast": "all",
+   "weather": null,
+   "needs": [
+    "好物"
+   ],
+   "time": null,
+   "type": "食べる",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "みんなのために{好物}をたくさん用意しました。{相手}が何度もおかわりしてくれて、うれしかったです。いっしょに食べていたら、いつの間にかお皿が空っぽになっていました。"
+   }
+  },
+  {
+   "id": "Y08",
+   "role": "やさしい",
+   "title": "雨の日のお茶",
+   "cast": "all",
+   "weather": "雨",
+   "needs": [],
+   "time": null,
+   "type": "天気",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨の日は、みんなでお茶にしました。窓の外は暗いのに、部屋の中は明るい気がしました。こんな雨の日もいいですね。"
+   }
+  },
+  {
+   "id": "Y09",
+   "role": "やさしい",
+   "title": "名前のない花",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}と花壇の手入れをしました。抜こうとした草に、小さな花が咲いていました。そのまま残して、名前を付けてあげました。"
+   }
+  },
+  {
+   "id": "Y10",
+   "role": "やさしい",
+   "title": "おすそわけ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "分ける",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "散歩の途中で、{相手}のおなかが鳴りました。持ってきたおやつを出して、いっしょに分けました。帰り道は、ゆっくり歩いて帰りました。"
+   }
+  },
+  {
+   "id": "M01",
+   "role": "マイペース",
+   "title": "ひなたぼっこ",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "のんびり",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "ひなたぼっこをしていたら、日なたが少しずつ動いていった。追いかけて座りなおしていたら、夕方になった。いい一日だったなあ。"
+   }
+  },
+  {
+   "id": "M02",
+   "role": "マイペース",
+   "title": "動かない雲",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "今日は空を見ていた。ひとつだけ、ずっと動かない雲があった。よく見たら、{相手}が干したシーツだった。いい形だったなあ。"
+   }
+  },
+  {
+   "id": "M03",
+   "role": "マイペース",
+   "title": "おやつの時間",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好物"
+   ],
+   "time": null,
+   "type": "食べる",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{好物}を、ゆっくり味わって食べた。まだ食べていたら、{相手}がおかわりを持ってきてくれた。もう一回、おやつの時間だなあ。"
+   }
+  },
+  {
+   "id": "M04",
+   "role": "マイペース",
+   "title": "寄り道",
+   "cast": "all",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "みんなで散歩に行った。途中で、まるい石を見つけて、しばらく眺めていた。顔を上げたら、みんなが戻ってきてくれていた。"
+   }
+  },
+  {
+   "id": "M05",
+   "role": "マイペース",
+   "title": "聞こえなかった",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "のんびり",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "ヘッドフォンで音楽を聴きながら、ソファでごろごろしていた。横を見たら、{相手}が何か話しかけていたみたいだ。なんだろうと思って聞いたら、おやつの話だった。"
+   }
+  },
+  {
+   "id": "M06",
+   "role": "マイペース",
+   "title": "先におやすみ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "のんびり",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "夕ごはんのあと、すぐ眠くなった。{相手}はまだ起きていたけど、先に布団に入った。遠くの話し声を聞きながら寝るのも、いいもんだなあ。"
+   }
+  },
+  {
+   "id": "M07",
+   "role": "マイペース",
+   "title": "雨の歌",
+   "cast": "solo",
+   "weather": "雨",
+   "needs": [],
+   "time": null,
+   "type": "天気",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨の日は、ずっと窓のそばにいた。屋根の雨音が、ときどき歌みたいに聞こえる。何の歌かは、まだ分からない。"
+   }
+  },
+  {
+   "id": "M08",
+   "role": "マイペース",
+   "title": "焼きたて",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "食べる",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "めずらしく、走った。{相手}のパンが焼きたてだと聞いたからだ。着いたら、もう少し冷ましたほうがおいしいと言われた。まあいいか。"
+   }
+  },
+  {
+   "id": "M09",
+   "role": "マイペース",
+   "title": "置いてきた",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "忘れ物",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "公園にブランケットを置いてきたことに、夜になって気づいた。あしたの朝、取りに行こう。あしたの朝も、たぶんいい天気だなあ。"
+   }
+  },
+  {
+   "id": "M10",
+   "role": "マイペース",
+   "title": "一日",
+   "cast": "solo",
+   "weather": null,
+   "needs": [
+    "好きなこと"
+   ],
+   "time": null,
+   "type": "のんびり",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "今日は一日、{好きなことをして}過ごした。お昼ごはんも、少し遅れて食べた。気づいたら、もう夕方だった。時間って、どこへ行くんだろうなあ。"
+   }
+  },
+  {
+   "id": "K01",
+   "role": "好奇心旺盛",
+   "title": "足あと",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "公園で、小さな足あとを見つけた。点々と続いて、木の下で消えている。たどっていったら、{相手}がお昼寝していた。足あとの主は、{相手}だったらしい。"
+   }
+  },
+  {
+   "id": "K02",
+   "role": "好奇心旺盛",
+   "title": "雨の音",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨の音は、屋根と窓でちがう。屋根は低くて、窓は高い。{相手}の寝息は、どちらともちがう音だった。"
+   }
+  },
+  {
+   "id": "K03",
+   "role": "好奇心旺盛",
+   "title": "高いところ",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "挑戦",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "いちばん高いところが知りたくて、公園の木に登った。遠くまでよく見えた。降り方は、考えていなかった。しばらく、そこにいた。"
+   }
+  },
+  {
+   "id": "K04",
+   "role": "好奇心旺盛",
+   "title": "めずらしいどんぐり",
+   "cast": "solo",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "season_proposed": false,
+   "item": "どんぐり",
+   "text": {
+    "plain": "帽子がふたつ付いたどんぐりを見つけた。虫めがねを持って、もっと探しに行った。夕方まで探して、見つかったのはそれひとつだけ。めずらしいらしい。"
+   }
+  },
+  {
+   "id": "K05",
+   "role": "好奇心旺盛",
+   "title": "かたつむり",
+   "cast": "solo",
+   "weather": "雨のあと",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": [
+    6,
+    7
+   ],
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "雨上がり、ベンチの裏にかたつむり。ゆっくり、でもまっすぐ進んでいる。どこへ行くのか、ついていった。着いたのは、となりのベンチ。"
+   }
+  },
+  {
+   "id": "K06",
+   "role": "好奇心旺盛",
+   "title": "味見",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "苦手=野菜"
+   ],
+   "time": null,
+   "type": "挑戦",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}が、野菜は甘いらしいと言う。本当か確かめるため、ひと口だけ食べた。甘くはない。でも、思っていたより苦くなかった。"
+   }
+  },
+  {
+   "id": "K07",
+   "role": "好奇心旺盛",
+   "title": "星の席",
+   "cast": "solo",
+   "weather": null,
+   "needs": [],
+   "time": "夜",
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "夜、窓から星を見ていた。きのうと同じ場所に、同じ星。星にも、決まった席があるらしい。あしたも確かめてみる。"
+   }
+  },
+  {
+   "id": "K08",
+   "role": "好奇心旺盛",
+   "title": "人気の石",
+   "cast": "all",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": "丸い石",
+   "text": {
+    "plain": "拾ったものを並べて、みんなに見せた。羽、どんぐり、きれいな葉っぱ。いちばん人気は、ただの丸い石だった。理由は、よく分からない。"
+   }
+  },
+  {
+   "id": "K09",
+   "role": "好奇心旺盛",
+   "title": "影",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": "夕方",
+   "type": "発見",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "夕方、{相手}の影が、本人よりずっと長かった。{わたし}の影も、同じくらい長い。朝はどうなのか、あしたの朝に確かめる。"
+   }
+  },
+  {
+   "id": "K10",
+   "role": "好奇心旺盛",
+   "title": "葉っぱの舟",
+   "cast": "solo",
+   "weather": "雨のあと",
+   "needs": [],
+   "time": null,
+   "type": "挑戦",
+   "feel": null,
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "葉っぱで舟をいくつか作って、水たまりに浮かべてみた。浮いたのは、ひとつだけ。いちばん適当に作ったものだった。"
+   }
+  },
+  {
+   "id": "O01",
+   "role": "おとなしい",
+   "title": "日よけ",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "備え",
+   "feel": "じんわり",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "念のため、傘を持って出かけた。一日じゅう晴れていた。{相手}がまぶしそうだったので、日よけにさしてあげた。"
+   }
+  },
+  {
+   "id": "O02",
+   "role": "おとなしい",
+   "title": "葉っぱ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "言い出せない",
+   "feel": "じんわり",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}の背中に、葉っぱがついていた。言おうか迷っているうちに、夕方になった。帰り道でそっと取ったら、「ありがとう」と言われた。"
+   }
+  },
+  {
+   "id": "O03",
+   "role": "おとなしい",
+   "title": "ばんそうこう",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "備え",
+   "feel": "楽しい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "{相手}が転んだ。念のため持っていたばんそうこうを出したら、どこもけがはしていなかった。それでも貼ってほしそうだったので、頭にひとつ貼ってあげた。"
+   }
+  },
+  {
+   "id": "O04",
+   "role": "おとなしい",
+   "title": "お迎え",
+   "cast": "all",
+   "weather": null,
+   "needs": [],
+   "time": "夕方",
+   "type": "備え",
+   "feel": "じんわり",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "暗くなるかもしれないと思って、ランタンを持って公園まで迎えに行った。みんなは、ちょうど帰るところだった。灯りのまわりに集まって、いっしょに帰った。"
+   }
+  },
+  {
+   "id": "O05",
+   "role": "おとなしい",
+   "title": "言い出せなかった",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "言い出せない",
+   "feel": "じんわり",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "公園で遊ぼうと、{相手}に言いたかった。言い出せないまま、ベンチに座っていた。そうしたら、{相手}のほうから誘いに来てくれた。"
+   }
+  },
+  {
+   "id": "O06",
+   "role": "おとなしい",
+   "title": "かみなり",
+   "cast": "all",
+   "weather": "雨",
+   "needs": [
+    "苦手=大きな音"
+   ],
+   "time": null,
+   "type": "天気",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "夜、かみなりが鳴った。{わたし}は急いで布団にもぐった。しばらくして、そっと顔を出したら、みんなも同じ布団に入っていた。"
+   }
+  },
+  {
+   "id": "O07",
+   "role": "おとなしい",
+   "title": "干しなおし",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "備え",
+   "feel": "穏やか",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "朝から空が暗かったので、{相手}の洗濯物もいっしょに取りこんでおいた。結局、一日じゅう降らなかった。もう一度、ゆっくり干した。"
+   }
+  },
+  {
+   "id": "O08",
+   "role": "おとなしい",
+   "title": "つぼみ",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [],
+   "time": null,
+   "type": "発見",
+   "feel": "じんわり",
+   "months": [
+    3,
+    4,
+    5
+   ],
+   "season_proposed": false,
+   "item": "花",
+   "text": {
+    "plain": "花壇の端に、つぼみがひとつ。だれも気づいていないみたいだった。毎朝見に行っていたら、今日、咲いていた。少しだけ、自慢したい。"
+   }
+  },
+  {
+   "id": "O09",
+   "role": "おとなしい",
+   "title": "となり",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=座って"
+   ],
+   "time": null,
+   "type": "静か",
+   "feel": "穏やか",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "ひとりで{好きなことをして}いたら、{相手}がとなりに座った。何も言わずに、同じことを始めた。静かで、ちょうどいい時間だった。"
+   }
+  },
+  {
+   "id": "O10",
+   "role": "おとなしい",
+   "title": "いつもありがとう",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "time": null,
+   "type": "うれしい",
+   "feel": "おかしい",
+   "months": null,
+   "season_proposed": false,
+   "item": null,
+   "text": {
+    "plain": "毎朝、玄関を掃いていることを、{相手}は知っていた。「いつもありがとう」と言われた。うれしくて、ほうきを落としてしまった！"
+   }
+  }
+ ],
+ "likes_scripts": [
+  {
+   "id": "L-read-01",
+   "title": "スプーンと本",
+   "cast": "solo",
+   "weather": null,
+   "needs": [
+    "好きなこと=本を読んで"
+   ],
+   "time": "昼",
+   "type": "夢中",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "本の続きが気になって、手が先に本へ戻ってしまう夢中ぶり。最後の一文（スプーンを持ったまま、また本を開いていた）",
+   "text": {
+    "plain": "本のいちばんいいところで、お昼ごはんの時間になった。しかたなく本を閉じて、ごはんを食べた。気づいたら、スプーンを持ったまま、また本を開いていた。",
+    "genki": "本のいちばんいいところで、お昼ごはんの時間になった！ しかたなく本を閉じて、ごはんを食べた。気づいたら、スプーンを持ったまま、また本を開いてた！",
+    "polite": "本のいちばんいいところで、お昼ごはんの時間になりました。しかたなく本を閉じて、ごはんを食べました。気づいたら、スプーンを持ったまま、また本を開いていました。"
+   }
+  },
+  {
+   "id": "L-read-02",
+   "title": "読み聞かせ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=本を読んで"
+   ],
+   "time": "夜",
+   "type": "世話",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "本を読んであげる世話と、眠った相手に合わせてしおりを挟んで明かりを消す、静かな気づかい",
+   "text": {
+    "plain": "寝る前に、{相手}に本を読んであげた。いちばんいいところで、{相手}はもう眠っていた。しおりを挟んで、そっと明かりを消した。",
+    "genki": "寝る前に、{相手}に本を読んであげた！ いちばんいいところで、{相手}はもう眠ってた。しおりを挟んで、そっと明かりを消した。",
+    "polite": "寝る前に、{相手}に本を読んであげました。いちばんいいところで、{相手}はもう眠っていました。しおりを挟んで、そっと明かりを消しました。"
+   }
+  },
+  {
+   "id": "L-read-03",
+   "title": "ふたりで一冊",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=本を読んで"
+   ],
+   "time": null,
+   "type": "気づかい",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "本好きの相手が、となりに来た書き手に本を寄せ、ページをめくる前に毎回顔を見て、読み終わったか確かめてくれる気づかい",
+   "text": {
+    "plain": "{相手}が、ソファで本を読んでいた。となりに座ったら、本を寄せてくれた。{相手}はページをめくる前に、毎回こっちの顔を見て、読み終わったか確かめてくれた。",
+    "genki": "{相手}が、ソファで本を読んでた。となりに座ったら、本を寄せてくれた！ {相手}はページをめくる前に、毎回こっちの顔を見て、読み終わったか確かめてくれた。",
+    "polite": "{相手}が、ソファで本を読んでいました。となりに座ったら、本を寄せてくれました。{相手}はページをめくる前に、毎回こちらの顔を見て、読み終わったか確かめてくれました。"
+   }
+  },
+  {
+   "id": "L-read-04",
+   "title": "鳥の名前",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "相手の好きなこと=本を読んで"
+   ],
+   "time": null,
+   "type": "教わる",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "本好きの相手が、本で読んだ知識で鳥の名前と鳴き声まで教えてくれる。相手の好きなことが、書き手の役に立つ",
+   "text": {
+    "plain": "公園で、名前の分からない鳥を見つけた。{相手}に話したら、本で読んだことがあると言って、名前を教えてくれた。鳴き声まで知っていた。",
+    "genki": "公園で、名前の分からない鳥を見つけた！ {相手}に話したら、本で読んだことがあるって、名前を教えてくれた。鳴き声まで知ってた！",
+    "polite": "公園で、名前の分からない鳥を見つけました。{相手}に話したら、本で読んだことがあると言って、名前を教えてくれました。鳴き声まで知っていました。"
+   }
+  },
+  {
+   "id": "L-run-01",
+   "title": "葉っぱと競争",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [
+    "好きなこと=かけっこをして"
+   ],
+   "time": null,
+   "type": "挑戦",
+   "feel": "おかしい",
+   "months": [
+    10,
+    11
+   ],
+   "item": null,
+   "aim": "時計がなくても勝ち負けが分かる相手（風で地面を転がる落ち葉）を選ぶ工夫と、最後に葉っぱが頭にのるオチ。落ち葉の季節（10・11月。コテージの木が紅葉の時期）だけ",
+   "text": {
+    "plain": "風で地面をころころ転がっていく落ち葉と、ベンチまで競争した。二回負けて、三回目で勝った。四回目は、葉っぱが風でふわっと舞い上がって、ゴールしたら頭にのっていた。",
+    "genki": "風で地面をころころ転がっていく落ち葉と、ベンチまで競争した！ 二回負けて、三回目で勝った！ 四回目は、葉っぱが風でふわっと舞い上がって、ゴールしたら頭にのってた！",
+    "polite": "風で地面をころころ転がっていく落ち葉と、ベンチまで競争しました。二回負けて、三回目で勝ちました。四回目は、葉っぱが風でふわっと舞い上がって、ゴールしたら頭にのっていました。"
+   }
+  },
+  {
+   "id": "L-run-02",
+   "title": "頭の中のコース",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [
+    "好きなこと=かけっこをして"
+   ],
+   "time": null,
+   "type": "遊び",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "走れない雨の日も頭の中で走っている子と、わけを聞いて「何周目？」と遊びに乗ってくれる相手",
+   "text": {
+    "plain": "雨で外を走れなかった。窓から公園を見て、頭の中で走っていたら、{相手}に「何してるの」と聞かれた。わけを話すと、「じゃあ今、何周目？」と言われた。三周目と答えた。",
+    "genki": "雨で外を走れなかった。窓から公園を見て、頭の中で走ってたら、{相手}に「何してるの」って聞かれた。わけを話したら、「じゃあ今、何周目？」だって。三周目！って答えた。",
+    "polite": "雨で外を走れませんでした。窓から公園を見て、頭の中で走っていたら、{相手}に「何してるの」と聞かれました。わけを話すと、「じゃあ今、何周目？」と言われました。三周目と答えました。"
+   }
+  },
+  {
+   "id": "L-run-03",
+   "title": "よーいどん",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "相手の好きなこと=かけっこをして"
+   ],
+   "time": null,
+   "type": "遊び",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "葉っぱの合図が風でゆれて、走りたくてたまらない相手が何度も先に走り出してしまうずれ。書き手が合図のやり方を変えて付き合う",
+   "text": {
+    "plain": "{相手}に「よーいどん」の合図を頼まれた。旗のかわりに、葉っぱを振った。でも、風で葉っぱがゆれるたびに、{相手}は先に走り出した。三回目からは、声で合図した。",
+    "genki": "{相手}に「よーいどん」の合図を頼まれた！ 旗のかわりに、葉っぱを振った。でも、風で葉っぱがゆれるたびに、{相手}が先に走り出しちゃう！ 三回目からは、声で合図した。",
+    "polite": "{相手}に「よーいどん」の合図を頼まれました。旗のかわりに、葉っぱを振りました。でも、風で葉っぱがゆれるたびに、{相手}は先に走り出しました。三回目からは、声で合図しました。"
+   }
+  },
+  {
+   "id": "L-run-04",
+   "title": "飛んでいったハンカチ",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "相手の好きなこと=かけっこをして"
+   ],
+   "time": null,
+   "type": "世話",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "走るのが好きな相手が助けてくれたあと、次の出番を待ちかまえて、風が吹くたびに走る構えをしている姿（最後の一文）",
+   "text": {
+    "plain": "洗濯物を取りこんでいたら、ハンカチが風で飛んでいった。{相手}が走って追いかけて、取ってきてくれた。そのあと{相手}は、風が吹くたびに、走る構えをしていた。",
+    "genki": "洗濯物を取りこんでたら、ハンカチが風で飛んでいった！ {相手}が走って追いかけて、取ってきてくれた。そのあと{相手}は、風が吹くたびに、走る構えをしてた！",
+    "polite": "洗濯物を取りこんでいたら、ハンカチが風で飛んでいきました。{相手}が走って追いかけて、取ってきてくれました。そのあと{相手}は、風が吹くたびに、走る構えをしていました。"
+   }
+  },
+  {
+   "id": "L-explore-01",
+   "title": "おにぎりの木",
+   "cast": "solo",
+   "weather": "晴れ",
+   "needs": [
+    "好きなこと=探検をして"
+   ],
+   "time": null,
+   "type": "記録",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "探検したことを地図に残し、場所の目印を「そこで何をしたか」（おにぎりの絵）で描く、その子らしい記録のしかた。後日談 F8 の入口になる",
+   "text": {
+    "plain": "公園の奥まで、探検に行った。知らない大きな木の下で、おにぎりを食べた。帰ってから、家から公園の奥までの地図を描いた。その木のところには、おにぎりの絵を描いておいた。",
+    "genki": "公園の奥まで、探検に行った！ 知らない大きな木の下で、おにぎりを食べた。帰ってから、家から公園の奥までの地図を描いた。その木のところには、おにぎりの絵を描いておいた！",
+    "polite": "公園の奥まで、探検に行きました。知らない大きな木の下で、おにぎりを食べました。帰ってから、家から公園の奥までの地図を描きました。その木のところには、おにぎりの絵を描いておきました。"
+   }
+  },
+  {
+   "id": "L-explore-02",
+   "title": "知らない道",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "好きなこと=探検をして"
+   ],
+   "time": null,
+   "type": "発見",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "知らない道から、遠くに自分たちのコテージを見つける。思っていたより小さいのに、屋根の色ですぐに分かり、早く帰りたくなる（ユーザーが書いた文）",
+   "text": {
+    "plain": "{相手}と、知らない道を歩いてみた。丘をぐるっと回ったら、遠くにコテージが見えた。ここから見ると、思っていたより小さい。でも、屋根の色ですぐに分かった。早く帰りたくなった。",
+    "genki": "{相手}と、知らない道を歩いてみた！ 丘をぐるっと回ったら、遠くにコテージが見えた。ここから見ると、思ってたより小さい！ でも、屋根の色ですぐに分かった。早く帰りたくなった！",
+    "polite": "{相手}と、知らない道を歩いてみました。丘をぐるっと回ったら、遠くにコテージが見えました。ここから見ると、思ったより小さいです。でも、屋根の色ですぐ分かりました。早く帰りたくなりました。"
+   }
+  },
+  {
+   "id": "L-explore-03",
+   "title": "ポケットの中身",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "相手の好きなこと=探検をして"
+   ],
+   "time": "夕方",
+   "type": "発見",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "探検から帰った相手が拾い物を並べ、最後に朝持っていったおやつが出てくる。食べ忘れるほど夢中だったことが、物の並びで分かる。後日談 F9 の入口になる",
+   "text": {
+    "plain": "探検から帰った{相手}が、ポケットの中身をテーブルに並べた。どんぐり、丸い小石、赤い葉っぱ。最後に出てきたのは、朝持っていったおやつだった。食べるのも忘れていたらしい。",
+    "genki": "探検から帰った{相手}が、ポケットの中身をテーブルに並べた！ どんぐり、丸い小石、赤い葉っぱ。最後に出てきたのは、朝持っていったおやつだった。食べるのも忘れてたみたい！",
+    "polite": "探検から帰った{相手}が、ポケットの中身をテーブルに並べました。どんぐり、丸い小石、赤い葉っぱ。最後に出てきたのは、朝持っていったおやつでした。食べるのも忘れていたようです。"
+   }
+  },
+  {
+   "id": "L-explore-04",
+   "title": "帰り道",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "相手の好きなこと=探検をして"
+   ],
+   "time": "夕方",
+   "type": "うれしい",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "前を歩いていた探検好きの相手が、来るときにときどきしゃがんでいたのは、帰り道の目印（小枝の×印）を置くためだった、と帰りに分かる結び",
+   "text": {
+    "plain": "{相手}の探検について行った帰り、暗くなってきた。{相手}は、分かれ道ごとに置いた小枝の×印をたどって帰った。来るときにときどきしゃがんでいたのは、これだったらしい。",
+    "genki": "{相手}の探検について行った帰り、暗くなってきた。{相手}は、分かれ道ごとに置いた小枝の×印をたどって帰った！ 来るときにときどきしゃがんでたのは、これだったみたい！",
+    "polite": "{相手}の探検について行った帰り、暗くなってきました。{相手}は、分かれ道ごとに置いた小枝の×印をたどって帰りました。来るときにときどきしゃがんでいたのは、これだったようです。"
+   }
+  },
+  {
+   "id": "L-both-01",
+   "title": "ベンチの前",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "好きなこと=かけっこをして",
+    "相手の好きなこと=本を読んで"
+   ],
+   "time": null,
+   "type": "うれしい",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "本を読みながらも、走る子が前を通るたびに顔を上げて手を振ってくれる相手と、それがうれしくて多く走る子。最後は相手が本を閉じて見てくれる",
+   "text": {
+    "plain": "公園を走っていたら、ベンチで本を読む{相手}が、前を通るたびに顔を上げて手を振ってくれた。それがうれしくて、三周多く走った。最後の一周は、本を閉じて見てくれた。",
+    "genki": "公園を走ってたら、ベンチで本を読む{相手}が、前を通るたびに顔を上げて手を振ってくれた！ それがうれしくて、三周多く走った！ 最後の一周は、本を閉じて見てくれた。",
+    "polite": "公園を走っていたら、ベンチで本を読む{相手}が、前を通るたびに顔を上げて手を振ってくれました。それがうれしくて、三周多く走りました。最後の一周は、本を閉じて見てくれました。"
+   }
+  },
+  {
+   "id": "L-both-02",
+   "title": "寄り道の多い丘",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [
+    "好きなこと=探検をして",
+    "相手の好きなこと=かけっこをして"
+   ],
+   "time": null,
+   "type": "遊び",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "走る相手が先に行っては戻って見つけたものを教え、そのたびに見に行くので、朝出た探検がお昼までかかる。ふたりの好きなことが組み合わさる",
+   "text": {
+    "plain": "朝から{相手}と丘へ探検に行った。{相手}は先に走っては戻って「こっちに変な石」「あっちに花」と教えてくれた。そのたび見に行ったので、てっぺんに着くころにはお昼だった。",
+    "genki": "朝から{相手}と丘へ探検に行った！ {相手}は先に走っては戻って「こっちに変な石」「あっちに花」って教えてくれた。そのたび見に行ったので、てっぺんに着くころにはお昼だった！",
+    "polite": "朝から{相手}と丘へ探検に行きました。{相手}は先に走っては戻って「こっちに変な石」「あっちに花」と教えてくれました。そのたび見に行ったので、てっぺんに着くころにはお昼でした。"
+   }
+  },
+  {
+   "id": "L-both-03",
+   "title": "かえでの葉っぱ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=本を読んで",
+    "相手の好きなこと=探検をして"
+   ],
+   "time": null,
+   "type": "発見",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "本で種類（かえで）が分かり、書き手がその木の場所を知っていたので、まだ見たことのない相手がすぐに出かける支度を始める。本の子と探検の子の組み合わせ",
+   "text": {
+    "plain": "{相手}が、探検で拾った葉っぱを持ってきた。本で調べたら、かえでの葉っぱだった。公園の奥に一本あると教えたら、{相手}はもう出かける支度をしていた。",
+    "genki": "{相手}が、探検で拾った葉っぱを持ってきた！ 本で調べたら、かえでの葉っぱだった。公園の奥に一本あるよって教えたら、{相手}はもう出かける支度をしてた！",
+    "polite": "{相手}が、探検で拾った葉っぱを持ってきました。本で調べたら、かえでの葉っぱでした。公園の奥に一本あると教えたら、{相手}はもう出かける支度をしていました。"
+   }
+  },
+  {
+   "id": "L-dance-01",
+   "title": "ほうきとステップ",
+   "cast": "solo",
+   "weather": null,
+   "needs": [
+    "好きなこと=ダンスをして"
+   ],
+   "time": null,
+   "type": "夢中",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "そうじのあいだも、ほうきを持ったままステップをふんでしまい、そうじが終わらない。好きなことがほかの場面に出る",
+   "text": {
+    "plain": "そうじの時間に、ほうきを持ったまま、ついステップをふんでいた。右、左、くるっと。ぜんぜん、そうじが終わらない。",
+    "genki": "そうじの時間に、ほうきを持ったまま、ついステップをふんでた！ 右、左、くるっと。ぜんぜん、そうじが終わらない！",
+    "polite": "そうじの時間に、ほうきを持ったまま、ついステップをふんでいました。右、左、くるっと。ぜんぜん、そうじが終わりません。"
+   }
+  },
+  {
+   "id": "L-dance-02",
+   "title": "反対まわり",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=ダンスをして"
+   ],
+   "time": null,
+   "type": "遊び",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "ダンスを教えたら、相手はいつも反対に回ってしまう。直すのではなく、ふたりで反対に回る踊りにしてしまう",
+   "text": {
+    "plain": "{相手}に、ダンスを教えた。右、左、くるっと。{相手}は、くるっとのところで、いつも反対に回る。何回やってもそうなので、最後は、ふたりで反対に回る踊りにした。",
+    "genki": "{相手}に、ダンスを教えた！ 右、左、くるっと。{相手}は、くるっとのところで、いつも反対に回る。何回やってもそうだから、最後は、ふたりで反対に回る踊りにした！",
+    "polite": "{相手}に、ダンスを教えました。右、左、くるっと。{相手}は、くるっとのところで、いつも反対に回ります。何回やってもそうなので、最後は、ふたりで反対に回る踊りにしました。"
+   }
+  },
+  {
+   "id": "L-dance-03",
+   "title": "うつるリズム",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=ダンスをして"
+   ],
+   "time": null,
+   "type": "うつる",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "ダンス好きの相手が、なべを洗いながら足でリズムをとっている。お皿をふく番になった書き手にも、そのリズムがうつる",
+   "text": {
+    "plain": "キッチンで、{相手}がなべを洗いながら、ずっと足でリズムをとっていた。となりでお皿をふいていたら、いつのまにか、こっちも同じリズムになっていた。",
+    "genki": "キッチンで、{相手}がなべを洗いながら、ずっと足でリズムをとってた！ となりでお皿をふいてたら、いつのまにか、こっちも同じリズムになってた！",
+    "polite": "キッチンで、{相手}がなべを洗いながら、ずっと足でリズムをとっていました。となりでお皿をふいていたら、いつのまにか、こちらも同じリズムになっていました。"
+   }
+  },
+  {
+   "id": "L-dance-04",
+   "title": "最後のポーズ",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [
+    "相手の好きなこと=ダンスをして"
+   ],
+   "time": null,
+   "type": "いっしょに",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "ダンス好きの相手の踊りに、ふたりで決めのポーズを考える。屋根の形のポーズを試したら、相手が「それ！」と決める",
+   "text": {
+    "plain": "{相手}が、新しい踊りを考えていた。決めのポーズがなくて、いつも最後で止まってしまう。ふたりで考えて、両手で屋根の形にしてみたら、{相手}が「それだ」と言った。",
+    "genki": "{相手}が、新しい踊りを考えてた。決めのポーズがなくて、いつも最後で止まっちゃう。ふたりで考えて、両手で屋根の形にしてみたら、{相手}が「それ！」って！",
+    "polite": "{相手}が、新しい踊りを考えていました。決めのポーズがなくて、いつも最後で止まってしまいます。ふたりで考えて、両手で屋根の形にしてみたら、{相手}が「それだ」と言いました。"
+   }
+  },
+  {
+   "id": "L-nap-01",
+   "title": "静かすぎる",
+   "cast": "solo",
+   "weather": "雨",
+   "needs": [
+    "好きなこと=お昼寝をして"
+   ],
+   "time": "昼",
+   "type": "発見",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "雨の音でよく眠れたのに、雨がやんだら静かすぎて眠れない。お昼寝好きの、眠りへのこだわりが逆向きに出るオチ",
+   "text": {
+    "plain": "雨の音を聞きながら、お昼寝をした。よく眠れた。起きたら雨がやんでいて、もう一回寝ようとしたら、静かすぎて、なかなか眠れなかった。",
+    "genki": "雨の音を聞きながら、お昼寝をした。よく眠れた！ 起きたら雨がやんでて、もう一回寝ようとしたら、静かすぎて、なかなか眠れなかった。",
+    "polite": "雨の音を聞きながら、お昼寝をしました。よく眠れました。起きたら雨がやんでいて、もう一回寝ようとしたら、静かすぎて、なかなか眠れませんでした。"
+   }
+  },
+  {
+   "id": "L-nap-02",
+   "title": "三十分",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=お昼寝をして"
+   ],
+   "time": "夕方",
+   "type": "早とちり",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "起こしてと頼んだ相手も、となりで眠っていた。気持ちよさそうな相手を見て、書き手ももう少し目をつぶる。ふたりそろってのうっかりを責めない",
+   "text": {
+    "plain": "お昼寝の前に、{相手}に「三十分たったら起こして」と頼んだ。起きたら、もう夕方だった。{相手}も、となりで眠っていた。気持ちよさそうなので、もう少し目をつぶった。",
+    "genki": "お昼寝の前に、{相手}に「三十分たったら起こして」って頼んだ。起きたら、もう夕方だった！ {相手}も、となりで眠ってた。気持ちよさそうだから、もう少し目をつぶった。",
+    "polite": "お昼寝の前に、{相手}に「三十分たったら起こして」と頼みました。起きたら、もう夕方でした。{相手}も、となりで眠っていました。気持ちよさそうなので、もう少し目をつぶりました。"
+   }
+  },
+  {
+   "id": "L-nap-03",
+   "title": "そうっと",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=お昼寝をして"
+   ],
+   "time": "昼",
+   "type": "気づかい",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "お昼寝中の相手を起こさないよう、そうっと座ったら自分も眠ってしまい、起きたら相手に毛布をかけられていた。気づかいが返ってくる",
+   "text": {
+    "plain": "{相手}が、ソファでお昼寝していた。起こさないように、そうっと座った。いつのまにか、こっちまで寝ていた。起きたら毛布がかかっていて、{相手}はもう起きていた。",
+    "genki": "{相手}が、ソファでお昼寝してた。起こさないように、そうっと座った。いつのまにか、こっちまで寝てた。起きたら毛布がかかってて、{相手}はもう起きてた！",
+    "polite": "{相手}が、ソファでお昼寝していました。起こさないように、そうっと座りました。いつのまにか、こちらまで寝ていました。起きたら毛布がかかっていて、{相手}はもう起きていました。"
+   }
+  },
+  {
+   "id": "L-nap-04",
+   "title": "タオルの枕",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=お昼寝をして"
+   ],
+   "time": "昼",
+   "type": "発見",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "お昼寝好きの相手が、手伝いの途中で、たたんだタオルの山を枕に眠ってしまう。書き手は起こさずに残りをたたむ",
+   "text": {
+    "plain": "洗濯物をたたむのを、{相手}が手伝ってくれていた。急に静かになったので見たら、たたんだタオルの山を枕にして、お昼寝していた。起こさずに、残りはひとりでたたんだ。",
+    "genki": "洗濯物をたたむのを、{相手}が手伝ってくれてた。急に静かになったから見たら、たたんだタオルの山を枕にして、お昼寝してた！ 起こさずに、残りはひとりでたたんだ。",
+    "polite": "洗濯物をたたむのを、{相手}が手伝ってくれていました。急に静かになったので見たら、たたんだタオルの山を枕にして、お昼寝していました。起こさずに、残りはひとりでたたみました。"
+   }
+  },
+  {
+   "id": "L-draw-01",
+   "title": "大きな屋根",
+   "cast": "solo",
+   "weather": null,
+   "needs": [
+    "好きなこと=お絵かきをして"
+   ],
+   "time": null,
+   "type": "工夫",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "コテージの絵で屋根が紙に入らず、紙をつないだら、今度は屋根だけが大きくなった。工夫がずれていくオチ。後日談 F10 の入口になる",
+   "text": {
+    "plain": "コテージの絵を描いた。紙が足りなくて、屋根が入らなかった。上に紙をもう一枚つないで描いたら、こんどは屋根だけが、家より大きくなった。",
+    "genki": "コテージの絵を描いた！ 紙が足りなくて、屋根が入らなかった。上に紙をもう一枚つないで描いたら、こんどは屋根だけが、家より大きくなった！",
+    "polite": "コテージの絵を描きました。紙が足りなくて、屋根が入りませんでした。上に紙をもう一枚つないで描いたら、こんどは屋根だけが、家より大きくなりました。"
+   }
+  },
+  {
+   "id": "L-draw-02",
+   "title": "寝顔",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=お絵かきをして"
+   ],
+   "time": null,
+   "type": "遊び",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "動かないモデルとして、相手の寝顔を描く（口が少しあいて、ほっぺがクッションでつぶれている）。起きた相手は自分の寝顔をはじめて見て、絵とにらめっこする",
+   "text": {
+    "plain": "{相手}がお昼寝しているあいだに、寝顔を描いた。口が少しあいて、ほっぺがクッションでつぶれていた。起きた{相手}に見せたら、しばらく絵とにらめっこしていた。",
+    "genki": "{相手}がお昼寝してるあいだに、寝顔を描いた！ 口が少しあいて、ほっぺがクッションでつぶれてた。起きた{相手}に見せたら、しばらく絵とにらめっこしてた！",
+    "polite": "{相手}がお昼寝しているあいだに、寝顔を描きました。口が少しあいて、ほっぺがクッションでつぶれていました。起きた{相手}に見せたら、しばらく絵とにらめっこしていました。"
+   }
+  },
+  {
+   "id": "L-draw-03",
+   "title": "ごはんつぶ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=お絵かきをして"
+   ],
+   "time": null,
+   "type": "発見",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "お絵かき好きの相手が描いてくれた似顔絵に、ほっぺのごはんつぶまで描いてあった。よく見ている相手と、本当についていたオチ",
+   "text": {
+    "plain": "{相手}が、似顔絵を描いてくれた。ほっぺに、ごはんつぶまで描いてあった。さわってみたら、本当についていた。",
+    "genki": "{相手}が、似顔絵を描いてくれた！ ほっぺに、ごはんつぶまで描いてあった。さわってみたら、本当についてた！",
+    "polite": "{相手}が、似顔絵を描いてくれました。ほっぺに、ごはんつぶまで描いてありました。さわってみたら、本当についていました。"
+   }
+  },
+  {
+   "id": "L-draw-04",
+   "title": "窓の絵",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [
+    "相手の好きなこと=お絵かきをして"
+   ],
+   "time": null,
+   "type": "静か",
+   "feel": "じんわり",
+   "months": [
+    11,
+    12,
+    1,
+    2,
+    3
+   ],
+   "item": null,
+   "aim": "くもった窓に指で描いた、お日さまの出ている公園の線から、本物の雨の公園が見える。お日さまの絵の中で雨がふっている、という景色。寒い季節（窓がくもる時期）だけ",
+   "text": {
+    "plain": "雨の日、{相手}が、くもった窓に指で、お日さまの出ている公園を描いていた。描いた線のところだけ、くもりが消えて、外が見える。お日さまの絵の中で、本物の雨がふっていた。",
+    "genki": "雨の日、{相手}が、くもった窓に指で、お日さまの出てる公園を描いてた。描いた線のところだけ、くもりが消えて、外が見える。お日さまの絵の中で、本物の雨がふってた。",
+    "polite": "雨の日、{相手}が、くもった窓に指で、お日さまの出ている公園を描いていました。描いた線のところだけ、くもりが消えて、外が見えます。お日さまの絵の中で、本物の雨がふっていました。"
+   }
+  },
+  {
+   "id": "L-sing-01",
+   "title": "一曲で何枚",
+   "cast": "solo",
+   "weather": null,
+   "needs": [
+    "好きなこと=歌って"
+   ],
+   "time": null,
+   "type": "工夫",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "歌いながらお皿を洗う。速い歌にしたら手までつられて速くなり、枚数は増えたが、一枚に泡が残っていたオチ",
+   "text": {
+    "plain": "歌いながらお皿を洗ったら、一曲で三枚だった。次は速い歌にしたら、手までつられて速くなって、五枚洗えた。でも、そのうち一枚は、泡が残っていた。",
+    "genki": "歌いながらお皿を洗ったら、一曲で三枚だった。次は速い歌にしたら、手までつられて速くなって、五枚洗えた！ でも、そのうち一枚は、泡が残ってた。",
+    "polite": "歌いながらお皿を洗ったら、一曲で三枚でした。次は速い歌にしたら、手までつられて速くなって、五枚洗えました。でも、そのうち一枚は、泡が残っていました。"
+   }
+  },
+  {
+   "id": "L-sing-02",
+   "title": "二番の歌詞",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=歌って"
+   ],
+   "time": "夜",
+   "type": "世話",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "寝る前の子守歌で二番の歌詞を忘れ、今日あったことを歌にしたら、眠るはずの相手が最後まで目をあけて聞いていた。後日談 F11 の入口になる",
+   "text": {
+    "plain": "寝る前に、{相手}に子守歌を歌った。二番の歌詞を忘れたので、今日あったことを歌にした。{相手}は、最後まで目をあけて聞いていた。",
+    "genki": "寝る前に、{相手}に子守歌を歌った！ 二番の歌詞を忘れたから、今日あったことを歌にした。{相手}は、最後まで目をあけて聞いてた！",
+    "polite": "寝る前に、{相手}に子守歌を歌いました。二番の歌詞を忘れたので、今日あったことを歌にしました。{相手}は、最後まで目をあけて聞いていました。"
+   }
+  },
+  {
+   "id": "L-sing-03",
+   "title": "くり返し",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=歌って"
+   ],
+   "time": "朝",
+   "type": "発見",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "相手の歌が「くるりと回って」ばかりくり返す。見に行ったら、ホットケーキを返すたびに、その一節を合いの手のように歌っていた",
+   "text": {
+    "plain": "キッチンから、{相手}の歌が聞こえてきた。「くるりと回って」のところばかり、何度もくり返している。見に行ったら、ホットケーキを返すたびに、そこを歌っていた。",
+    "genki": "キッチンから、{相手}の歌が聞こえてきた！ 「くるりと回って」のところばかり、何度もくり返してる。見に行ったら、ホットケーキを返すたびに、そこを歌ってた！",
+    "polite": "キッチンから、{相手}の歌が聞こえてきました。「くるりと回って」のところばかり、何度もくり返しています。見に行ったら、ホットケーキを返すたびに、そこを歌っていました。"
+   }
+  },
+  {
+   "id": "L-sing-04",
+   "title": "最後だけ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=歌って"
+   ],
+   "time": null,
+   "type": "いっしょに",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "相手が歌うのを聞いていた書き手は、本当はその歌を知っていた。最後のところだけ小さく合わせたら、相手がびっくりしてふり向く",
+   "text": {
+    "plain": "{相手}が歌っているのを、となりで聞いていた。知っている歌だった。最後のところだけ小さく合わせたら、{相手}がびっくりしてふり向いた。",
+    "genki": "{相手}が歌ってるのを、となりで聞いてた。知ってる歌だった！ 最後のところだけ小さく合わせたら、{相手}がびっくりしてふり向いた！",
+    "polite": "{相手}が歌っているのを、となりで聞いていました。知っている歌でした。最後のところだけ小さく合わせたら、{相手}がびっくりしてふり向きました。"
+   }
+  },
+  {
+   "id": "L-cook-01",
+   "title": "両手のパン",
+   "cast": "solo",
+   "weather": null,
+   "needs": [
+    "好きなこと=料理をして"
+   ],
+   "time": null,
+   "type": "挑戦",
+   "feel": "楽しい",
+   "months": null,
+   "item": null,
+   "aim": "はじめてのパン作り。手のひらにのる生地が、何度もオーブンをのぞいて待つうちに、両手でないと持てないくらいにふくらむ。料理好きの、作ることへのわくわく",
+   "text": {
+    "plain": "本で見たパンを、はじめて焼いてみた。丸めた生地は、手のひらにのるくらい。何度もオーブンをのぞいて待ったら、両手でないと持てないくらいにふくらんだ。",
+    "genki": "本で見たパンを、はじめて焼いてみた！ 丸めた生地は、手のひらにのるくらい。何度もオーブンをのぞいて待ったら、両手でないと持てないくらいにふくらんだ！",
+    "polite": "本で見たパンを、はじめて焼いてみました。丸めた生地は、手のひらにのるくらいです。何度もオーブンをのぞいて待ったら、両手でないと持てないくらいにふくらみました。"
+   }
+  },
+  {
+   "id": "L-cook-02",
+   "title": "ふくらんだ形",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "好きなこと=料理をして"
+   ],
+   "time": null,
+   "type": "うれしい",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "相手の顔の形に切ったクッキーが、焼いたらまんまるになった。それでも相手は、すぐに自分だと分かる",
+   "text": {
+    "plain": "{相手}の顔の形に、クッキーの生地を切った。焼いたら、ふくらんで、まんまるになった。でも{相手}は、一つ目を見て、すぐに自分だと分かった。",
+    "genki": "{相手}の顔の形に、クッキーの生地を切った！ 焼いたら、ふくらんで、まんまるになった。でも{相手}は、一つ目を見て、すぐに自分だと分かった！",
+    "polite": "{相手}の顔の形に、クッキーの生地を切りました。焼いたら、ふくらんで、まんまるになりました。でも{相手}は、一つ目を見て、すぐに自分だと分かりました。"
+   }
+  },
+  {
+   "id": "L-cook-03",
+   "title": "こげたほう",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=料理をして"
+   ],
+   "time": "朝",
+   "type": "気づかい",
+   "feel": "じんわり",
+   "months": null,
+   "item": null,
+   "aim": "料理好きの相手が朝ごはんを作ってくれた。たまごやきの、こげた端のほうを、相手は自分のお皿にのせていた。言わない気づかい",
+   "text": {
+    "plain": "{相手}が、朝ごはんを作ってくれた。たまごやきの端が、少しこげていた。こげたほうは、{相手}が自分のお皿にのせていた。",
+    "genki": "{相手}が、朝ごはんを作ってくれた！ たまごやきの端が、少しこげてた。こげたほうは、{相手}が自分のお皿にのせてた。",
+    "polite": "{相手}が、朝ごはんを作ってくれました。たまごやきの端が、少しこげていました。こげたほうは、{相手}が自分のお皿にのせていました。"
+   }
+  },
+  {
+   "id": "L-cook-04",
+   "title": "ほかの言い方",
+   "cast": "pair",
+   "weather": null,
+   "needs": [
+    "相手の好きなこと=料理をして"
+   ],
+   "time": null,
+   "type": "会話",
+   "feel": "おかしい",
+   "months": null,
+   "item": null,
+   "aim": "料理好きの相手は、もっとよくしたくて「どこが？」と聞く。考えて答えたら、うれしそうにメモする。相手の料理への熱心さと、ふたりのやりとり",
+   "text": {
+    "plain": "{相手}の新しいスープの味見係になった。「おいしい」と言ったら、「どこが？」と聞かれた。少し考えて、にんじんが甘いと答えたら、{相手}はうれしそうにメモしていた。",
+    "genki": "{相手}の新しいスープの味見係になった！ 「おいしい」って言ったら、「どこが？」って聞かれた。少し考えて、にんじんが甘いって答えたら、{相手}はうれしそうにメモしてた！",
+    "polite": "{相手}の新しいスープの味見係になりました。「おいしい」と言ったら、「どこが？」と聞かれました。少し考えて、にんじんが甘いと答えたら、{相手}はうれしそうにメモしていました。"
+   }
+  }
+ ],
+ "arcs": {
+  "event": [
+   {
+    "id": "amamori",
+    "title": "雨もり",
+    "kind": "事件型",
+    "island": "1日目からバケツ、2日目から屋根に大きな葉っぱ（10日ほど残す）",
+    "months": null,
+    "steps": [
+     {
+      "id": "E1",
+      "offset": 0,
+      "writer": "A",
+      "weather": "雨",
+      "title": "ぽたん",
+      "feel": "ふしぎ",
+      "item": null,
+      "text": {
+       "plain": "夜、天井から、ぽたん、と音がした。見上げたら、雨もりだった。{相手}とバケツを置いて、その音を聞きながら寝た。",
+       "genki": "夜、天井から、ぽたん、と音がした！ 見上げたら、雨もりだった。{相手}とバケツを置いて、その音を聞きながら寝た。",
+       "polite": "夜、天井から、ぽたん、と音がしました。見上げたら、雨もりでした。{相手}とバケツを置いて、その音を聞きながら寝ました。"
+      }
+     },
+     {
+      "id": "E2",
+      "offset": 1,
+      "writer": "B",
+      "weather": "晴れ",
+      "title": "屋根の上",
+      "feel": "楽しい",
+      "item": "大きな葉っぱ",
+      "text": {
+       "plain": "きのうの雨もりの場所を、{相手}と屋根にのぼって探した。小さなすき間がひとつ。大きな葉っぱで、そっとふさいでおいた。",
+       "genki": null,
+       "polite": "きのうの雨もりの場所を、{相手}と屋根にのぼって探しました。小さなすき間がひとつ。大きな葉っぱで、そっとふさいでおきました。"
+      }
+     },
+     {
+      "id": "E3",
+      "offset": 2,
+      "writer": "A",
+      "weather": "雨",
+      "title": "空っぽのバケツ",
+      "feel": "じんわり",
+      "item": null,
+      "text": {
+       "plain": "ゆうべも雨だった。朝、バケツをのぞいたら、空っぽだった。葉っぱが、ちゃんと屋根を守ってくれたらしい。{相手}と、屋根に向かってお礼を言った。",
+       "genki": "ゆうべも雨だった。朝、バケツをのぞいたら、空っぽだった！ 葉っぱが、ちゃんと屋根を守ってくれたんだ。{相手}と、屋根に向かってお礼を言った。",
+       "polite": "ゆうべも雨でした。朝、バケツをのぞいたら、空っぽでした。葉っぱが、ちゃんと屋根を守ってくれたみたいです。{相手}と、屋根に向かってお礼を言いました。"
+      }
+     }
+    ]
+   }
+  ],
+  "progress": [
+   {
+    "id": "subako",
+    "title": "小鳥の巣",
+    "kind": "進行型",
+    "island": "木の枝に巣。ひなの段階で小さな影が増え、巣立ちのあとは空の巣だけ残る",
+    "months": [
+     3,
+     4,
+     5,
+     6
+    ],
+    "season_proposed": false,
+    "steps": [
+     {
+      "id": "P1",
+      "offset": 0,
+      "writer": "A",
+      "weather": "晴れ",
+      "title": "小さな巣",
+      "feel": "ふしぎ",
+      "item": null,
+      "text": {
+       "plain": "公園の木に、小さな巣を見つけた。小鳥が、いそがしそうに出たり入ったりしている。そっと見るだけにしよう、と{相手}と決めた。",
+       "genki": "公園の木に、小さな巣を見つけた！ 小鳥が、いそがしそうに出たり入ったりしてる。そっと見るだけにしよう、と{相手}と決めた。",
+       "polite": "公園の木に、小さな巣を見つけました。小鳥が、いそがしそうに出たり入ったりしています。そっと見るだけにしよう、と{相手}と決めました。"
+      }
+     },
+     {
+      "id": "P2",
+      "offset": 6,
+      "writer": "B",
+      "weather": null,
+      "title": "小さな声",
+      "feel": "じんわり",
+      "item": null,
+      "text": {
+       "plain": "巣のほうから、小さな声が聞こえた。ひなが生まれたらしい。{相手}と、木の下でしばらく耳をすませた。",
+       "genki": "巣のほうから、小さな声が聞こえた！ ひなが生まれたみたいだ。{相手}と、木の下でしばらく耳をすませた。",
+       "polite": "巣のほうから、小さな声が聞こえました。ひなが生まれたみたいです。{相手}と、木の下でしばらく耳をすませました。"
+      }
+     },
+     {
+      "id": "P3",
+      "offset": 13,
+      "writer": "A",
+      "weather": "晴れ",
+      "title": "顔を出した",
+      "feel": "楽しい",
+      "item": null,
+      "text": {
+       "plain": "ひなが、巣のふちから顔を出していた。前より、ずっと声が大きい。{相手}が、もうすぐ飛ぶかもしれないと言った。",
+       "genki": "ひなが、巣のふちから顔を出してた！ 前より、ずっと声が大きい。{相手}が、もうすぐ飛ぶかもしれないって言った。",
+       "polite": "ひなが、巣のふちから顔を出していました。前より、ずっと声が大きいです。{相手}が、もうすぐ飛ぶかもしれないと言いました。"
+      }
+     },
+     {
+      "id": "P4",
+      "offset": 19,
+      "writer": "B",
+      "weather": "晴れ",
+      "title": "空っぽの巣",
+      "feel": "じんわり",
+      "item": "羽",
+      "text": {
+       "plain": "朝、巣が空っぽになっていた。空を見上げたら、小鳥が何羽か飛んでいた。どれがあのひなかは分からない。たぶん、全部そうだ。",
+       "genki": null,
+       "polite": "朝、巣が空っぽになっていました。空を見上げたら、小鳥が何羽か飛んでいました。どれがあのひなかは分かりません。たぶん、全部そうです。"
+      }
+     }
+    ]
+   },
+   {
+    "id": "puzzle",
+    "title": "大きなパズル",
+    "kind": "進行型",
+    "first_week": true,
+    "island": "段階ごとに1階のテーブルの上にパズル（箱とばらばらのピース → ふちだけ → 半分）。最後の段階からテーブルは片付き、1階の額縁の中の絵が完成したパズル（丘の上の小さな家）に変わってずっと残る（props・props_keep）",
+    "months": null,
+    "steps": [
+     {
+      "id": "PZ1",
+      "offset": 0,
+      "writer": "A",
+      "weather": null,
+      "title": "箱の絵",
+      "feel": "ふしぎ",
+      "item": null,
+      "text": {
+       "plain": "棚の奥から、大きなパズルの箱が出てきた。ふたの絵はかすれていて、何の絵か分からない。{相手}とテーブルに広げて、まずはふちのピースから探した。",
+       "genki": "棚の奥から、大きなパズルの箱が出てきた！ ふたの絵はかすれていて、何の絵か分からない。{相手}とテーブルに広げて、まずはふちのピースから探した。",
+       "polite": "棚の奥から、大きなパズルの箱が出てきました。ふたの絵はかすれていて、何の絵か分かりません。{相手}とテーブルに広げて、まずはふちのピースから探しました。"
+      },
+      "props": {
+       "table": "puzzle-box"
+      },
+      "props_note": "1階のテーブルに、パズルの箱とばらばらのピース"
+     },
+     {
+      "id": "PZ2",
+      "offset": 3,
+      "writer": "B",
+      "weather": null,
+      "title": "空と地面",
+      "feel": "楽しい",
+      "item": null,
+      "text": {
+       "plain": "パズルのふちが、ぐるりとつながった。中を少し埋めてみたら、空と地面があるみたい。{相手}と形を見くらべていたら、いつのまにか夜になっていた。",
+       "genki": "パズルのふちが、ぐるりとつながった！ 中を少し埋めてみたら、空と地面があるみたい。{相手}と形を見くらべていたら、いつのまにか夜になっていた。",
+       "polite": "パズルのふちが、ぐるりとつながりました。中を少し埋めてみたら、空と地面があるみたいです。{相手}と形を見くらべていたら、いつのまにか夜になっていました。"
+      },
+      "props": {
+       "table": "puzzle-edge"
+      },
+      "props_note": "1階のテーブルに、ふちがつながったパズル（中は少しだけ）"
+     },
+     {
+      "id": "PZ3",
+      "offset": 6,
+      "writer": "A",
+      "weather": null,
+      "title": "屋根の形",
+      "feel": "ふしぎ",
+      "item": null,
+      "text": {
+       "plain": "パズルの上のほうに、とがった屋根の形が出てきた。{相手}が、どこかで見たことがある気がする、と言った。言われてみると、そんな気がする。",
+       "genki": null,
+       "polite": "パズルの上のほうに、とがった屋根の形が出てきました。{相手}が、どこかで見たことがある気がする、と言いました。言われてみると、そんな気がします。"
+      },
+      "props": {
+       "table": "puzzle-half"
+      },
+      "props_note": "1階のテーブルに、半分ほど埋まったパズル（上のほうに屋根）"
+     },
+     {
+      "id": "PZ4",
+      "offset": 9,
+      "writer": "B",
+      "weather": null,
+      "title": "最後のひとつ",
+      "feel": "じんわり",
+      "item": null,
+      "text": {
+       "plain": "最後のひとつが見つからない。{相手}が、ソファのすき間から見つけてくれた。はめてみたら、丘の上の小さな家だった。この家の絵みたいだ。嬉しくて、額に入れて飾った。",
+       "genki": "最後のひとつが見つからない。{相手}が、ソファのすき間から見つけてくれた！ はめてみたら、丘の上の小さな家だった。この家の絵みたいだ。嬉しくて、額に入れて飾った。",
+       "polite": "最後のひとつが見つかりません。{相手}が、ソファのすき間から見つけてくれました。はめてみたら、丘の上の小さな家でした。この家の絵みたいです。嬉しくて、額に入れて飾りました。"
+      },
+      "props_keep": {
+       "frame": "puzzle-house"
+      },
+      "props_note": "テーブルの上は片付く。1階の額縁の中の絵が、完成したパズルの絵（丘の上の小さな家）に変わり、そのあとずっと残る",
+      "photo": {
+       "scene": "sofa",
+       "cast": "pair",
+       "caption": "できあがったパズル"
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "sequels": [
+  {
+   "id": "F1",
+   "title": "ひみつの席、ふたたび",
+   "after": "C05",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": false,
+   "feel": "穏やか",
+   "item": null,
+   "text": {
+    "plain": "今日も、ひみつの席に座った。{相手}が先に来ていた。となりに座ったら、席はちょうどいい暖かさのままだった。",
+    "genki": "今日も、ひみつの席に行った！ {相手}が先に来てた。となりに座ったら、席はちょうどいい暖かさのままだった。",
+    "polite": "今日も、ひみつの席に座りました。{相手}が先に来ていました。となりに座ったら、席はちょうどいい暖かさのままでした。"
+   }
+  },
+  {
+   "id": "F2",
+   "title": "木の実のゆくえ",
+   "after": "C01",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": false,
+   "feel": "ふしぎ",
+   "item": "どんぐり",
+   "text": {
+    "plain": "ベンチの木の実が、なくなっていた。かわりに、どんぐりがひとつ置いてあった。小鳥が、交換していったのかもしれない。",
+    "genki": "ベンチの木の実が、なくなってた！ かわりに、どんぐりがひとつ置いてあった。小鳥が、交換していったのかもしれない。",
+    "polite": "ベンチの木の実が、なくなっていました。かわりに、どんぐりがひとつ置いてありました。小鳥が、交換していったのかもしれません。"
+   }
+  },
+  {
+   "id": "F3",
+   "title": "お返しの花",
+   "after": "C10",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "feel": "じんわり",
+   "item": null,
+   "text": {
+    "plain": "{相手}の枕元に、花を一輪置いておいた。朝、{相手}は何も言わなかった。でも、その花が窓辺のコップに飾ってあった。",
+    "genki": "{相手}の枕元に、花を一輪置いておいた。朝、{相手}は何も言わなかった。でも、その花が窓辺のコップに飾ってあった！",
+    "polite": "{相手}の枕元に、花を一輪置いておきました。朝、{相手}は何も言いませんでした。でも、その花が窓辺のコップに飾ってありました。"
+   },
+   "same_partner": true
+  },
+  {
+   "id": "F4",
+   "title": "木の実を数える",
+   "after": "G03",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": false,
+   "feel": "おかしい",
+   "item": null,
+   "text": {
+    "plain": "この前拾った木の実を、{相手}と並べて数えた。途中で分からなくなった。もう一回数えたら、さっきと違う数になった。",
+    "genki": "この前拾った木の実を、{相手}と並べて数えた！ 途中で分からなくなった。もう一回数えたら、さっきと違う数になった！",
+    "polite": "この前拾った木の実を、{相手}と並べて数えました。途中で分からなくなりました。もう一回数えたら、さっきと違う数になりました。"
+   }
+  },
+  {
+   "id": "F5",
+   "title": "星の席、夜おそく",
+   "after": "K07",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "feel": "ふしぎ",
+   "item": null,
+   "aim": "確かめ続けた子が、夜おそくに見て新しいことに気づき、「決まった席」の考えを自分で直す",
+   "gain": "何日か確かめた結果と、夜のあいだに星が席ごと動いているという新しい発見",
+   "text": {
+    "plain": "この前、星にも決まった席があると思って、何日か同じ時間に窓から確かめた。いつも同じ場所にいた。でも夜おそくに見たら、みんな少しずつ右にずれていた。席ごと、ゆっくり動いているらしい。"
+   }
+  },
+  {
+   "id": "F6",
+   "title": "お昼の影",
+   "after": "K09",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "same_partner": true,
+   "feel": "おかしい",
+   "item": null,
+   "aim": "影を確かめ続けて、お昼は影が小さいと分かる。相手とおたがいの影をふみながら夢中になって、お昼ごはんが遅くなるオチ",
+   "gain": "朝とお昼の影を見た結果（朝は長く、お昼は小さい）と、相手といっしょに確かめたこと",
+   "text": {
+    "plain": "この前、夕方の影が長かったので、晴れた日に朝とお昼の影も確かめた。お昼は足もとで小さかった。{相手}と影をふみ合って、いちばん小さくなる時を待っていたら、お昼ごはんが遅くなった。"
+   }
+  },
+  {
+   "id": "F7",
+   "title": "ふかふかのブランケット",
+   "after": "M09",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "feel": "穏やか",
+   "item": null,
+   "aim": "置いてきたブランケットを取り戻して手入れした、小さな回収と満足",
+   "gain": "ブランケットが次の朝もあったという結果と、干してふかふかになったこと",
+   "text": {
+    "plain": "この前公園に置いてきたブランケットは、次の朝もちゃんとベンチにあった。夜つゆでしめっていたので、干しておいた。今日さわったら、ふかふかだった。"
+   }
+  },
+  {
+   "id": "F8",
+   "title": "ふたり分のおにぎり",
+   "after": "L-explore-01",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "feel": "おかしい",
+   "item": null,
+   "aim": "地図のおにぎりの絵を見た相手が「おにぎりがなる木」とかんちがいし、ちがうと分かると、自分の分を描き足す",
+   "gain": "ひとりの探検の地図が相手に伝わり、その場所が「ふたり分」の場所になる",
+   "text": {
+    "plain": "この前の探検の地図を、{相手}に見せた。おにぎりの絵を見て、おにぎりがなる木かと聞かれた。そこで食べたんだと教えたら、{相手}は「次はふたり分」と、おにぎりを描き足した。",
+    "genki": "この前の探検の地図を、{相手}に見せた！ おにぎりの絵を見て、おにぎりがなる木かって聞かれた。そこで食べたって教えたら、{相手}は「次はふたり分」って、おにぎりを描き足した！",
+    "polite": "この前の探検の地図を、{相手}に見せました。おにぎりの絵を見て、おにぎりがなる木かと聞かれました。そこで食べたと話すと、{相手}は「次はふたり分」と、もう一つ描き足しました。"
+   }
+  },
+  {
+   "id": "F9",
+   "title": "小石の使い道",
+   "after": "L-explore-03",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "same_partner": true,
+   "feel": "じんわり",
+   "item": null,
+   "aim": "相手が拾ってきた小石が、書き手の暮らしの道具になる。見せると相手は拾った場所の話を長々としてくれる（うれしさが話の長さで見える）",
+   "gain": "拾い物が使われているという結果と、相手のうれしさが行動（長い話）で見えること",
+   "text": {
+    "plain": "この前{相手}が探検で拾った小石を、本の重しにしている。{相手}に見せたら、拾った場所の話をしてくれた。小さな石なのに、話はずいぶん長かった。",
+    "genki": "この前{相手}が探検で拾った小石を、本の重しにしてる！{相手}に見せたら、拾った場所の話をしてくれた。小さな石なのに、話はずいぶん長かった！",
+    "polite": "この前{相手}が探検で拾った小石を、本の重しにしています。{相手}に見せたら、拾った場所の話をしてくれました。小さな石なのに、話はずいぶん長かったです。"
+   }
+  },
+  {
+   "id": "F10",
+   "title": "屋根の大きい家",
+   "after": "L-draw-01",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "feel": "じんわり",
+   "item": null,
+   "aim": "屋根だけ大きくなったコテージの絵を壁に貼ったら、相手が「雨の日も、これなら安心」と言う。失敗に見えた絵に、相手が別の見方をくれる",
+   "gain": "絵が飾られたという結果と、相手の受け止め方（大きな屋根を、頼もしいものとして見る）",
+   "text": {
+    "plain": "この前描いた、屋根が家より大きいコテージの絵を、壁に貼った。{相手}はしばらく見て、「これなら雨の日も安心だね」と言った。",
+    "genki": "この前描いた、屋根が家より大きいコテージの絵を、壁に貼った！ {相手}はしばらく見て、「これなら雨の日も安心だね」って言った。",
+    "polite": "この前描いた、屋根が家より大きいコテージの絵を、壁に貼りました。{相手}はしばらく見て、「これなら雨の日も安心だね」と言いました。"
+   }
+  },
+  {
+   "id": "F11",
+   "title": "お返しの歌",
+   "after": "L-sing-02",
+   "min_days": 2,
+   "max_days": 10,
+   "same_writer": true,
+   "same_partner": true,
+   "feel": "じんわり",
+   "item": null,
+   "aim": "この前のお返しに、今夜は相手が書き手の一日を歌にしてくれる。こっそりおやつを二つ食べたことまで入っていて、ちゃんと見られていたと分かる",
+   "gain": "役が入れかわり、相手が書き手の一日を歌う。こっそりしたことまで知っていた、という発見",
+   "text": {
+    "plain": "この前、子守歌の二番のかわりに、その日あったことを歌にした。今夜は{相手}が、こっちの一日を歌にしてくれた。おやつをこっそり二つ食べたことまで、歌に入っていた。",
+    "genki": "この前、子守歌の二番のかわりに、その日あったことを歌にした。今夜は{相手}が、こっちの一日を歌にしてくれた！ おやつをこっそり二つ食べたことまで、歌に入ってた！",
+    "polite": "この前、子守歌の二番のかわりに、その日あったことを歌にしました。今夜は{相手}が、こちらの一日を歌にしてくれました。おやつをこっそり二つ食べたことまで、歌に入っていました。"
+   }
+  }
+ ],
+ "seasonal": [
+  {
+   "id": "SE-ume",
+   "season": "春",
+   "title": "梅のにおい",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "穏やか",
+   "months": [
+    2,
+    3
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "散歩の途中で、甘いにおいがした。見上げたら、梅の花が咲いていた。{相手}と、しばらく深呼吸をしていた。",
+    "genki": "散歩の途中で、あまーいにおいがした！ 見上げたら、梅の花が咲いてた。{相手}と、いっぱい深呼吸した。",
+    "polite": "散歩の途中で、甘いにおいがしました。見上げたら、梅の花が咲いていました。{相手}と、しばらく深呼吸をしていました。"
+   }
+  },
+  {
+   "id": "SE-sakura",
+   "season": "春",
+   "title": "満開",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "のんびり",
+   "feel": "穏やか",
+   "months": [
+    3,
+    4
+   ],
+   "period": {
+    "start": "03-25",
+    "end": "04-10"
+   },
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "公園の桜が満開になった。{相手}と木の下に座って、見上げてばかりいた。そのうち、空までうすいピンク色に見えてきた。",
+    "genki": "公園の桜が満開になった！ {相手}と木の下に座って、ずっと見上げてた。そのうち、空までピンク色に見えてきた！",
+    "polite": "公園の桜が満開になりました。{相手}と木の下に座って、見上げてばかりいました。そのうち、空までうすいピンク色に見えてきました。"
+   }
+  },
+  {
+   "id": "SE-hanabira",
+   "season": "春",
+   "title": "花びらの道",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "のんびり",
+   "feel": "穏やか",
+   "months": [
+    4
+   ],
+   "period": {
+    "start": "03-28",
+    "end": "04-20"
+   },
+   "after": {
+    "id": "SE-sakura",
+    "min_days": 3,
+    "same_year": true
+   },
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "桜の花びらが、道いっぱいに散っていた。{相手}と、うすいピンクのじゅうたんの上を歩くみたいに、そっと歩いた。",
+    "genki": null,
+    "polite": "桜の花びらが、道いっぱいに散っていました。{相手}と、うすいピンクのじゅうたんの上を歩くみたいに、そっと歩きました。"
+   }
+  },
+  {
+   "id": "SE-tsukushi",
+   "season": "春",
+   "title": "つくし",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "楽しい",
+   "months": [
+    3,
+    4
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "土手に、つくしがにょきにょき顔を出していた。{相手}と、いくつ生えているか数えようとして、すぐにあきらめた。",
+    "genki": "土手に、つくしがにょきにょき生えてた！ {相手}と数えようとしたけど、多すぎてすぐにあきらめた！",
+    "polite": "土手に、つくしがにょきにょき顔を出していました。{相手}と、いくつ生えているか数えようとして、すぐにあきらめました。"
+   }
+  },
+  {
+   "id": "SE-chou",
+   "season": "春",
+   "title": "ちょうちょ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "発見",
+   "feel": "おかしい",
+   "months": [
+    4,
+    5
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "白いちょうちょが、{相手}のまわりをくるくる回った。花とまちがえたのかもしれない。{相手}は、じっと動かずにいた。",
+    "genki": "白いちょうちょが、{相手}のまわりをくるくる回ってた！ 花とまちがえたのかも。{相手}は、じーっと動かずにいた。",
+    "polite": "白いちょうちょが、{相手}のまわりをくるくる回りました。花とまちがえたのかもしれません。{相手}は、じっと動かずにいました。"
+   }
+  },
+  {
+   "id": "SE-shinryoku",
+   "season": "春",
+   "title": "明るい緑",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "穏やか",
+   "months": [
+    5
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "木の葉っぱが、いつの間にか明るい緑になっていた。{相手}と木の下から見上げたら、光がすけてきれいだった。",
+    "genki": null,
+    "polite": "木の葉っぱが、いつの間にか明るい緑になっていました。{相手}と木の下から見上げたら、光がすけてきれいでした。"
+   }
+  },
+  {
+   "id": "SE-harusame",
+   "season": "春",
+   "title": "春の雨",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [],
+   "type": "天気",
+   "feel": "穏やか",
+   "months": [
+    3,
+    4
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "やわらかい雨が、朝からしとしと降っていた。窓から見ると、庭の草がうれしそうに見えた。{相手}も、そう見えると言っていた。",
+    "genki": null,
+    "polite": "やわらかい雨が、朝からしとしと降っていました。窓から見ると、庭の草がうれしそうに見えました。{相手}も、そう見えると言っていました。"
+   }
+  },
+  {
+   "id": "SE-tsuyuiri",
+   "season": "夏",
+   "title": "雨の季節",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [],
+   "type": "天気",
+   "feel": "楽しい",
+   "months": [
+    6
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "雨の季節に入ったらしい。{相手}と、雨の日にしたいことを紙に書き出した。いちばん上は、お茶の時間だった。",
+    "genki": "雨の季節に入ったらしい！ {相手}と、雨の日にしたいことを紙に書き出した。いちばん上は、お茶の時間！",
+    "polite": "雨の季節に入ったみたいです。{相手}と、雨の日にしたいことを紙に書き出しました。いちばん上は、お茶の時間でした。"
+   }
+  },
+  {
+   "id": "SE-ajisai",
+   "season": "夏",
+   "title": "あじさい",
+   "cast": "pair",
+   "weather": "雨",
+   "needs": [],
+   "type": "発見",
+   "feel": "穏やか",
+   "months": [
+    6
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "雨にぬれたあじさいが、きのうより青くなっていた。{相手}は、むらさきのほうが好きだと言った。どっちもきれいだと思う。",
+    "genki": null,
+    "polite": "雨にぬれたあじさいが、きのうより青くなっていました。{相手}は、むらさきのほうが好きだと言いました。どっちもきれいだと思います。"
+   }
+  },
+  {
+   "id": "SE-semi",
+   "season": "夏",
+   "title": "セミの声",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "楽しい",
+   "months": [
+    7,
+    8
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "朝から、セミが元気に鳴いていた。{相手}と声のするほうを探したけれど、どこにいるのか見つけられなかった。",
+    "genki": "朝から、セミがミンミン鳴いてた！ {相手}と声のするほうを探したけど、どこにいるのか見つからなかった。",
+    "polite": "朝から、セミが元気に鳴いていました。{相手}と声のするほうを探しましたが、どこにいるのか見つけられませんでした。"
+   }
+  },
+  {
+   "id": "SE-yuudachi",
+   "season": "夏",
+   "title": "夕立",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "天気",
+   "feel": "楽しい",
+   "months": [
+    7,
+    8
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "急に空が暗くなって、ざあっと夕立が来た。{相手}と軒下にかけこんで、雨がやむのを待った。すぐに、からっと晴れた。",
+    "genki": "急に空が暗くなって、ざあっと夕立が来た！ {相手}と軒下にかけこんで待ってたら、すぐにからっと晴れた！",
+    "polite": "急に空が暗くなって、ざあっと夕立が来ました。{相手}と軒下にかけこんで、雨がやむのを待ちました。すぐに、からっと晴れました。"
+   }
+  },
+  {
+   "id": "SE-kakigoori",
+   "season": "夏",
+   "title": "かき氷",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "食べる",
+   "feel": "楽しい",
+   "months": [
+    7,
+    8
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "暑かったので、{相手}とかき氷を作った。食べるのがおそくて、半分くらいとけてしまった。それでも、つめたくておいしかった。",
+    "genki": "暑かったから、{相手}とかき氷を作った！ のんびり食べてたら、半分くらいとけちゃった。それでも、つめたくておいしかった！",
+    "polite": "暑かったので、{相手}とかき氷を作りました。食べるのがおそくて、半分くらいとけてしまいました。それでも、つめたくておいしかったです。"
+   }
+  },
+  {
+   "id": "SE-hotaru",
+   "season": "夏",
+   "title": "小さな光",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "ふしぎ",
+   "months": [
+    6
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "夜、草むらに小さな光がふわふわ浮かんでいた。ホタルだった。{相手}と、声を出さずにずっと見ていた。",
+    "genki": null,
+    "polite": "夜、草むらに小さな光がふわふわ浮かんでいました。ホタルでした。{相手}と、声を出さずにずっと見ていました。"
+   }
+  },
+  {
+   "id": "SE-fuurin",
+   "season": "夏",
+   "title": "風鈴",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "のんびり",
+   "feel": "穏やか",
+   "months": [
+    8
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "夜になっても暑くて、窓を開けて寝た。風が入ってくるたびに、風鈴がちりんと鳴った。{相手}と、その音を聞きながら眠った。",
+    "genki": null,
+    "polite": "夜になっても暑くて、窓を開けて寝ました。風が入ってくるたびに、風鈴がちりんと鳴りました。{相手}と、その音を聞きながら眠りました。"
+   }
+  },
+  {
+   "id": "SE-mushi",
+   "season": "秋",
+   "title": "虫の声",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "発見",
+   "feel": "穏やか",
+   "months": [
+    9
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "夜、外から虫の声が聞こえてきた。{相手}と、何の虫がいるのか耳をすませた。鈴虫は分かったけれど、そのほかは分からなかった。",
+    "genki": "夜、外から虫の声が聞こえてきた！ {相手}と、何の虫がいるのか耳をすませた。鈴虫は分かったけど、そのほかは分からなかった。",
+    "polite": "夜、外から虫の声が聞こえてきました。{相手}と、何の虫がいるのか耳をすませました。鈴虫は分かりましたが、そのほかは分かりませんでした。"
+   }
+  },
+  {
+   "id": "SE-akisora",
+   "season": "秋",
+   "title": "高い空",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "おかしい",
+   "months": [
+    10
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "空が高くて、白い雲がすじになっていた。{相手}が、ほうきではいたあとみたいだと言った。本当にそう見えた。",
+    "genki": null,
+    "polite": "空が高くて、白い雲がすじになっていました。{相手}が、ほうきではいたあとみたいだと言いました。本当にそう見えました。"
+   }
+  },
+  {
+   "id": "SE-satsumaimo",
+   "season": "秋",
+   "title": "さつまいも",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "食べる",
+   "feel": "楽しい",
+   "months": [
+    10,
+    11
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "ふかしたさつまいもを、{相手}と半分こした。湯気がもくもく出て、なかなか口に入れられなかった。ほくほくで甘かった。",
+    "genki": "ふかしたさつまいもを、{相手}と半分こした！ 湯気がもくもくで、なかなか食べられなかった。ほくほくで甘かった！",
+    "polite": "ふかしたさつまいもを、{相手}と半分こしました。湯気がもくもく出て、なかなか口に入れられませんでした。ほくほくで甘かったです。"
+   }
+  },
+  {
+   "id": "SE-momiji",
+   "season": "秋",
+   "title": "いちばん赤い葉っぱ",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "楽しい",
+   "months": [
+    11
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": "赤い葉っぱ",
+   "text": {
+    "plain": "公園の木が、赤と黄色になっていた。{相手}と、いちばん赤い葉っぱを探して、ひとつずつ持って帰った。",
+    "genki": "公園の木が、赤と黄色になってた！ {相手}と、いちばん赤い葉っぱを探して、ひとつずつ持って帰った！",
+    "polite": "公園の木が、赤と黄色になっていました。{相手}と、いちばん赤い葉っぱを探して、ひとつずつ持って帰りました。"
+   }
+  },
+  {
+   "id": "SE-kotatsu",
+   "season": "冬",
+   "title": "こたつ",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "のんびり",
+   "feel": "おかしい",
+   "months": [
+    12,
+    1
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "こたつを出した。{相手}と入ったら、なかなか出られなくなった。お茶をいれに行く係も、じゃんけんで決めた。",
+    "genki": "こたつを出した！ {相手}と入ったら、ぜんぜん出られなくなった。お茶をいれに行く係は、じゃんけんで決めた！",
+    "polite": "こたつを出しました。{相手}と入ったら、なかなか出られなくなりました。お茶をいれに行く係も、じゃんけんで決めました。"
+   }
+  },
+  {
+   "id": "SE-shiroiiki",
+   "season": "冬",
+   "title": "白い息",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "遊び",
+   "feel": "楽しい",
+   "months": [
+    12,
+    1
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "朝、外に出たら、はく息が白かった。{相手}と、どっちが長く白い息をはけるか比べた。何回やっても、引き分けだった。",
+    "genki": "朝、外に出たら、はく息が白かった！ {相手}と、どっちが長く白い息をはけるか勝負した。何回やっても引き分け！",
+    "polite": "朝、外に出たら、はく息が白かったです。{相手}と、どっちが長く白い息をはけるか比べました。何回やっても、引き分けでした。"
+   }
+  },
+  {
+   "id": "SE-shimo",
+   "season": "冬",
+   "title": "霜",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "楽しい",
+   "months": [
+    1,
+    2
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "朝の芝生が、霜で白くなっていた。{相手}と歩くと、しゃりしゃり音がした。おもしろくて、何回も行ったり来たりした。",
+    "genki": "朝の芝生が、霜で白くなってた！ {相手}と歩くと、しゃりしゃり音がした。おもしろくて、何回も行ったり来たりした！",
+    "polite": "朝の芝生が、霜で白くなっていました。{相手}と歩くと、しゃりしゃり音がしました。おもしろくて、何回も行ったり来たりしました。"
+   }
+  },
+  {
+   "id": "SE-mikan",
+   "season": "冬",
+   "title": "みかん",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "食べる",
+   "feel": "おかしい",
+   "months": [
+    12,
+    1
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "テーブルの上に、みかんを山もりにした。{相手}と、皮をいちばんきれいにむく競争をした。長くきれいにむけた{相手}の勝ちだった。",
+    "genki": "テーブルの上に、みかんを山もりにした！ {相手}と、皮をきれいにむく競争をした。長くきれいにむけた{相手}の勝ち！",
+    "polite": "テーブルの上に、みかんを山もりにしました。{相手}と、皮をいちばんきれいにむく競争をしました。長くきれいにむけた{相手}の勝ちでした。"
+   }
+  },
+  {
+   "id": "SE-fuyuboshi",
+   "season": "冬",
+   "title": "ふたりの星",
+   "cast": "pair",
+   "weather": "晴れ",
+   "needs": [],
+   "type": "発見",
+   "feel": "じんわり",
+   "months": [
+    1,
+    2
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": true,
+   "item": null,
+   "text": {
+    "plain": "夜、空気がつめたくて、星がいつもよりよく見えた。{相手}と、明るい星をひとつ選んで、ふたりの星にした。",
+    "genki": null,
+    "polite": "夜、空気がつめたくて、星がいつもよりよく見えました。{相手}と、明るい星をひとつ選んで、ふたりの星にしました。"
+   }
+  },
+  {
+   "id": "SE-me",
+   "season": "冬",
+   "title": "小さな芽",
+   "cast": "pair",
+   "weather": null,
+   "needs": [],
+   "type": "発見",
+   "feel": "じんわり",
+   "months": [
+    2
+   ],
+   "period": null,
+   "after": null,
+   "once_ever": false,
+   "item": null,
+   "text": {
+    "plain": "風はまだつめたいのに、木の枝に小さな芽がついていた。{相手}と、その芽をしばらく見上げて、春はもうすぐだねと話した。",
+    "genki": "風はまだつめたいのに、木の枝に小さな芽がついてた！ {相手}と、その芽をしばらく見上げて、春はもうすぐだねって話した。",
+    "polite": "風はまだつめたいのに、木の枝に小さな芽がついていました。{相手}と、その芽をしばらく見上げて、春はもうすぐだねと話しました。"
+   }
+  }
+ ],
+ "festivals": [
+  {
+   "id": "FE-newyear",
+   "festival": "お正月",
+   "date": "01-01",
+   "weather": null,
+   "title": "あけましておめでとう",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "朝起きて、{相手}と「あけましておめでとう」を言い合った。いつもの朝なのに、少しだけ特別な感じがした。",
+    "genki": "朝起きてすぐ、{相手}に「あけましておめでとう！」って言った！ いつもの朝なのに、なんだか特別な感じがした。",
+    "polite": "朝起きて、{相手}と「あけましておめでとう」を言い合いました。いつもの朝なのに、少しだけ特別な感じがしました。"
+   }
+  },
+  {
+   "id": "FE-setsubun",
+   "festival": "節分",
+   "date": "setsubun",
+   "weather": null,
+   "title": "豆まき",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "夕方、豆まきをした。{相手}が鬼のお面をかぶって逃げ回るので、追いかけながら豆を投げた。最後に豆をぽりぽり食べた。",
+    "genki": "夕方、豆まきをした！ {相手}が鬼のお面をかぶって逃げ回るから、全力で追いかけた！ 最後に豆をぽりぽり食べた。",
+    "polite": "夕方、豆まきをしました。{相手}が鬼のお面をかぶって逃げ回るので、追いかけながら豆を投げました。最後に豆をぽりぽり食べました。"
+   }
+  },
+  {
+   "id": "FE-tanabata",
+   "festival": "七夕",
+   "date": "07-07",
+   "weather": "晴れ",
+   "title": "短冊",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "笹に短冊をつるした。{相手}の短冊は裏返しにかけてあって、読めなかった。夜、空を見上げたら、天の川がうっすら見えた。",
+    "genki": "笹に短冊をつるした！ {相手}の短冊は裏返しで、何て書いたか読めなかった。夜は、天の川がうっすら見えた！",
+    "polite": "笹に短冊をつるしました。{相手}の短冊は裏返しにかけてあって、読めませんでした。夜、空を見上げたら、天の川がうっすら見えました。"
+   }
+  },
+  {
+   "id": "FE-tanabata-rain",
+   "festival": "七夕",
+   "date": "07-07",
+   "weather": "雨",
+   "title": "雲の向こう",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "笹に短冊をつるしたけれど、夜は雨で星が見えなかった。{相手}が、雲の上ではちゃんと会えているよ、と言った。そうだといいな。",
+    "genki": "笹に短冊をつるしたけど、夜は雨で星が見えなかった。{相手}が、雲の上ではちゃんと会えてるよって言った。そうだといいな。",
+    "polite": "笹に短冊をつるしましたが、夜は雨で星が見えませんでした。{相手}が、雲の上ではちゃんと会えているよ、と言いました。そうだといいなと思いました。"
+   }
+  },
+  {
+   "id": "FE-tsukimi",
+   "festival": "お月見",
+   "date": "tsukimi",
+   "weather": "晴れ",
+   "title": "お月見だんご",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "お月見だんごを作って、窓辺に並べた。まんまるの月が出ると、{相手}が「おだんごみたい」と言った。たしかに、そっくりだった。",
+    "genki": "お月見だんごを作って、窓辺に並べた！ まんまるの月が出たら、{相手}が「おだんごみたい」って言った。ほんとにそっくりだった！",
+    "polite": "お月見だんごを作って、窓辺に並べました。まんまるの月が出ると、{相手}が「おだんごみたい」と言いました。たしかに、そっくりでした。"
+   }
+  },
+  {
+   "id": "FE-tsukimi-rain",
+   "festival": "お月見",
+   "date": "tsukimi",
+   "weather": "雨",
+   "title": "見えない月",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "お月見だんごを作ったのに、空は一日じゅう雲におおわれていた。{相手}と、雲の向こうの月を思いうかべながら、おだんごを食べた。",
+    "genki": null,
+    "polite": "お月見だんごを作ったのに、空は一日じゅう雲におおわれていました。{相手}と、雲の向こうの月を思いうかべながら、おだんごを食べました。"
+   }
+  },
+  {
+   "id": "FE-halloween",
+   "festival": "ハロウィン",
+   "date": "10-31",
+   "weather": null,
+   "title": "おばけごっこ",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "シーツをかぶって、おばけになった。{相手}を驚かせようとしたら、{相手}もシーツをかぶって待っていた。笑いながら、お菓子を分けた。",
+    "genki": "シーツをかぶって、おばけになった！ {相手}を驚かせに行ったら、{相手}もおばけになって待ってた！ 笑いながら、お菓子を分けっこした。",
+    "polite": "シーツをかぶって、おばけになりました。{相手}を驚かせようとしたら、{相手}もシーツをかぶって待っていました。笑いながら、お菓子を分けました。"
+   }
+  },
+  {
+   "id": "FE-xmas-eve",
+   "festival": "クリスマス（前日）",
+   "date": "12-24",
+   "weather": null,
+   "title": "飾りつけ",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "小さな木に、{相手}と飾りをつけた。いちばん上の星は、背のびをしても届かなかった。いすを持ってきて、やっとつけられた。",
+    "genki": "小さな木に、{相手}と飾りをつけた！ てっぺんの星は、背のびしても届かなかった。いすにのって、やっとつけられた！",
+    "polite": "小さな木に、{相手}と飾りをつけました。いちばん上の星は、背のびをしても届きませんでした。いすを持ってきて、やっとつけられました。"
+   }
+  },
+  {
+   "id": "FE-xmas",
+   "festival": "クリスマス",
+   "date": "12-25",
+   "weather": null,
+   "title": "プレゼント交換",
+   "version": "はじめて",
+   "item": "おそろいのリボン",
+   "text": {
+    "plain": "{相手}とプレゼントを交換した。開けてみたら、ふたりとも同じ色のリボンを選んでいた。おそろいにして、頭に付けた。",
+    "genki": "{相手}とプレゼントを交換した！ 開けてみたら、ふたりとも同じ色のリボンだった！ おそろいにして、頭に付けた。",
+    "polite": "{相手}とプレゼントを交換しました。開けてみたら、ふたりとも同じ色のリボンを選んでいました。おそろいにして、頭に付けました。"
+   }
+  },
+  {
+   "id": "FE-omisoka",
+   "festival": "大みそか",
+   "date": "12-31",
+   "weather": null,
+   "title": "年越し",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "今年最後の夜は、{相手}と起きていようと決めていた。でも、気がついたら朝だった。ふたりとも、毛布の中で眠っていた。",
+    "genki": "今年最後の夜は、{相手}と朝まで起きてるつもりだった！ でも、気がついたら朝だった。ふたりとも毛布の中でぐっすり。",
+    "polite": "今年最後の夜は、{相手}と起きていようと決めていました。でも、気がついたら朝でした。ふたりとも、毛布の中で眠っていました。"
+   }
+  },
+  {
+   "id": "FE-yakiimo",
+   "festival": "焼き芋大会",
+   "date": null,
+   "period": [
+    "11-15",
+    "11-25"
+   ],
+   "weather": "晴れ",
+   "tree": "imo",
+   "photo": "imo",
+   "avoid_seasonal": [
+    "SE-satsumaimo"
+   ],
+   "title": "ほくほくの焼き芋",
+   "version": "はじめて",
+   "item": null,
+   "text": {
+    "plain": "大きなさつまいもの飾りの下で、本物のさつまいもを焼いた。待つあいだ、{相手}と何回も、においをかぎに行った。焼けたのを持って、{相手}とふうふうしながら食べた。",
+    "genki": "大きなさつまいもの飾りの下で、本物のさつまいもを焼いた！ 待つあいだ、{相手}と何回も、においをかぎに行っちゃった。焼けたのを持って、{相手}とふうふうして食べた！",
+    "polite": "大きなさつまいもの飾りの下で、本物のさつまいもを焼きました。待つあいだ、{相手}と何回も、においをかぎに行きました。焼けたのを持って、{相手}とふうふうしながら食べました。"
+   }
+  }
+ ],
+ "festival_dates": {
+  "setsubun": {
+   "2026": "2026-02-03",
+   "2027": "2027-02-03",
+   "2028": "2028-02-03",
+   "2029": "2029-02-02",
+   "2030": "2030-02-03",
+   "2031": "2031-02-03"
+  },
+  "tsukimi": {
+   "2026": "2026-09-25",
+   "2027": "2027-09-15",
+   "2028": "2028-10-03",
+   "2029": "2029-09-22",
+   "2030": "2030-09-12",
+   "2031": "2031-10-01"
+  }
+ },
+ "island_events": [
+  {
+   "id": "IE-momijigari",
+   "event": "紅葉狩り",
+   "month": 11,
+   "weather": "晴れ",
+   "photo": "momiji",
+   "avoid_seasonal": [
+    "SE-momiji"
+   ],
+   "title": "赤と黄色のトンネル",
+   "item": null,
+   "text": {
+    "plain": "{相手}と、紅葉の多い所まで歩いた。見上げると、赤と黄色のトンネルみたい。落ち葉をふむと、かさかさ鳴る。何回もふんでいたら、{相手}もまねをしていた。",
+    "genki": "{相手}と、紅葉の多い所まで歩いた！ 見上げたら、赤と黄色のトンネルみたい。落ち葉をふむと、かさかさ鳴る。何回もふんでたら、{相手}もまねしてた！",
+    "polite": "{相手}と、紅葉の多い所まで歩きました。見上げると、赤と黄色のトンネルのようでした。落ち葉をふむと、かさかさ鳴ります。何回もふんでいたら、{相手}もまねをしていました。"
+   }
+  }
+ ],
+ "island_anniversary": [
+  {
+   "year": 1,
+   "id": "AN-01",
+   "title": "はじめての記念写真",
+   "text": {
+    "plain": "ここでの暮らしが始まって、今日で1年。みんなで並んで、はじめての記念写真を撮った。{相手}がまばたきしたので、もう一回撮った。",
+    "genki": "ここでの暮らしが始まって、今日で1年！ みんなで並んで、はじめての記念写真を撮った。{相手}がまばたきしちゃって、もう一回！",
+    "polite": "ここでの暮らしが始まって、今日で1年です。みんなで並んで、はじめての記念写真を撮りました。{相手}がまばたきしたので、もう一回撮りました。"
+   },
+   "photo": {
+    "mount": "白、細いフチ",
+    "number": "右下に小さく",
+    "optional_item": null
+   }
+  },
+  {
+   "year": 2,
+   "id": "AN-02",
+   "title": "2枚目",
+   "text": {
+    "plain": "ここでの暮らしが2年になった。今年の写真を、去年の写真の横に飾った。{相手}が、少しかたむいた額を、手でちょんと押してまっすぐにした。",
+    "genki": "ここでの暮らしが2年になった！ 今年の写真を、去年の写真の横に飾った。{相手}が、ちょっとかたむいた額を、手でちょんと押してまっすぐにした。",
+    "polite": "ここでの暮らしが2年になりました。今年の写真を、去年の写真の横に飾りました。{相手}が、少しかたむいた額を、手でちょんと押してまっすぐにしました。"
+   },
+   "photo": {
+    "mount": "クリーム色",
+    "number": "右下",
+    "optional_item": {
+     "item": "小さな額のイラスト",
+     "pos": "左上の角"
+    }
+   }
+  },
+  {
+   "year": 3,
+   "id": "AN-03",
+   "title": "いつもの場所",
+   "text": {
+    "plain": "ここでの暮らしが3年になった。写真を撮るいつもの場所に、それぞれのクッションを置いた。{相手}が自分のクッションにすわって、「ここ、落ち着くね」と言った。",
+    "genki": "ここでの暮らしが3年になった！ 写真を撮るいつもの場所に、それぞれのクッションを置いた。{相手}が自分のクッションにすわって、「ここ、落ち着くね」って言った！",
+    "polite": "ここでの暮らしが3年になりました。写真を撮るいつもの場所に、それぞれのクッションを置きました。{相手}が自分のクッションにすわって、「ここ、落ち着くね」と言いました。"
+   },
+   "photo": {
+    "mount": "うすい水色",
+    "number": "右下",
+    "optional_item": {
+     "item": "小さなクッション",
+     "pos": "左下の前景"
+    }
+   }
+  },
+  {
+   "year": 4,
+   "id": "AN-04",
+   "title": "4本のろうそく",
+   "text": {
+    "plain": "ここでの暮らしが4年になった。小さなケーキに、ろうそくを4本立てた。{相手}がふうっと吹いたら、1本だけ残った。最後の1本は、みんなで吹いた。",
+    "genki": "ここでの暮らしが4年になった！ 小さなケーキに、ろうそくを4本立てた。{相手}がふうっと吹いたら、1本だけ残った！ 最後の1本は、みんなで吹いた。",
+    "polite": "ここでの暮らしが4年になりました。小さなケーキに、ろうそくを4本立てました。{相手}がふうっと吹いたら、1本だけ残りました。最後の1本は、みんなで吹きました。"
+   },
+   "photo": {
+    "mount": "うすいピンク",
+    "number": "右下",
+    "optional_item": {
+     "item": "ろうそく4本の小さなケーキ",
+     "pos": "前景の真ん中"
+    }
+   }
+  },
+  {
+   "year": 5,
+   "id": "AN-05",
+   "title": "5枚の写真",
+   "text": {
+    "plain": "ここでの暮らしが5年になった。撮る前に、壁の写真を1枚目から順に見た。{相手}が、1枚目を見て「ずいぶんきちんと並んでるね」と笑った。5枚目も、いつもの場所に並んで撮った。",
+    "genki": null,
+    "polite": "ここでの暮らしが5年になりました。撮る前に、壁の写真を1枚目から順に見ました。{相手}が、1枚目を見て「ずいぶんきちんと並んでるね」と笑いました。5枚目も、いつもの場所に並んで撮りました。"
+   },
+   "photo": {
+    "mount": "金のふちの特別な台紙。四すみに1〜4周年の写真を小さく貼る",
+    "number": "上の真ん中に大きめ",
+    "optional_item": null
+   }
+  },
+  {
+   "year": 6,
+   "id": "AN-06",
+   "title": "真ん中の花",
+   "text": {
+    "plain": "ここでの暮らしが6年になった。写真を撮る前に、{相手}が窓辺から小さな花びんを持ってきて、みんなの前に置いた。写真の真ん中で、花が少しかたむいていた。",
+    "genki": "ここでの暮らしが6年になった！ 写真を撮る前に、{相手}が窓辺から小さな花びんを持ってきて、みんなの前に置いた。写真の真ん中で、花がちょっとかたむいてた！",
+    "polite": "ここでの暮らしが6年になりました。写真を撮る前に、{相手}が窓辺から小さな花びんを持ってきて、みんなの前に置きました。写真の真ん中で、花が少しかたむいていました。"
+   },
+   "photo": {
+    "mount": "若草色",
+    "number": "右下",
+    "optional_item": {
+     "item": "花が少しかたむいた小さな花びん",
+     "pos": "前景の真ん中"
+    }
+   }
+  },
+  {
+   "year": 7,
+   "id": "AN-07",
+   "title": "ぴかぴかのカメラ",
+   "text": {
+    "plain": "ここでの暮らしが7年になった。記念写真を撮ろうと起きていったら、{相手}がもうカメラをみがいていた。みんなが集まるころには、ぴかぴかになっていた。",
+    "genki": "ここでの暮らしが7年になった！ 記念写真を撮ろうと起きていったら、{相手}がもうカメラをみがいてた。みんなが集まるころには、ぴかぴか！",
+    "polite": "ここでの暮らしが7年になりました。記念写真を撮ろうと起きていったら、{相手}がもうカメラをみがいていました。みんなが集まるころには、ぴかぴかになっていました。"
+   },
+   "photo": {
+    "mount": "うすい黄色",
+    "number": "右下",
+    "optional_item": {
+     "item": "カメラの小さなイラスト",
+     "pos": "左下の角"
+    }
+   }
+  },
+  {
+   "year": 8,
+   "id": "AN-08",
+   "title": "飾る場所",
+   "text": {
+    "plain": "ここでの暮らしが8年になった。8枚目の写真を飾ろうとしたら、壁がずいぶんにぎやかになっていた。{相手}と、来年はどこに飾るか、少し早めに相談した。",
+    "genki": "ここでの暮らしが8年になった！ 8枚目の写真を飾ろうとしたら、壁がずいぶんにぎやかになってた。{相手}と、来年はどこに飾るか、ちょっと早めに相談した。",
+    "polite": "ここでの暮らしが8年になりました。8枚目の写真を飾ろうとしたら、壁がずいぶんにぎやかになっていました。{相手}と、来年はどこに飾るか、少し早めに相談しました。"
+   },
+   "photo": {
+    "mount": "ラベンダー色",
+    "number": "右下",
+    "optional_item": {
+     "item": "中が空の小さな額",
+     "pos": "右上の角"
+    }
+   }
+  },
+  {
+   "year": 9,
+   "id": "AN-09",
+   "title": "あと1年",
+   "text": {
+    "plain": "ここでの暮らしが9年になった。写真を撮ったあとも、みんなしばらく並んだまま座っていた。{相手}が、ぽつりと「来年で10年だね」と言った。",
+    "genki": null,
+    "polite": "ここでの暮らしが9年になりました。写真を撮ったあとも、みんなしばらく並んだまま座っていました。{相手}が、ぽつりと「来年で10年だね」と言いました。"
+   },
+   "photo": {
+    "mount": "木目",
+    "number": "右下",
+    "optional_item": {
+     "item": "お茶のカップ",
+     "pos": "右下の前景"
+    }
+   }
+  },
+  {
+   "year": 10,
+   "id": "AN-10",
+   "title": "次はここ",
+   "text": {
+    "plain": "ここでの暮らしが10年になった。9枚の記念写真を並べてみた。{相手}が1枚ずつ数えて、空いたところに「次はここだね」と言った。そこに、今日の10枚目が加わった。並んだ写真をながめていたら、来年も、その次の年も、こんな日がずっと続けばいいなと思った。",
+    "genki": "ここでの暮らしが10年になった！ 9枚の記念写真を並べてみた。{相手}が1枚ずつ数えて、空いたところに「次はここだね」って言った。そこに、今日の10枚目が加わった。並んだ写真を見てたら、来年も、その次の年も、こんな日がずっと続くといいなって思った。",
+    "polite": "ここでの暮らしが10年になりました。9枚の記念写真を並べてみました。{相手}が1枚ずつ数えて、空いたところに「次はここだね」と言いました。そこに、今日の10枚目が加わりました。並んだ写真をながめていたら、来年も、その次の年も、こんな日がずっと続けばいいなと思いました。"
+   },
+   "photo": {
+    "mount": "金のふち＋小さな飾りの特別な台紙。まわりに1〜9周年の写真を小さく並べ、真ん中に10枚目",
+    "number": "上の真ん中に大きめ",
+    "optional_item": null
+   }
+  }
+ ],
+ "birthday_letter": {
+  "greeting": {
+   "first": "はじめて、みんなで手紙を書きました。",
+   "later": "今年も、みんなで手紙を書きました。"
+  },
+  "lines": {
+   "元気": [
+    "お誕生日おめでとう！ 今日はいっぱい笑ってね！",
+    "おめでとう！ ケーキ、いっぱい食べてね！",
+    "お誕生日おめでとう！ ずっと元気でいてね！",
+    "おめでとう！ 今日はとくべつな日だね！",
+    "お誕生日おめでとう！ これからも一緒に遊ぼうね！",
+    "おめでとう！ 何して遊ぼうか！",
+    "お誕生日おめでとう！ たくさんお祝いさせてね！",
+    "おめでとう！ いい一年になるよ、ぜったい！",
+    "お誕生日おめでとう！ たくさん楽しいことがありますように！",
+    "おめでとう！ 今日の主役は、管理人さんだよ！",
+    "お誕生日おめでとう！ とってもうれしいよ！",
+    "おめでとう！ とびきりの笑顔でお祝いするよ！",
+    "お誕生日おめでとう！ 今年も、元気いっぱいでいこうね！",
+    "おめでとう！ 早くお祝いしたくて、早起きしちゃった！",
+    "お誕生日おめでとう！ 今日は思いっきり楽しんでね！",
+    "おめでとう！ うれしいことが、きっとたくさんあるよ！",
+    "お誕生日おめでとう！ ぱちぱちぱち！",
+    "おめでとう！ 今日はお祝いの歌を考えたよ！",
+    "お誕生日おめでとう！ 元気分けてあげるよ！",
+    "おめでとう！ 管理人さんのお誕生日、大好きな日だよ！"
+   ],
+   "やさしい": [
+    "お誕生日おめでとうございます。素敵な一年になりますように。",
+    "お誕生日おめでとうございます。今日は、いっぱい楽しんでください。",
+    "おめでとうございます。うれしいことが、たくさんある日になりますように。",
+    "お誕生日おめでとうございます。いつも、仲良くしてくれてありがとうございます。",
+    "お誕生日おめでとうございます。あたたかいお茶で、お祝いしましょう。",
+    "おめでとうございます。やさしい管理人さん、大好きです。",
+    "お誕生日おめでとうございます。体に気をつけて、すごしてくださいね。",
+    "おめでとうございます。管理人さんが、たくさん笑える一年になりますように。",
+    "お誕生日おめでとうございます。心をこめて、お祝いします。",
+    "おめでとうございます。おいしいものを、たくさん食べてくださいね。",
+    "お誕生日おめでとうございます。今年も、いっぱい遊びましょう。",
+    "おめでとうございます。ほっとできる時間が、たくさんありますように。",
+    "お誕生日おめでとうございます。お花をかざって、お祝いしています。",
+    "おめでとうございます。今日は、自分をたくさんほめてあげてくださいね。",
+    "お誕生日おめでとうございます。みんなで手紙を書くのが、楽しかったです。",
+    "おめでとうございます。新しい一年も、穏やかな日がつづきますように。",
+    "お誕生日おめでとうございます。管理人さんと出会えてほんとうによかったです。",
+    "おめでとうございます。そのままのあなたが大好きです。",
+    "お誕生日おめでとうございます。うれしいことが、たくさん起きますように。",
+    "おめでとうございます。管理人さんの毎日が、すばらしいものでありますように。"
+   ],
+   "マイペース": [
+    "おめでとう。今日は、のんびりしてね。",
+    "お誕生日おめでとう。ケーキは、ゆっくり食べるのがいいよ。",
+    "おめでとう。いい一年に、なるといいなあ。",
+    "お誕生日、おめでとう。お昼寝もしてね。",
+    "おめでとう。ニコニコな一日に、なりますように。",
+    "お誕生日おめでとう。今日は、ごろごろしてもいい日だよ。",
+    "おめでとう。のんびり楽しいといいなあ。",
+    "お誕生日おめでとう。今日のご飯は、きっとおいしいよ。",
+    "おめでとう。何もしない時間も、大事にしてね。",
+    "お誕生日、おめでとう。ちょっとねむいから、一緒にごろごろしたいなあ。",
+    "おめでとう。今年も、自分のペースでいこうね。",
+    "お誕生日おめでとう。管理人さんのいいところ、いっぱい知ってるよ。",
+    "おめでとう。いい夢、見られるといいなあ。",
+    "お誕生日おめでとう。ゆっくり、のんびり過ごしてね。",
+    "おめでとう。ひなたぼっこ日和だと、いいなあ。",
+    "お誕生日おめでとう。お手紙書くの、楽しいね。",
+    "おめでとう。おやつの時間を大事にしてね。",
+    "お誕生日、おめでとう。来年も、こうしてお祝いしたいねえ。",
+    "おめでとう。今日は、空でも見てのんびりしよう。",
+    "お誕生日おめでとう。自分の時間を大事に過ごしてね。"
+   ],
+   "好奇心旺盛": [
+    "お誕生日おめでとう。今年は、どんな発見があるかな。",
+    "おめでとう。誕生日って、特別な日だね。",
+    "お誕生日おめでとう。新しいこと、たくさん見つけてね。",
+    "おめでとう。今日の空は、どんな色かな？",
+    "お誕生日おめでとう。誕生日ってだけで、他の日よりずっとうれしいね。",
+    "おめでとう。管理人さんの好きなもの、たくさん教えてね。",
+    "お誕生日おめでとう。一緒にきれいなもの探そうね。",
+    "おめでとう。今年は、行ったことのない場所に行けるといいね。",
+    "お誕生日おめでとう。おめでとうって、なんだか心があったかくなるね。",
+    "おめでとう。一年で一番ドキドキな日だね。",
+    "お誕生日おめでとう。今年の発見、聞かせてほしいな。",
+    "おめでとう。わくわくすることが、きっと待っているよ。",
+    "お誕生日おめでとう。今日は、どんなお祝いになるかな。",
+    "おめでとう。誕生日の数だけ、知っていることが増えるんだね。",
+    "お誕生日おめでとう。今年も、たくさんの「なんで？」に出会えますように。",
+    "おめでとう。また、いろんなお話聞かせてね。",
+    "お誕生日おめでとう。新しい一年は、まだだれも読んでいないページだね。",
+    "おめでとう。管理人さんの一年が、おもしろいことでいっぱいになりますように。",
+    "お誕生日おめでとう。プレゼントの箱って、開ける前が一番どきどきするね。",
+    "おめでとう。今日はどんな日になるかな？ きっと素敵なものになるよね。"
+   ],
+   "おとなしい": [
+    "お誕生日、おめでとう。ちょっと照れるけど。",
+    "おめでとう。いい日になりますように。",
+    "お誕生日おめでとう。精一杯、お祝いしています。",
+    "おめでとう。いつも、ありがとう……ね。",
+    "お誕生日、おめでとう。……うれしいね。",
+    "おめでとう。うまく書けないけど、気持ちはいっぱいです。",
+    "お誕生日おめでとう。そっと、お祝いしてるよ。",
+    "おめでとう。静かで、あたたかい一日になりますように。",
+    "お誕生日、おめでとう。手紙を書くの、どきどきした。",
+    "おめでとう。なんだか、とってもうれしい。",
+    "お誕生日おめでとう。今日はとっても素敵な日。とっても。",
+    "おめでとう。小さな花を、ひとつかざりました。",
+    "お誕生日、おめでとう。うまく言えないけど、ありがとうの気持ちは本当です。",
+    "おめでとう。今年も、そばにいられますように。",
+    "お誕生日おめでとう。みんなと一緒に、お祝いできてうれしい。",
+    "おめでとう。頑張ってる管理人さんのこと、いつまでも応援させてね。",
+    "お誕生日、おめでとう。今日はきっと星がきれいだね。",
+    "おめでとう。何度でも言いたかった。",
+    "お誕生日おめでとう。来年もお祝いさせてね。",
+    "おめでとう。うまく言葉にはできないけど、いっぱいお祝いしてるよ。"
+   ]
+  }
+ },
+ "welcome_note": "おうちに来た日の日記15本（人の確認・直接修正済み、2026-10-30）。本文は役ごとの書き方で書いてあるので、書き分け（plain/genki/polite）はなく text 1つ。members は登録した子の数の条件（max=以下、min=以上、なし=何体でも）。new_member は必ず3体以上のときに出る。 case：start は始めた日（書き手は最初に登録した子）、new_member はあとから来た日（書き手は新しく来た子）。role は書き手の役。photo: \"arrival\" はおうちに来た日の記念写真（いつも付く）",
+ "welcome": [
+  {
+   "id": "W-A-G2",
+   "case": "start",
+   "role": "元気",
+   "title": "はじめてのおうち",
+   "text": "今日はじめてコテージに来た！ {相手}とまわりを見て回った。公園も、丘の上の木も、コテージの中も、ぜんぶ見た！ 歩きすぎて、夜はすぐに眠くなった。",
+   "photo": "arrival",
+   "members": {
+    "max": 2
+   }
+  },
+  {
+   "id": "W-A-G3",
+   "case": "start",
+   "role": "元気",
+   "title": "いちばん乗り",
+   "text": "今日はじめてコテージに来た！ いちばんに乗り込んで、中を見て回った。後から来た{相手}に、中を案内してあげた。これからが楽しみ！",
+   "photo": "arrival"
+  },
+  {
+   "id": "W-A-Y2",
+   "case": "start",
+   "role": "やさしい",
+   "title": "ふたつのカップ",
+   "text": "今日はじめて、{相手}とこのコテージに来ました。中を見て回って、ふたり分のカップを棚に並べました。ふたつ並んだのを見て、このコテージで過ごすのだなと思いました。",
+   "photo": "arrival",
+   "members": {
+    "max": 2
+   }
+  },
+  {
+   "id": "W-A-Y3",
+   "case": "start",
+   "role": "やさしい",
+   "title": "カップを並べて",
+   "text": "今日初めて、このコテージに来ました。中を見て回って、他の子のカップを棚に並べました。並べてから、自分の分を出し忘れていたことに気づきました。{相手}がそっと足してくれました。",
+   "photo": "arrival",
+   "members": {
+    "min": 3
+   }
+  },
+  {
+   "id": "W-A-M2",
+   "case": "start",
+   "role": "マイペース",
+   "title": "窓のそば",
+   "text": "今日はじめて、このコテージに来た。{相手}が中を見て回っているあいだ、窓のそばで外を眺めていた。風が気持ちいい。ここなら、よく眠れそうだなあ。",
+   "photo": "arrival",
+   "members": {
+    "max": 2
+   }
+  },
+  {
+   "id": "W-A-M3",
+   "case": "start",
+   "role": "マイペース",
+   "title": "いちばんいい場所",
+   "text": "今日はじめて、このコテージに来た。みんなが見て回っているあいだに、ひなたのいちばんいい場所を見つけた。あとで{相手}も来て、並んでひなたぼっこをした。いいコテージだなあ。",
+   "photo": "arrival",
+   "members": {
+    "min": 3
+   }
+  },
+  {
+   "id": "W-A-K2",
+   "case": "start",
+   "role": "好奇心旺盛",
+   "title": "まわりの地図",
+   "text": "今日はじめて、このコテージに来た。公園、丘の上の木、コテージの中。{相手}と、ぜんぶ見て回った。丘の向こうに何があるかは、まだ分からない。明日、確かめに行く。",
+   "photo": "arrival",
+   "members": {
+    "max": 2
+   }
+  },
+  {
+   "id": "W-A-K3",
+   "case": "start",
+   "role": "好奇心旺盛",
+   "title": "最後の扉",
+   "text": "今日はじめて、このコテージに来た。扉を、ひとつずつ開けて回った。最後の扉は、押し入れだった。まだ空っぽだけど、これからいろんなものを詰め込んでいきたい。",
+   "photo": "arrival"
+  },
+  {
+   "id": "W-A-O2",
+   "case": "start",
+   "role": "おとなしい",
+   "title": "うしろをついて",
+   "text": "今日はじめて、このコテージに来た。知らない場所で、少し緊張していた。{相手}が先に歩いてくれたので、うしろをついて回った。夜には、もう公園からの帰り道を覚えていた。",
+   "photo": "arrival",
+   "members": {
+    "max": 2
+   }
+  },
+  {
+   "id": "W-A-O3",
+   "case": "start",
+   "role": "おとなしい",
+   "title": "帰り道",
+   "text": "今日はじめて、このコテージに来た。念のため、帰り道を覚えながら歩いた。みんなは、気になる場所へ次々と走っていった。帰り道を覚えていたのは{わたし}だけだった。役に立ててよかった。",
+   "photo": "arrival",
+   "members": {
+    "min": 3
+   }
+  },
+  {
+   "id": "W-N-G",
+   "case": "new_member",
+   "role": "元気",
+   "title": "今日からここ！",
+   "text": "今日、このコテージに来た！ {相手}がまわりを案内してくれた。ついていくつもりが、気づいたら先頭を走ってた！ 明日はもっと遠くまで行ってみたい！",
+   "photo": "arrival"
+  },
+  {
+   "id": "W-N-Y",
+   "case": "new_member",
+   "role": "やさしい",
+   "title": "となりの席",
+   "text": "今日、このコテージに来ました。みんなが、中を順番に案内してくれました。晩ごはんのとき、{相手}がとなりの席を空けておいてくれました。一員になれた気がして嬉しかったです。",
+   "photo": "arrival"
+  },
+  {
+   "id": "W-N-M",
+   "case": "new_member",
+   "role": "マイペース",
+   "title": "ゆっくり覚える",
+   "text": "今日、このコテージに来た。みんなが案内してくれたけど、ベンチでひと休みしていたら、みんなはずっと先にいた。{相手}が迎えに戻ってきてくれた。ここのことは、ゆっくり覚えよう。",
+   "photo": "arrival"
+  },
+  {
+   "id": "W-N-K",
+   "case": "new_member",
+   "role": "好奇心旺盛",
+   "title": "いちばん遠く",
+   "text": "今日、このコテージに来た。みんながあちこち案内してくれた。公園、丘の上の木、コテージの中。{相手}の話では、あの木の上からがいちばん遠くまで見えるらしい。明日、確かめる。",
+   "photo": "arrival"
+  },
+  {
+   "id": "W-N-O",
+   "case": "new_member",
+   "role": "おとなしい",
+   "title": "よろしくね",
+   "text": "今日、このコテージに来た。みんなに何て言えばいいか、ずっと考えていた。先に{相手}が「よろしくね」と言ってくれた。ちゃんと返事ができたと思う。よかった。",
+   "photo": "arrival"
+  }
+ ],
+ "arcs_note": "first_week: true の進行型は、使い始めて2〜3日目に始める最初の週用（ふだんの進行型には使わない）。段階の offset は始まった日から何日目か（台本ごとに決められる）。props は段階のあいだコテージの絵に出す小物、props_keep はその段階からずっと出す小物（{ 置き場所: 小物の名前 }。置き場所 table：1階のテーブルの上、frame：1階の額縁の中）。props_note は絵を作る人向けのメモ。photo は写真の指定（scene：場面、cast：写る子 writer・pair・all、caption：写真の下の一言。docs/diary-selection.md 5.6）"
+}

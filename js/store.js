@@ -1,6 +1,7 @@
-// localStorage の読み書き。キーは island.v1 の1つだけ。
+// localStorage の読み書き。キーは cottage.v1 の1つだけ。
+// 試用版 v1（ぬいアイランド）は同じドメインで island.v1 を使っているので、別の名前にして、v1 の保存データは読まず書き換えもしない
 
-const KEY = 'island.v1';
+export const KEY = 'cottage.v1';
 
 export function load() {
   try {

@@ -25,13 +25,36 @@ export function appDate(now) {
   return toYmd(d);
 }
 
-// 時間帯: 朝 5:00〜10:00 / 昼 10:00〜16:00 / 夕方 16:00〜19:00 / 夜 19:00〜5:00
+// 季節（コテージの絵の公園の木の姿）。月ではなく日付で決め、台本の季節の出来事とそろえる（docs/cottage-scene.md）
+//   春（桜）3/25〜4/20（台本の「満開」3/25〜4/10・「花びらの道」3/28〜4/20） / 夏（緑がしげる）4/21〜9/30
+//   秋（紅葉）10/1〜11/30（「いちばん赤い葉っぱ」11月） / 冬（もみの木）12/1〜3/24（「こたつ」12月、「小さな芽」2月）
+export const SEASON_STARTS = [['03-25', 'spring'], ['04-21', 'summer'], ['10-01', 'autumn'], ['12-01', 'winter']];
+export function seasonOf(ymd) {
+  const md = ymd.slice(5);
+  let season = 'winter'; // 1/1〜3/24 は、前の年の 12/1 からの冬
+  for (const [start, name] of SEASON_STARTS) if (md >= start) season = name;
+  return season;
+}
+
+// 公園の木の姿（コテージの絵と、木だけの絵のファイルを選ぶ）。ふだんは季節と同じで、冬（もみの木）のうち
+// クリスマスの 12/20〜12/25 だけ、飾りの付いた xmas になる（11/5 から。前は 12/1〜）。12/26 の 5:00 に、ふつうの冬の木にもどる。
+// event：島ごとの季節のイベントのオブジェ（selection/events.js の eventTreeOn。焼き芋大会の imo など）があれば、それにする
+export const XMAS = ['12-20', '12-25'];
+export function treeOf(ymd, event = null) {
+  if (event) return event;
+  const md = ymd.slice(5);
+  return md >= XMAS[0] && md <= XMAS[1] ? 'xmas' : seasonOf(ymd);
+}
+
+// 時間帯: 朝 6:00〜10:00 / 昼 10:00〜16:00 / 夕方 16:00〜19:00 / 夜 19:00〜22:00 / 深夜 22:00〜6:00
+// （日付の切り替えの5:00とは別。5:00〜6:00 は日付はもう次の日だが、まだ深夜）
 export function timeSlot(now) {
   const h = now.getHours();
-  if (h >= 5 && h < 10) return 'morning';
+  if (h >= 6 && h < 10) return 'morning';
   if (h >= 10 && h < 16) return 'day';
   if (h >= 16 && h < 19) return 'evening';
-  return 'night';
+  if (h >= 19 && h < 22) return 'night';
+  return 'late';
 }
 
 // Date → 'YYYY-MM-DDTHH:MM'（端末の時刻のまま）

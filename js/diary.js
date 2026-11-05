@@ -27,7 +27,7 @@ export function startIndex(pages, readIds, startId) {
 
 // onShow(id): 既読にして保存 / onFavorite(id, on): お気に入りを保存
 // onClose(): 開いた元（島か読み返し）に戻る。backLabel はその名前
-export function renderDiary(root, { data, state, today, startId, backLabel = '島', onShow, onFavorite, onClose }) {
+export function renderDiary(root, { data, state, today, startId, backLabel = 'コテージ', onShow, onFavorite, onClose }) {
   const pages = availableDiaries(data.diaries, today);
   let index = startIndex(pages, state.read, startId);
 
@@ -81,7 +81,7 @@ export function renderDiary(root, { data, state, today, startId, backLabel = '�
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index >= pages.length;
     const unread = unreadDiaries(data.diaries, state.read, today).length;
-    unreadEl.textContent = unread ? `未読 あと${unread}枚` : '';
+    unreadEl.textContent = unread ? `未読 あと${unread}ページ` : '';
   }
 
   // ---- めくる動き ----

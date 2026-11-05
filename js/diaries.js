@@ -1,16 +1,8 @@
-// 日記データ（data/diaries.json）と、日記の届き方。
+// 日記の届き方（日記は journal.js が記録から作る。形は v1 の data/diaries.json と同じ）。
 // 日記の date は「その日記に書かれている日」。日記は date の翌日 5:00 から読める。
 // （5:00 の切り替えは appDate が受け持つので、ここでは「アプリ上の今日 > date」で判定する）
 
 import { addDays } from './date.js';
-
-export async function loadDiaries(url = 'data/diaries.json') {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`日記を読み込めませんでした（${res.status}）`);
-  const data = await res.json();
-  data.diaries.sort((a, b) => (a.date < b.date ? -1 : 1));
-  return data; // { writers, diaries }
-}
 
 // 日記が届く日（アプリ上の日付）
 export function deliveredOn(diary) {
@@ -34,7 +26,3 @@ export function isAllRead(diaries, readIds) {
   return diaries.every((d) => read.has(d.id));
 }
 
-// 今日の島の天気。今日の日付の日記がなければ sunny
-export function weatherOn(diaries, today) {
-  return diaries.find((d) => d.date === today)?.weather ?? 'sunny';
-}
