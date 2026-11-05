@@ -16,8 +16,8 @@ const BACK_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" s
 const PLUS_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>';
 const PHOTO_ICON = '<svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#B5A48A" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="14" r="7"></circle><circle cx="38" cy="14" r="7"></circle><circle cx="28" cy="30" r="15"></circle><path d="M20 48 h16"></path></svg>';
 
-// 一覧に出す1行の説明（性格・一人称・好きな食べ物）
-export const nuiSummary = (n) => [n.role, n.first_person, n.favorite_food ?? SECRET].join('・');
+// 一覧に出す1行の説明（性格・一人称・好きなこと）
+export const nuiSummary = (n) => [n.role, n.first_person, n.likes ?? SECRET].join('・');
 
 // ---- 1. はじめ方 ----
 
