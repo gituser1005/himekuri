@@ -9,6 +9,29 @@ const TURN_ANGLE = 115;       // めくり切ったときの角度
 const TURN_DISTANCE = 0.18;   // 幅に対してこれ以上めくったら、離したときにめくり切る
 const TURN_VELOCITY = 0.3;    // px/ms。これより速く払ったらめくり切る
 
+// ボタンを押したとき。iPhone・iPad の Safari では、紙をスワイプしたあとの最初のタップに click が来ないことがあるので
+// （11/6。もう一度押すと効いた）、ボタンの上で指を離したときにも動かす。続けて来る click では2回動かさない。
+// 指のときは、そのあとの click を止める（画面が切り替わったあと、同じ場所の次の画面のボタンを押さないように）
+function onTap(btn, fn) {
+  let downOn = false;
+  let tappedAt = -Infinity;
+  btn.addEventListener('pointerdown', () => { downOn = true; });
+  btn.addEventListener('pointerleave', () => { downOn = false; });
+  btn.addEventListener('pointerup', () => {
+    if (!downOn || btn.disabled) return;
+    downOn = false;
+    tappedAt = performance.now();
+    fn();
+  });
+  btn.addEventListener('touchend', (e) => {
+    if (performance.now() - tappedAt < 800) e.preventDefault();
+  });
+  btn.addEventListener('click', (e) => {
+    if (performance.now() - tappedAt < 800) return;
+    fn();
+  });
+}
+
 // 「ここまで」の紙の文言（日記は毎日届くので、いつも同じ。11/6 に v1 の「試作の日記はここまでです」をやめた）
 export const END_TEXT = '届いている日記はここまでです';
 
@@ -46,16 +69,16 @@ export function renderDiary(root, { data, state, today, startId, backLabel = '�
   const prevBtn = root.querySelector('.nav-prev');
   const nextBtn = root.querySelector('.nav-next');
   const unreadEl = root.querySelector('.diary-unread');
-  root.querySelector('.back-btn').addEventListener('click', onClose);
-  prevBtn.addEventListener('click', () => turn(-1));
-  nextBtn.addEventListener('click', () => turn(1));
+  onTap(root.querySelector('.back-btn'), onClose);
+  onTap(prevBtn, () => turn(-1));
+  onTap(nextBtn, () => turn(1));
 
   function pageEl(i) {
     const el = document.createElement('article');
     if (i >= pages.length) {
       el.className = 'paper paper-end';
       el.innerHTML = `<p>${END_TEXT}</p><button class="end-back">${backLabel}にもどる</button>`;
-      el.querySelector('.end-back').addEventListener('click', onClose);
+      onTap(el.querySelector('.end-back'), onClose);
       return el;
     }
     const diary = pages[i];
@@ -165,11 +188,12 @@ export function renderDiary(root, { data, state, today, startId, backLabel = '�
     drag.p = Math.min(1, Math.max(0, drag.t.dir > 0 ? -dx / w : dx / w));
     setAngle(drag.t.moving, angleAt(drag.t, drag.p));
   });
-  const end = () => {
+  const end = (e) => {
     if (!drag) return;
     const d = drag;
     drag = null;
     if (!d.t) return;
+    if (book.hasPointerCapture(e.pointerId)) book.releasePointerCapture(e.pointerId);
     const fast = d.t.dir > 0 ? d.v < -TURN_VELOCITY : d.v > TURN_VELOCITY;
     settle(d.t, d.p > TURN_DISTANCE || fast);
   };
