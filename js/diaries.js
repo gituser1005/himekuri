@@ -20,7 +20,7 @@ export function unreadDiaries(diaries, readIds, today) {
   return availableDiaries(diaries, today).filter((d) => !read.has(d.id));
 }
 
-// すべての日記を読み終えたか（最後の日記のあとに「試作の日記はここまでです」を出す）
+// すべての日記を読み終えたか
 export function isAllRead(diaries, readIds) {
   const read = new Set(readIds);
   return diaries.every((d) => read.has(d.id));

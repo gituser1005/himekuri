@@ -9,10 +9,8 @@ const TURN_ANGLE = 115;       // めくり切ったときの角度
 const TURN_DISTANCE = 0.18;   // 幅に対してこれ以上めくったら、離したときにめくり切る
 const TURN_VELOCITY = 0.3;    // px/ms。これより速く払ったらめくり切る
 
-// 「ここまで」の紙の文言
-export function endText(diaries, today) {
-  return availableDiaries(diaries, today).length >= diaries.length ? '試作の日記はここまでです' : '日記はここまでです。';
-}
+// 「ここまで」の紙の文言（日記は毎日届くので、いつも同じ。11/6 に v1 の「試作の日記はここまでです」をやめた）
+export const END_TEXT = '届いている日記はここまでです';
 
 // 開く位置。startId があればその日、なければいちばん古い未読、未読がなければ「ここまで」の紙
 export function startIndex(pages, readIds, startId) {
@@ -56,7 +54,7 @@ export function renderDiary(root, { data, state, today, startId, backLabel = '�
     const el = document.createElement('article');
     if (i >= pages.length) {
       el.className = 'paper paper-end';
-      el.innerHTML = `<p>${endText(data.diaries, today)}</p><button class="end-back">${backLabel}にもどる</button>`;
+      el.innerHTML = `<p>${END_TEXT}</p><button class="end-back">${backLabel}にもどる</button>`;
       el.querySelector('.end-back').addEventListener('click', onClose);
       return el;
     }
