@@ -78,7 +78,7 @@ async function refreshDiaries() {
 // 写る子は、今の子の写真で作る。写真がない子（消した子など）は外し、写る子がいなければ写真を付けない
 async function makeSnapshots(photos) {
   const before = JSON.stringify(state.cottage?.diaryRecord ?? null).length;
-  const pending = pendingSnapshots(state.cottage); // 登録済みのキャラクターの v1 の写真は、ここで決まる
+  const pending = pendingSnapshots(state.cottage); // 用意されたぬいぐるみの v1 の写真は、ここで決まる
   for (const p of pending) {
     const cast = p.diary.snapshot.cast.map((id) => photos.find((x) => x.id === id)).filter(Boolean);
     if (!cast.length) {

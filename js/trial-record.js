@@ -115,7 +115,7 @@ function profileBlock(s) {
     <dl class="tr-block tr-list">
       <div><dt>初回起動日</dt><dd>${jpDate(p.installedOn)}</dd></div>
       <div><dt>コテージを始めた日</dt><dd>${p.startedOn ? jpDate(p.startedOn) : '—'}</dd></div>
-      <div><dt>始め方</dt><dd>${p.preset ? '登録済みのキャラクター' : '自分のぬいぐるみ'}</dd></div>
+      <div><dt>始め方</dt><dd>${p.preset ? '用意されたぬいぐるみ' : '自分のぬいぐるみ'}</dd></div>
       <div><dt>今の体数</dt><dd>${p.nuis}体${roles ? `<small>（${roles}）</small>` : ''}</dd></div>
     </dl>`;
 }

@@ -45,7 +45,7 @@ export function renderStart(root, { onRegister, onPreset }) {
           <span class="reg-choice-note">2〜4体のぬいぐるみの写真とプロフィールを登録します。友達のぬいぐるみや、ほかのおうちのぬいぐるみでもだいじょうぶです。</span>
         </button>
         <button type="button" class="reg-choice go-preset">
-          <span class="reg-choice-title">登録済みのキャラクターではじめる</span>
+          <span class="reg-choice-title">用意されたぬいぐるみではじめる</span>
           <span class="reg-choice-note">ふうか・ポテサラ・こまちの3体が暮らすコテージです。ぬいぐるみが手もとにないときは、こちらから。</span>
         </button>
         <p class="reg-error" role="alert"></p>
@@ -326,7 +326,7 @@ export async function renderList(root, { cottage, onAdd, onEdit, onManagerName, 
 
       <div class="reg-heading">
         <h1 class="reg-title">コテージに住むぬいぐるみ</h1>
-        <span class="reg-help">${cottage.preset ? '登録済みのキャラクターは、変えられません' : `${MAX_NUIS}体まで登録できます`}</span>
+        <span class="reg-help">${cottage.preset ? '用意されたぬいぐるみは、変えられません' : `${MAX_NUIS}体まで登録できます`}</span>
       </div>
 
       <div class="reg-nuis">

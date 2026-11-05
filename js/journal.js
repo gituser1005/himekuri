@@ -66,7 +66,7 @@ export const extraId = (date, writer) => `w${date.replaceAll('-', '')}-${writer}
 
 // ---- 日記の写真 ----
 // 写真は、日記を決めたときに写真の中身（snapshot）だけを記録に残し、そのあとアプリが1回だけ作って IndexedDB に保存する
-// （snapshot.key＝保存した写真のキー）。登録済みのキャラクターのハロウィンは、v1 の写真をそのまま使う（snapshot.image）
+// （snapshot.key＝保存した写真のキー）。用意されたぬいぐるみのハロウィンは、v1 の写真をそのまま使う（snapshot.image）
 
 // 記録の日記（ふだんの日記と、別の1件）と、その id
 function recordDiaries(record) {
@@ -78,14 +78,14 @@ function recordDiaries(record) {
 
 export const snapshotKey = (id) => `snap-${id}`;
 
-// 登録済みのキャラクター（ふうかたち）で始めた人に使う v1 の写真（始めた日は、自分の子で始めた人と同じ木の下の記念写真にした。11/5）
+// 用意されたぬいぐるみ（ふうかたち）で始めた人に使う v1 の写真（始めた日は、自分の子で始めた人と同じ木の下の記念写真にした。11/5）
 const PRESET_SNAPSHOTS = { 'FE-halloween': 'assets/snap_1031_halloween.png' };
 function presetImage(cottage, d) {
   if (!cottage.preset) return null;
   return PRESET_SNAPSHOTS[d.scriptId] ?? null;
 }
 
-// まだ作っていない写真 [{ diary, id, key, date, weather }]（作る順＝日付順）。登録済みのキャラクターの v1 の写真は、ここで決めてしまう
+// まだ作っていない写真 [{ diary, id, key, date, weather }]（作る順＝日付順）。用意されたぬいぐるみの v1 の写真は、ここで決めてしまう
 export function pendingSnapshots(cottage) {
   const record = cottage?.diaryRecord;
   const out = [];

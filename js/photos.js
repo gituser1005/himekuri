@@ -101,7 +101,7 @@ export async function processPhoto(file, now = new Date()) {
   return { blob: await toPng(c2), w: out.w, h: out.h, cutout, at: toLocalIso(now) };
 }
 
-// アプリの中の画像（登録済みのキャラクターの assets/*.webp）→ 保存する形
+// アプリの中の画像（用意されたぬいぐるみの assets/*.webp）→ 保存する形
 export async function processAsset(url, now = new Date()) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${url} を読めませんでした`);

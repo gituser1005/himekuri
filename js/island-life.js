@@ -54,7 +54,7 @@ export function actionWeights(role, slot) {
 // 場所 → その場所でしている行動（移ってきた子の行動。木の下は「座る」、窓辺は「家」とする）
 const actionOf = (place) => Object.keys(ACTIONS).find((act) => ACTIONS[act][place]);
 
-// その時間帯の配置。nuis は登録したぬい [{ id, role }]（2〜4匹。登録済みのキャラクターも同じ）。戻り値は [{ id, action, place, slot }]（slot は枠の番号）
+// その時間帯の配置。nuis は登録したぬい [{ id, role }]（2〜4匹。用意されたぬいぐるみも同じ）。戻り値は [{ id, action, place, slot }]（slot は枠の番号）
 //   1. ぬいごとに行動と場所を引く
 //   2. 組ごとに「同じ場所で過ごす」を引く。当たった組が複数なら、くじの値がいちばん小さい組だけ
 //      その組は、2匹が引いた場所のうち2匹で並べる場所（なければ2匹で並べる場所から乱数）に並べる

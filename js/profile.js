@@ -6,7 +6,7 @@
 // cottage（保存データ cottage.v1 の中）
 // {
 //   startedOn: '2026-11-10',        始まりの日（「始める」を押した日）。始める前は null。削除しても変えない
-//   preset: false,                  登録済みのキャラクター（ふうか・ポテサラ・こまち）で始めたか。true なら編集・削除・追加はできない
+//   preset: false,                  用意されたぬいぐるみ（ふうか・ポテサラ・こまち）で始めたか。true なら編集・削除・追加はできない
 //   managerName: '管理人さん',       ぬいぐるみたちからの、管理人さんの呼ばれ方
 //   nuis: [nui, ...],               今いるぬいぐるみ（下の nui の形）
 //   startMembers: [nui, ...],       始まりの日の顔ぶれの控え（表示はしない。写真を変えても、削除しても残す）
@@ -197,7 +197,7 @@ const FIELDS = ['photo', 'name', 'call_name', 'first_person', 'first_person_choi
 
 // ぬいの項目を変える。始めたあとなら、変わった項目を edits に残す。変わった項目の名前を返す
 export function editNui(cottage, id, form, now) {
-  if (!canEdit(cottage)) throw new Error('登録済みのキャラクターは変えられません');
+  if (!canEdit(cottage)) throw new Error('用意されたぬいぐるみは変えられません');
   const nui = cottage.nuis.find((n) => n.id === id);
   if (!nui) throw new Error(`いないぬい: ${id}`);
   const next = profileOf(form);
@@ -233,7 +233,7 @@ export function startCottage(cottage, managerName, now) {
   cottage.startMembers = structuredClone(cottage.nuis);
 }
 
-// ---- 登録済みのキャラクター（ふうか・ポテサラ・こまち）----
+// ---- 用意されたぬいぐるみ（ふうか・ポテサラ・こまち）----
 
 export const PRESET_FORMS = [
   { id: 'fuuka', name: 'ふうか', call_name: 'ふうかちゃん', first_person_choice: 'ぼく', role: 'やさしい', favorite_food: 'クッキー', likes: '本を読む', dislike: '暑いところ', avatar: 'assets/fuuka.webp' },
@@ -243,7 +243,7 @@ export const PRESET_FORMS = [
 
 export const presetPhotoKey = (id) => `photo-${id}-1`;
 
-// 登録済みのキャラクターで、すぐに始める（写真は呼ぶ側が avatar から写真の保存場所に入れる）
+// 用意されたぬいぐるみで、すぐに始める（写真は呼ぶ側が avatar から写真の保存場所に入れる）
 export function startPreset(now) {
   const cottage = newCottage();
   cottage.preset = true;
