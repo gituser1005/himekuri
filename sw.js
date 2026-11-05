@@ -2,7 +2,7 @@
 // ファイルを直して公開し直すときは VERSION を上げる（tools/deploy.py が上げ忘れを止める）。
 // 新しい版は裏で取ってきて、次に開いたときから使われる。
 
-const VERSION = 'v6';
+const VERSION = 'v7';
 // キャッシュの名前は cottage- で始める。試用版 v1（ぬいアイランド）は同じドメインで island- を使っている
 const PREFIX = 'cottage-';
 const CACHE = `${PREFIX}${VERSION}`;
@@ -47,6 +47,7 @@ const ASSETS = [
   'selection/habits.js',
   'selection/arcs.js',
   'selection/festivals.js',
+  'selection/events.js',
   'selection/anniversary.js',
   'selection/letter.js',
   'selection/welcome.js',
