@@ -312,7 +312,7 @@ export function renderForm(root, { form, topLabel, others, submitLabel, focus, o
 
 // ---- 3. 一覧と、あなたの呼ばれ方 ----
 
-// onEdit がなければ「直す」を出さない。始めたあとは、始めるボタンの代わりに「コテージにもどる」
+// onEdit がなければ「直す」を出さない。始めたあとは、始めるボタンの代わりに「記録にもどる」（始めたあとは、記録の画面から開くため）
 // onBack：始める前に、はじめ方へもどる（登録した内容は消す。自分で登録した子がいれば、確かめてから）
 export async function renderList(root, { cottage, onAdd, onEdit, onManagerName, onStart, onClose, onBack }) {
   const started = isStarted(cottage);
@@ -352,7 +352,7 @@ export async function renderList(root, { cottage, onAdd, onEdit, onManagerName, 
 
       <div class="reg-actions">
         ${started
-          ? '<button type="button" class="reg-primary go-close">コテージにもどる</button>'
+          ? '<button type="button" class="reg-primary go-close">記録にもどる</button>'
           : `<button type="button" class="reg-primary go-start"${canStart(cottage) ? '' : ' disabled'}>このぬいぐるみたちと始める</button>
         ${n < 2 ? '<span class="reg-help is-center">1体だけのときは、まだ始められません</span>' : ''}`}
       </div>
