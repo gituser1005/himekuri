@@ -244,7 +244,8 @@ export const PRESET_FORMS = [
 export const presetPhotoKey = (id) => `photo-${id}-1`;
 
 // 用意されたぬいぐるみで、すぐに始める（写真は呼ぶ側が avatar から写真の保存場所に入れる）
-export function startPreset(now) {
+// 用意されたぬいぐるみを選んだとき。まだ始めない（一覧の画面で呼ばれ方を確かめ、「このぬいぐるみたちと始める」で startCottage）
+export function preparePreset(now) {
   const cottage = newCottage();
   cottage.preset = true;
   const today = appDate(now);
@@ -256,7 +257,12 @@ export function startPreset(now) {
     created: toLocalIso(now),
   }));
   cottage.nextOrder = PRESET_FORMS.length + 1;
-  cottage.startedOn = today;
-  cottage.startMembers = structuredClone(cottage.nuis);
+  return cottage;
+}
+
+// 用意されたぬいぐるみで、すぐに始める（テストと確認ページ用）
+export function startPreset(now) {
+  const cottage = preparePreset(now);
+  startCottage(cottage, cottage.managerName, now);
   return cottage;
 }

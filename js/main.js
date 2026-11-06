@@ -9,7 +9,7 @@ import { renderRecord } from './record.js';
 import { renderTrialRecord, renderTrialRecordOff } from './trial-record.js';
 import { renderStart, renderForm, renderList, renderEdit, renderDeleteConfirm, renderResetConfirm, renderDone } from './register.js';
 import {
-  emptyForm, formOf, newCottage, addNui, editNui, removeNui, startCottage, startPreset, setManagerName, isStarted, PRESET_FORMS,
+  emptyForm, formOf, newCottage, addNui, editNui, removeNui, startCottage, preparePreset, setManagerName, isStarted, PRESET_FORMS,
 } from './profile.js';
 import { processAsset, putPhoto, prunePhotos, usedPhotoKeys, clearPhotos, requestPersist, sceneNuis, photoUrl } from './photos.js';
 import * as store from './store.js';
@@ -256,8 +256,9 @@ function showStart() {
   logScreen('register');
   renderStart(app, {
     onRegister: () => openNewForm(),
+    // 用意されたぬいぐるみ：まだ始めずに一覧の画面へ（呼ばれ方を確かめ、「このぬいぐるみたちと始める」で始める）
     onPreset: async () => {
-      const cottage = startPreset(getNow());
+      const cottage = preparePreset(getNow());
       for (const n of cottage.nuis) {
         const { avatar } = PRESET_FORMS.find((p) => p.id === n.id);
         await putPhoto(n.photo, await processAsset(avatar));
@@ -265,9 +266,17 @@ function showStart() {
       state.cottage = cottage;
       store.save(state);
       requestPersist();
-      forward(showDone);
+      showRoot();
     },
   });
+}
+
+// 始める前の一覧から、はじめ方へもどる：登録した内容（ぬいと写真）を消す
+async function discardRegistration() {
+  state.cottage = null;
+  store.save(state);
+  await clearPhotos().catch((e) => console.warn('写真を消せませんでした', e));
+  goRoot();
 }
 
 // 1体の登録。入力（form）は、この画面を開いているあいだだけ持つ
@@ -317,6 +326,7 @@ function showList() {
       forward(showDone);
     },
     onClose: back,
+    onBack: discardRegistration,
   });
 }
 

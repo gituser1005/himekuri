@@ -313,14 +313,15 @@ export function renderForm(root, { form, topLabel, others, submitLabel, focus, o
 // ---- 3. 一覧と、あなたの呼ばれ方 ----
 
 // onEdit がなければ「直す」を出さない。始めたあとは、始めるボタンの代わりに「コテージにもどる」
-export async function renderList(root, { cottage, onAdd, onEdit, onManagerName, onStart, onClose }) {
+// onBack：始める前に、はじめ方へもどる（登録した内容は消す。自分で登録した子がいれば、確かめてから）
+export async function renderList(root, { cottage, onAdd, onEdit, onManagerName, onStart, onClose, onBack }) {
   const started = isStarted(cottage);
   const n = cottage.nuis.length;
   const urls = await Promise.all(cottage.nuis.map((x) => photoUrl(x.photo)));
   root.innerHTML = `
     <section class="reg-page reg-list">
       <div class="reg-top">
-        <span class="reg-top-label">${started ? 'ぬいぐるみ' : '登録'}</span>
+        ${started ? '<span class="reg-top-label">ぬいぐるみ</span>' : `<button type="button" class="reg-back go-back">${BACK_ICON}もどる</button>`}
         <span class="reg-count">${n}体${n < MAX_NUIS && !cottage.preset ? `（あと${MAX_NUIS - n}体まで）` : ''}</span>
       </div>
 
@@ -370,6 +371,18 @@ export async function renderList(root, { cottage, onAdd, onEdit, onManagerName, 
   mgr.addEventListener('change', () => {
     const r = checkMgr();
     if (!r.error) onManagerName(r.value);
+  });
+
+  $('.go-back')?.addEventListener('click', () => {
+    if (cottage.preset) return onBack();
+    renderConfirm(root, {
+      step: 1,
+      title: 'はじめ方にもどります',
+      items: [`登録した${n}体のぬいぐるみの写真とプロフィールは消えます。`],
+      nextLabel: 'はじめ方にもどる',
+      onNext: onBack,
+      onCancel: () => root.querySelector('.reg-dlg-back')?.remove(),
+    });
   });
 
   $('.go-add')?.addEventListener('click', onAdd);
