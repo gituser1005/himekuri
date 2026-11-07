@@ -86,7 +86,7 @@ async function makeSnapshots(photos) {
       continue;
     }
     try {
-      const blob = await renderSnapshot(p.diary.snapshot, { date: p.date, weather: p.weather, cast });
+      const blob = await renderSnapshot(p.diary.snapshot, { date: p.date, weather: p.weather, cast, eventTree: eventTreeToday(state.cottage, scripts, state.islandSeed, p.date) });
       await putPhoto(p.key, { blob, w: 600, h: 450, cutout: false, at: new Date().toISOString() });
       p.diary.snapshot.key = p.key;
     } catch (e) {

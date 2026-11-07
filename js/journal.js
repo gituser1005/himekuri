@@ -47,7 +47,7 @@ export function catchUp(cottage, scripts, seed, today) {
 
 const nextDate = (record) => (record.days.length ? addDays(record.days.at(-1).date, 1) : record.start);
 
-// その日の公園の木のオブジェ（季節のイベントの3日前から当日まで。島ごとに決まる。なければ null。始める前・台本を読む前も null）
+// その日の公園の木のオブジェ（季節のイベントの3日前から当日まで。クリスマスの飾りつけは、その日から 12/25 まで。島ごとに決まる。なければ null。始める前・台本を読む前も null）
 export function eventTreeToday(cottage, scripts, seed, today) {
   return scripts && cottage?.startedOn ? eventTreeOn(scripts, seed, cottage.startedOn, today) : null;
 }

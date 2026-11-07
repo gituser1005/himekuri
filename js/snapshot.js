@@ -125,12 +125,12 @@ const ymd = (date) => {
   return `${y}年${m}月${d}日`;
 };
 
-async function drawArrival(ctx, imgs, cast, spec, date, weather, base) {
+async function drawArrival(ctx, imgs, cast, spec, date, weather, base, tree) {
   const A = SNAP_ARRIVAL;
   const crop = spec.full ? A.crop.full : A.crop.close;
   const ch = crop.w * (SNAP.h / SNAP.w);
   const cy = A.foot - ch * crop.floor;
-  const bg = await loadImage(base + pictureFile(weather === 'rain' ? 'rain' : 'sunny', treeOf(date)));
+  const bg = await loadImage(base + pictureFile(weather === 'rain' ? 'rain' : 'sunny', tree));
   ctx.drawImage(bg, crop.x * (bg.naturalWidth / 780), cy * (bg.naturalHeight / 1688), crop.w * (bg.naturalWidth / 780), ch * (bg.naturalHeight / 1688), 0, 0, SNAP.w, SNAP.h);
   const items = arrivalLayout(imgs, cast, crop);
   // 奥の子を先に描く（手前の子が上になる）
@@ -244,8 +244,7 @@ async function drawGroup(ctx, imgs, cast, spec, weather, base) {
   }
 }
 
-async function drawScene(ctx, imgs, cast, spec, date, weather, base) {
-  const tree = treeOf(date);
+async function drawScene(ctx, imgs, cast, spec, date, weather, base, tree) {
   const scene = SNAP_SCENES[spec.scene] ?? SNAP_SCENES.tree;
   const [cx, cy, cw] = scene === SNAP_SCENES.tree && tree === 'xmas' ? SNAP_TREE_XMAS_CROP : scene.crop;
   const ch = cw * (SNAP.h / SNAP.w);
@@ -262,15 +261,19 @@ async function drawScene(ctx, imgs, cast, spec, date, weather, base) {
 
 // 写真を作る。cast：写る子 [{ url, cutout }]（snapshot.cast の順。写真がない子は呼ぶ側で外す）。JPEG の Blob を返す
 // base：絵のファイルの場所の前に付ける道（アプリは ''、dev/ の確認ページは '../'）
-export async function renderSnapshot(spec, { date, weather, cast, base = '' }) {
+// eventTree：その日の島の木のオブジェ（journal.js の eventTreeToday）。おうちに来た日・行事の写真の木も、島の絵にそろえる
+//   （クリスマスの飾りつけの日からの木、焼き芋大会の3日前から当日のさつまいも。docs/topics/2026-11-07-event-art.md）
+//   おうちに来た日の写真は、オブジェの日も切り出しと並びはいつもどおり（子が主役。オブジェが主役のイベントの写真とは分ける）
+export async function renderSnapshot(spec, { date, weather, cast, base = '', eventTree = null }) {
+  const tree = treeOf(date, eventTree);
   const canvas = document.createElement('canvas');
   canvas.width = SNAP.w;
   canvas.height = SNAP.h;
   const ctx = canvas.getContext('2d');
   const imgs = await Promise.all(cast.map((n) => loadImage(n.url)));
-  if (spec.type === 'arrival') await drawArrival(ctx, imgs, cast, spec, date, weather, base);
+  if (spec.type === 'arrival') await drawArrival(ctx, imgs, cast, spec, date, weather, base, tree);
   else if (spec.type === 'group') await drawGroup(ctx, imgs, cast, spec, weather, base);
   else if (spec.type === 'anniversary') await drawAnniversary(ctx, imgs, cast, spec.year);
-  else await drawScene(ctx, imgs, cast, spec, date, weather, base);
+  else await drawScene(ctx, imgs, cast, spec, date, weather, base, tree);
   return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('写真を作れませんでした'))), 'image/jpeg', 0.86));
 }

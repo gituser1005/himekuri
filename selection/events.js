@@ -100,12 +100,15 @@ export function seasonalEventsOn(scripts, seed, start, date) {
 }
 
 // その日の公園の木のオブジェ（季節のイベントの3日前から当日まで。なければ null）
+//   tree_until（「MM-DD」）のあるもの（クリスマスの飾りつけ）は、イベントの日から、その年のその日まで
+//   その年のイベントの日がない島（始めた日が期間の終わりか、そのあと）は null（クリスマスの木は js/date.js の XMAS の期間になる）
 export function eventTreeOn(scripts, seed, start, date) {
   if (!start) return null;
   for (const f of seasonalEvents(scripts).filter((x) => x.tree)) {
     for (const year of [Number(date.slice(0, 4)), Number(date.slice(0, 4)) + 1]) {
       const d = seasonalEventDate(f, year, scripts, seed, start);
-      if (d && date <= d && daysBetween(date, d) <= OBJECT_DAYS_BEFORE) return f.tree;
+      if (!d) continue;
+      if (f.tree_until ? d <= date && date <= `${year}-${f.tree_until}` : date <= d && daysBetween(date, d) <= OBJECT_DAYS_BEFORE) return f.tree;
     }
   }
   return null;
