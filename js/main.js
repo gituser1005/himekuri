@@ -15,6 +15,7 @@ import { processAsset, putPhoto, prunePhotos, usedPhotoKeys, clearPhotos, reques
 import * as store from './store.js';
 import { logEvent, noteFirstRead, pruneUsage } from './usage.js';
 import { summarize } from './usage-summary.js';
+import { initBgm, setBgm } from './bgm.js';
 
 const app = document.getElementById('app');
 
@@ -170,6 +171,11 @@ async function showIsland() {
     onMekuri: () => forward(() => showDiary()),
     onReread: () => forward(showReread),
     onRecord: () => forward(showRecord),
+    onBgm: () => {
+      state.bgm = !state.bgm;
+      store.save(state);
+      setBgm(state.bgm);
+    },
   });
 }
 
@@ -421,5 +427,8 @@ document.addEventListener('visibilitychange', () => {
   logUsage('show');
   tick();
 });
+
+// BGM（bgm.js）。音ありでも、最初に画面をさわったときから鳴る
+initBgm({ isOn: () => state.bgm && !resetting });
 
 showRoot();

@@ -2,7 +2,7 @@
 // ファイルを直して公開し直すときは VERSION を上げる（tools/deploy.py が上げ忘れを止める）。
 // 新しい版は裏で取ってきて、次に開いたときから使われる。
 
-const VERSION = 'v15';
+const VERSION = 'v16';
 // キャッシュの名前は cottage- で始める。試用版 v1（ぬいアイランド）は同じドメインで island- を使っている
 const PREFIX = 'cottage-';
 const CACHE = `${PREFIX}${VERSION}`;
@@ -36,6 +36,7 @@ const ASSETS = [
   'js/trial-record.js',
   'js/usage.js',
   'js/usage-summary.js',
+  'js/bgm.js',
   'selection/index.js',
   'selection/config.js',
   'selection/rng.js',
@@ -106,16 +107,25 @@ const ASSETS = [
   'icons/apple-touch-icon.png',
 ];
 
+// BGM の音源（docs/SPEC.md「BGM」）。公開はするが、ここではキャッシュしない。音ありにした人だけが、
+// 鳴らすときに js/bgm.js が取って別のキャッシュ（cottage-bgm- で始まる）に置く。tools/deploy.py もこの一覧を見てコピーする
+const BGM_FILES = [
+  'assets/bgm/day.m4a',
+  'assets/bgm/night.m4a',
+];
+const BGM_PREFIX = 'cottage-bgm-';
+
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
 
-// 古い版のキャッシュを消す。消すのは自分（cottage-）の古い版だけで、v1 のキャッシュ（island-）には触らない
+// 古い版のキャッシュを消す。消すのは自分（cottage-）の古い版だけで、v1 のキャッシュ（island-）には触らない。
+// BGM のキャッシュ（cottage-bgm-）は版を上げても残す（取った曲を通信なしで鳴らせるように。古い音源は js/bgm.js が消す）
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k.startsWith(PREFIX) && k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith(PREFIX) && k !== CACHE && !k.startsWith(BGM_PREFIX)).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
 });

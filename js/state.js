@@ -5,6 +5,7 @@
 //   islandSeed: 'k3x9q2ab',                        家庭ごとの乱数の種（島のぬいの過ごし方のくじに使う。家庭ごとに配置が変わる）
 //   read: ['d20261020'],                           既読の日記ID（読んだ順）
 //   favorites: ['d20261024'],                      お気に入りの日記ID
+//   bgm: false,                                    BGM を鳴らすか（島の画面のボタン。最初は音なし。bgm.js）
 //   usage: { ... },                               利用ログ（usage.js。コテージを始めたあとだけ。docs/SPEC.md「4. 記録（テスト用）」）
 //   cottage: null,                                 コテージとぬいぐるみの登録（形は profile.js）と、日記の記録（cottage.diaryRecord。journal.js）。
 //                                                  まだ1体も登録していなければ null
@@ -13,7 +14,7 @@
 import { newSeed } from './rng.js';
 
 export function newState(today, islandSeed = newSeed()) {
-  return { installedOn: today, islandSeed, read: [], favorites: [], cottage: null };
+  return { installedOn: today, islandSeed, read: [], favorites: [], bgm: false, cottage: null };
 }
 
 // 保存データを読み込んだあとに呼ぶ。足りない項目を補い、使わなくなった項目を消す

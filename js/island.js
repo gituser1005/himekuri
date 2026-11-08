@@ -15,6 +15,13 @@ const WEATHER_ICON = {
   rain: '<path d="M7 14h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 7.1 3.5 3.5 0 0 0 7 14z"/><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"/>',
 };
 
+// BGM のボタンの印（スピーカー。音なしは斜線を入れる）
+const SPEAKER = '<path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/>';
+function bgmIcon(on) {
+  const mark = on ? '<path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>' : '<path d="M15.5 9.5l5 5M20.5 9.5l-5 5"/>';
+  return `<svg class="weather-icon" viewBox="0 0 24 24" aria-hidden="true">${SPEAKER}${mark}</svg>`;
+}
+
 // くもりの日に、晴れの絵の太陽を隠す雲（絵の中の太陽の位置に合わせて置く）
 const SUN_CLOUD = `
   <svg class="sun-cloud" viewBox="0 0 220 110" aria-hidden="true">
@@ -135,7 +142,7 @@ export function sleepDateOf(now, today) {
 // nuis：コテージの絵に出すぬい（photos.js の sceneNuis で、写真を読み込んでから渡す）
 // weather：その日の天気（日記の記録の天気。journal.js の weatherOf）
 // eventTree：その日の、季節のイベントの木のオブジェ（journal.js の eventTreeToday。なければ null）
-export function renderIsland(root, { now, today, data, state, nuis, weather, eventTree = null, onMekuri, onReread, onRecord }) {
+export function renderIsland(root, { now, today, data, state, nuis, weather, eventTree = null, onMekuri, onReread, onRecord, onBgm }) {
   const slot = timeSlot(now);
   const tree = treeOf(today, eventTree);
   const scene = islandScene(slot, weather, tree);
@@ -155,7 +162,10 @@ export function renderIsland(root, { now, today, data, state, nuis, weather, eve
           <span class="island-date">${clock.date}</span>
           <span class="island-time">${clock.time}</span>
         </div>
-        <div class="chip island-weather">${weatherIcon(weather)}<span>${WEATHER_LABEL[weather]}</span></div>
+        <div class="island-top-right">
+          <div class="chip island-weather">${weatherIcon(weather)}<span>${WEATHER_LABEL[weather]}</span></div>
+          <button class="chip island-bgm" aria-label="${state.bgm ? '音楽をけす' : '音楽をつける'}" aria-pressed="${state.bgm}">${bgmIcon(state.bgm)}</button>
+        </div>
       </header>
       <div class="island-bottom">
         ${band ? `
@@ -177,6 +187,13 @@ export function renderIsland(root, { now, today, data, state, nuis, weather, eve
   root.querySelector('.band-go')?.addEventListener('click', onMekuri);
   root.querySelector('.go-reread').addEventListener('click', onReread);
   root.querySelector('.go-record').addEventListener('click', onRecord);
+  const bgm = root.querySelector('.island-bgm');
+  bgm.addEventListener('click', () => {
+    onBgm();
+    bgm.innerHTML = bgmIcon(state.bgm);
+    bgm.setAttribute('aria-label', state.bgm ? '音楽をけす' : '音楽をつける');
+    bgm.setAttribute('aria-pressed', String(state.bgm));
+  });
 }
 
 // 時刻だけを書き換える（日付や時間帯が変わったときは renderIsland し直す）

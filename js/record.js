@@ -14,6 +14,7 @@ export function renderRecord(root, { onClose, onTrial, onNuis, onReset }) {
       <div class="record-more"><button class="go-trial">試用の記録を見る</button></div>
       ${onNuis ? '<div class="record-more"><button class="go-nuis">ぬいぐるみ</button></div>' : ''}
       ${onReset ? '<div class="record-reset"><button class="go-reset">初期化する（最初からやり直す）</button><p class="record-reset-note">写真・日記・お気に入りがすべて消えます</p></div>' : ''}
+      <p class="record-credit">音楽：BGMer（https://bgmer.net）</p>
       </div>
       <nav class="bottom-bar"><button class="home-btn back-btn">コテージにもどる</button></nav>
     </section>
