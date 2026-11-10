@@ -7,7 +7,7 @@
 // 「同じ場所で過ごす」は「家庭の種 × 日付 × 時間帯 × 2匹のID」で、組ごとに引く。
 
 import { makeRng, pick, weighted } from './rng.js';
-import { PLACES, SIZES, HOME_USE, BED, BED_USE, BED_SHOW, ZZZ } from './places.js';
+import { PLACES, SIZES, HOME_USE, BED, BED_USE, BED_SHOW, ZZZ, NEWYEAR_ROW } from './places.js';
 
 // 行動 → 場所と、その場所を選ぶ重み
 export const ACTIONS = {
@@ -134,6 +134,17 @@ export function homeLayout({ nuis, seed, date }) {
   const order = shuffled(nuis, seed, date, 'home', maxOf(HOME_USE));
   const spots = HOME_USE[order.length] ?? [];
   return order.map((n, i) => ({ id: n.id, action: 'home', place: spots[i], slot: 0 }));
+}
+
+// お正月の3日間の晴れ・くもりの朝・昼・夕方は、金屏風の前に横一列（NEWYEAR_ROW）。だれがどこに立つかは日ごとのくじ。
+// 戻り値は layoutBoxes と同じ形（足もとの点に、外の大きさで置く）
+export function newyearBoxes({ nuis, seed, date }) {
+  const order = shuffled(nuis, seed, date, 'newyear', maxOf(NEWYEAR_ROW.x));
+  const xs = NEWYEAR_ROW.x[order.length] ?? [];
+  return order.map((n, i) => {
+    const { w, h } = nuiSize('out', n.aspect);
+    return { id: n.id, place: 'newyear', x: xs[i] - w / 2, y: NEWYEAR_ROW.y - h, w, h };
+  });
 }
 
 // 寝る時間（22:00〜6:00）は2段ベッドで寝る。体数で寝る段が決まり（BED_USE）、だれがどこで寝るかは日ごとのくじ。

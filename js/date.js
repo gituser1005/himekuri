@@ -40,10 +40,14 @@ export function seasonOf(ymd) {
 // クリスマスの 12/20〜12/25 だけ、飾りの付いた xmas になる。12/26 の 5:00 に、ふつうの冬の木にもどる。
 // event：島ごとの季節のイベントのオブジェ（selection/events.js の eventTreeOn。焼き芋大会の imo、クリスマスの飾りつけの日から 12/25 までの xmas）があれば、それにする。
 //   11/7 から、飾りつけの日（島ごとに 12/1〜12/10）があれば木はその日から飾られ、XMAS は、その年の飾りつけの日がない島（12/10 かそのあとに始めた島）の期間
+// お正月の3日間（1/1 の 5:00 から 1/4 の 5:00 まで）は、公園をお正月の庭（newyear）にする。どの島も同じで、イベントのオブジェより先
+//   （docs/topics/2026-11-07-event-art.md の決定。11/8）
 export const XMAS = ['12-20', '12-25'];
+export const NEWYEAR = ['01-01', '01-03'];
 export function treeOf(ymd, event = null) {
-  if (event) return event;
   const md = ymd.slice(5);
+  if (md >= NEWYEAR[0] && md <= NEWYEAR[1]) return 'newyear';
+  if (event) return event;
   return md >= XMAS[0] && md <= XMAS[1] ? 'xmas' : seasonOf(ymd);
 }
 

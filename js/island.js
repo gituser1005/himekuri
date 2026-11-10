@@ -4,7 +4,7 @@
 
 import { dateParts, timeSlot, addDays, treeOf } from './date.js';
 import { unreadDiaries } from './diaries.js';
-import { lifeLayout, homeLayout, layoutBoxes, sleepLayout, sleepScene, COVER_COLOR } from './island-life.js';
+import { lifeLayout, homeLayout, layoutBoxes, sleepLayout, sleepScene, newyearBoxes, COVER_COLOR } from './island-life.js';
 import { PICTURE, PLACES, pictureFile, treeFile } from './places.js';
 
 export const WEATHER_LABEL = { sunny: '晴れ', cloudy: 'くもり', rain: '雨' };
@@ -64,7 +64,8 @@ function imgHtml({ src, x, y, w, h }, i, cls = '') {
 }
 
 // 場面ごとの並び（key は islandScene の sprites）→ 画像の位置と、付ける見た目
-function sceneBoxes(key, { nuis, seed, today, sleepDate, slot }) {
+function sceneBoxes(key, { nuis, seed, today, sleepDate, slot, tree }) {
+  if (key === 'life' && tree === 'newyear') return { boxes: newyearBoxes({ nuis, seed, date: today }), cls: '' };
   if (key === 'life') return { boxes: layoutBoxes(lifeLayout({ nuis, seed, date: today, slot }), nuis), cls: '' };
   if (key === 'sleep') {
     const { boxes, covers, zzz } = sleepScene(sleepLayout({ nuis, seed, date: sleepDate }), nuis);
@@ -84,7 +85,8 @@ function coverHtml({ x, y, w, h, d, edge }) {
       <path d="${d}" fill="${COVER_COLOR.fill}"/><path d="${edge}" fill="none" stroke="${COVER_COLOR.edge}" stroke-width="4" stroke-linecap="round"/>
     </svg>`;
 }
-// 晴れ・くもりの昼は、奥の段（道・鉢）の子 → 公園の木だけの絵 → ほかの子 の順に描く（木が奥の段の子より手前に来る）
+// 晴れ・くもりの昼は、奥の段（道・鉢）の子 → 公園の木だけの絵 → ほかの子 の順に描く（木が奥の段の子より手前に来る）。
+// お正月の庭（newyear）は木がなく、みんな飾りの前に並ぶので、木だけの絵は重ねない
 function spritesHtml(key, ctx) {
   const { boxes, cls, covers = [], zzz = [] } = sceneBoxes(key, ctx);
   const sprite = (b, i) => {
@@ -94,7 +96,7 @@ function spritesHtml(key, ctx) {
   const behind = (b) => key === 'life' && PLACES[b.place]?.behindTree;
   const html = [
     ...boxes.map((b, i) => (behind(b) ? sprite(b, i) : '')),
-    key === 'life' ? `<img class="island-tree" src="${treeFile(ctx.tree)}" alt="">` : '',
+    key === 'life' && ctx.tree !== 'newyear' ? `<img class="island-tree" src="${treeFile(ctx.tree)}" alt="">` : '',
     ...boxes.map((b, i) => (behind(b) ? '' : sprite(b, i))),
   ];
   for (const c of covers) html.push(coverHtml(c));

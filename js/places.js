@@ -6,7 +6,7 @@
 export const PICTURE = { w: 780, h: 1688 };
 
 // 絵のファイル。kind：sunny（晴れ・くもり）/ rain / night（夜。起きている）/ late（寝る時間）、season：js/date.js の treeOf（公園の木の姿。
-// 季節4つと、クリスマスの飾りの付いた冬の木 xmas。絵は木だけが違う）。
+// 季節4つと、クリスマスの飾りの付いた冬の木 xmas、焼き芋大会の imo。絵は木だけが違う。お正月の newyear は公園ごと違う）。
 // 絵は tools/make-cottage-svg.mjs で書き出す
 const PICTURE_FILES = { sunny: 'island_day_sunny_bg', rain: 'island_day_rain_bg', night: 'island_night_bg', late: 'island_late_bg' };
 export const pictureFile = (kind, season) => `assets/${PICTURE_FILES[kind]}_${season}.svg`;
@@ -45,6 +45,11 @@ export const PLACES = {
   shelf: { kind: 'solo', area: 'house', floor: 'down', slots: [[482, 752]] },    // 床に置いた本棚
   sofa: { kind: 'solo', area: 'house', floor: 'down', slots: [[636, 736]] },     // ソファ（座面）
 };
+
+// お正月の3日間（js/date.js の treeOf が newyear）の晴れ・くもりの朝・昼・夕方は、公園のものがないので、
+// みんなが金屏風の飾りの前に横一列に並ぶ（足もとの y と、体数 → 横の位置。docs/topics/2026-11-07-event-art.md の決定）。
+// 雨と夜は家の中、寝る時間はベッド（ふだんと同じ）
+export const NEWYEAR_ROW = { y: 1400, x: { 1: [390], 2: [270, 510], 3: [200, 390, 580], 4: [150, 310, 470, 630] } };
 
 // 家の中の階（壁の内側）。家の中の場所のぬいは、自分の階からはみ出さない（tests/island-life.test.mjs）
 export const FLOORS = {
@@ -127,7 +132,7 @@ export const SNAP_ARRIVAL = {
   date: { size: 17, right: 14, bottom: 12 },
 };
 // 季節のイベント・島のイベントのみんなの写真（snapshot.type が group。scene は台本の photo）。docs/topics/2026-11-04-photo-ordinary.md
-//   tree：背景にするコテージの絵の木の姿（pictureFile。その日の天気の絵）。image：専用の背景の絵（あれば tree より先。4:3）
+//   tree：背景にするコテージの絵の木の姿（pictureFile。その日の天気の絵。sunny があれば天気によらず晴れの絵）。image：専用の背景の絵（あれば tree より先。4:3）
 //   crop：絵（780×1688）の切り出し [左の x, 上の y, 幅]（高さは幅の 3/4）。y がなければ、足もとの線 SNAP_ARRIVAL.foot が floor の位置に来るよう決める
 //   floor・height・slots：子の足もとの高さ・体数ごとの高さ・並ぶ場所（js/snapshot.js の arrivalLayout。slots がなければ SNAP_ARRIVAL.slots）
 const H = (a, b, c, d) => ({ 1: a, 2: b, 3: c, 4: d });
@@ -143,6 +148,12 @@ export const SNAP_GROUP = {
   },
   // クリスマスの飾りつけ：飾りの付いた木の全体。切り出しと子の並びは、おうちに来た日の写真の行事の当日（SNAP_ARRIVAL.crop.full）と同じ
   xmas: { tree: 'xmas', crop: [0, null, 780], floor: 0.95, height: H(0.34, 0.32, 0.3, 0.28) },
+  // お正月（1/1 の行事の日記）：お正月の庭の金屏風の前に、みんなが横一列（docs/topics/2026-11-07-event-art.md の決定）。
+  //   天気によらず晴れの昼の絵（sunny。1/1 が雨でも、金屏風の前の記念撮影として晴れの絵を使う）。切り出しはクリスマスの飾りつけと同じ（絵の幅いっぱい）
+  newyear: {
+    tree: 'newyear', sunny: true, crop: [0, null, 780], floor: 0.95, height: H(0.34, 0.32, 0.3, 0.28),
+    slots: { 1: [{ x: 0.5 }], 2: [{ x: 0.35 }, { x: 0.65 }], 3: [{ x: 0.26 }, { x: 0.5 }, { x: 0.74 }], 4: [{ x: 0.2 }, { x: 0.4 }, { x: 0.6 }, { x: 0.8 }] },
+  },
   // 紅葉狩り：専用の背景（紅葉の並木道。ユーザーが用意した絵 tools/art/momiji-src.png）。子はまん中の小道に、おうちに来た日と同じ並び
   momiji: { image: 'assets/photo_bg_momiji.webp', floor: 0.9, height: H(0.56, 0.52, 0.48, 0.43) },
 };

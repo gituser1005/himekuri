@@ -2,7 +2,7 @@
 // ファイルを直して公開し直すときは VERSION を上げる（tools/deploy.py が上げ忘れを止める）。
 // 新しい版は裏で取ってきて、次に開いたときから使われる。
 
-const VERSION = 'v16';
+const VERSION = 'v17';
 // キャッシュの名前は cottage- で始める。試用版 v1（ぬいアイランド）は同じドメインで island- を使っている
 const PREFIX = 'cottage-';
 const CACHE = `${PREFIX}${VERSION}`;
@@ -94,6 +94,10 @@ const ASSETS = [
   'assets/island_night_bg_imo.svg',
   'assets/island_late_bg_imo.svg',
   'assets/island_tree_imo.svg',
+  'assets/island_day_sunny_bg_newyear.svg',
+  'assets/island_day_rain_bg_newyear.svg',
+  'assets/island_night_bg_newyear.svg',
+  'assets/island_late_bg_newyear.svg',
   'assets/photo_bg_momiji.webp',
   'assets/zzz.png',
   'assets/snap_1024_group.png',

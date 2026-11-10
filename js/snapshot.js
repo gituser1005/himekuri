@@ -224,7 +224,7 @@ async function drawAnniversary(ctx, imgs, cast, year) {
 // 季節のイベント・島のイベントのみんなの写真
 async function drawGroup(ctx, imgs, cast, spec, weather, base) {
   const g = SNAP_GROUP[spec.scene] ?? SNAP_GROUP.momiji;
-  const bg = await loadImage(base + (g.image ?? pictureFile(weather === 'rain' ? 'rain' : 'sunny', g.tree)));
+  const bg = await loadImage(base + (g.image ?? pictureFile(weather === 'rain' && !g.sunny ? 'rain' : 'sunny', g.tree)));
   if (g.image) ctx.drawImage(bg, 0, 0, SNAP.w, SNAP.h);
   else {
     const [x, y, w] = g.crop;
